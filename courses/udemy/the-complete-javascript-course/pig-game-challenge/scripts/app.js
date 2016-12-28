@@ -8,7 +8,7 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-var scores, roundScore, activePlayer, dice, gamePlaying;
+var scores, roundScore, activePlayer, dice, gamePlaying, lastDice;
 
 init();
 
@@ -23,18 +23,32 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         diceDOM.style.display = 'block';
         diceDOM.src = 'images/dice-' + dice + '.png';
 
-        // 3. Update the round score if rolled number was not 1
-        if (dice !== 1) {
+        if (dice === 6 && lastDice === 6) {
+            // 3a. Player looses round and crevious score due to two consecutice 6s
+            console.log('Player ' + (activePlayer + 1) + ' rolls consecutice 6s. ' + ' Looses existing score ' + scores[activePlayer]);
+            
+            scores[activePlayer] = 0;
+            document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
+
+            // Next Player
+            nextPlayer();
+        } else if (dice !== 1) {
+            // 3b. Update the round score if rolled number was not 1
+        
             // Add score
             roundScore += dice;
 
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
+            // 3c. Player looses round as rolled number was 1
             console.log('Player ' + (activePlayer + 1) + ' rolls 1. ' + ' Looses ' + roundScore);
 
             // Next Player
             nextPlayer();
         }
+        
+        // Save the value of current dice
+        lastDice = dice;
     }
 });
 
