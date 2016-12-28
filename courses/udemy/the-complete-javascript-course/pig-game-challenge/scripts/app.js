@@ -62,7 +62,15 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
         document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
 
         // Check if player won the gane
-        if (scores[activePlayer] >= 100) {
+        var reqdFinalScore = 100, finalScoreInput;
+
+        finalScoreInput = document.querySelector('.final-score').value;
+        // Undefined, 0, null or "" are coerced to false. Anything else is coereced to true
+        if (finalScoreInput) {
+            reqdFinalScore = finalScoreInput;
+        }
+        
+        if (scores[activePlayer] >= reqdFinalScore) {
             // Declare winner on UI
             document.getElementById('name-' + activePlayer).textContent = 'Winner!';
             document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
