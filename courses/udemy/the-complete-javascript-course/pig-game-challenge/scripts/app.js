@@ -8,35 +8,42 @@ GAME RULES:
 - The first player to reach 100 points on GLOBAL score wins the game
 
 */
-var scores, roundScore, activePlayer, dice, gamePlaying, lastDice;
+var scores, roundScore, activePlayer, gamePlaying, lastDiceTotal;
 
 init();
 
 document.querySelector('.btn-roll').addEventListener('click', function () {
     if (gamePlaying) {
         // 1. Random Number
-        dice = Math.floor(Math.random() * 6) + 1;
-        console.log(dice);
+        var dice1, dice2, currentDiceTotal;
+        dice1 = Math.floor(Math.random() * 6) + 1;
+        dice2 = Math.floor(Math.random() * 6) + 1;
+        console.log(dice1 + ' and ' + dice2);
 
         // 2. Display the result
-        var diceDOM = document.querySelector('.dice');
-        diceDOM.style.display = 'block';
-        diceDOM.src = 'images/dice-' + dice + '.png';
+        var dice1DOM, dice2DOM;
+        dice1DOM = document.getElementById('dice-1');
+        dice1DOM.style.display = 'block';
+        dice1DOM.src = 'images/dice-' + dice1 + '.png';
+        dice2DOM = document.getElementById('dice-2');
+        dice2DOM.style.display = 'block';
+        dice2DOM.src = 'images/dice-' + dice2 + '.png';
 
-        if (dice === 6 && lastDice === 6) {
+        currentDiceTotal = dice1 + dice2;
+        if (currentDiceTotal === 12 && lastDiceTotal === 12) {
             // 3a. Player looses round and crevious score due to two consecutice 6s
-            console.log('Player ' + (activePlayer + 1) + ' rolls consecutice 6s. ' + ' Looses existing score ' + scores[activePlayer]);
+            console.log('Player ' + (activePlayer + 1) + ' rolls consecutice double 6s. ' + ' Looses existing score ' + scores[activePlayer]);
             
             scores[activePlayer] = 0;
             document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
 
             // Next Player
             nextPlayer();
-        } else if (dice !== 1) {
+        } else if (dice1 !== 1 && dice2 !== 1) {
             // 3b. Update the round score if rolled number was not 1
         
             // Add score
-            roundScore += dice;
+            roundScore += currentDiceTotal;
 
             document.querySelector('#current-' + activePlayer).textContent = roundScore;
         } else {
@@ -47,8 +54,8 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
             nextPlayer();
         }
         
-        // Save the value of current dice
-        lastDice = dice;
+        // Save the value of current dice total
+        lastDiceTotal = currentDiceTotal;
     }
 });
 
@@ -78,7 +85,8 @@ document.querySelector('.btn-hold').addEventListener('click', function () {
 
             // Stop game
             gamePlaying = false;
-            document.querySelector('.dice').style.display = 'none';
+            document.getElementById('dice-1').style.display = 'none';
+            document.getElementById('dice-2').style.display = 'none';
             document.querySelector('.btn-roll').style.display = 'none';
             document.querySelector('.btn-hold').style.display = 'none';
         } else {
@@ -97,7 +105,8 @@ function init() {
     gamePlaying = true;
 
     // Hide the dice
-    document.querySelector('.dice').style.display = 'none';
+    document.getElementById('dice-1').style.display = 'none';
+    document.getElementById('dice-2').style.display = 'none';
     document.querySelector('.btn-roll').style.display = 'block';
     document.querySelector('.btn-hold').style.display = 'block';
 
@@ -130,7 +139,8 @@ function nextPlayer() {
     document.getElementById('current-1').textContent = 0;
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
-    document.querySelector('.dice').style.display = 'none';
+    document.getElementById('dice-1').style.display = 'none';
+    document.getElementById('dice-2').style.display = 'none';
 
     // Log switch of user
     console.log('Switched to Player ' + (activePlayer + 1));
