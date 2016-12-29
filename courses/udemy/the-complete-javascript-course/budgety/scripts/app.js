@@ -139,8 +139,9 @@ var budgetController = (function () {
 
 // UI Controller
 var uiController = (function () {
+    var DOMStrings, formatNumber;
     
-    var DOMStrings = {
+    DOMStrings = {
         inputType: '.add__type',
         inputDescription: '.add__description',
         inputValue: '.add__value',
@@ -155,6 +156,29 @@ var uiController = (function () {
         expensesPercentageLabel: '.item__percentage'
     };
     
+    formatNumber = function (num, type) {
+
+        // + or - before number
+        // exactly two decimal points
+        // comma separating the thousands
+
+        var numSplit, int, dec;
+
+        num = Math.abs(num);
+        num = num.toFixed(2);
+
+        numSplit = num.split('.');
+
+        int = numSplit[0];
+        if (int.length > 3) {
+            int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3); //input 23510, output 23,510
+        }
+
+        dec = numSplit[1];
+
+        return (type === 'exp' ? '-' : '+') + ' ' + int + '.' + dec;
+    };
+        
     return {
         getInput: function () {
             return {
@@ -182,7 +206,7 @@ var uiController = (function () {
             // Replace place holder with actual data
             newHTML = HTML.replace('%id%', obj.id);
             newHTML = newHTML.replace('%description%', obj.description);
-            newHTML = newHTML.replace('%value%', obj.value);
+            newHTML = newHTML.replace('%value%', formatNumber(obj.value, type));
             
             // Insert HTML into the DOM
             document.querySelector(elementContainer).insertAdjacentHTML('beforeend', newHTML);
@@ -212,9 +236,9 @@ var uiController = (function () {
         
         displayBudget: function (obj) {
             
-            document.querySelector(DOMStrings.budgetLabel).textContent = obj.budget;
-            document.querySelector(DOMStrings.incomeLabel).textContent = obj.totalIncome;
-            document.querySelector(DOMStrings.expensesLabel).textContent = obj.totalExpenses;
+            document.querySelector(DOMStrings.budgetLabel).textContent = formatNumber(obj.budget, (obj.budget > 0 ? 'inc' : 'exp'));
+            document.querySelector(DOMStrings.incomeLabel).textContent = formatNumber(obj.totalIncome, 'inc');
+            document.querySelector(DOMStrings.expensesLabel).textContent = formatNumber(obj.totalExpenses, 'exp');
             if (obj.percentage > 0) {
                 document.querySelector(DOMStrings.percentageLabel).textContent = obj.percentage + '%';
             } else {
@@ -238,10 +262,10 @@ var uiController = (function () {
             };
             
             nodeListForEach(fields, function (current, index) {
-                if(percentages[index] > 0) {
-                    current.textContent = percentages[index] + '%'; 
+                if (percentages[index] > 0) {
+                    current.textContent = percentages[index] + '%';
                 } else {
-                    current.textContent = '---'; 
+                    current.textContent = '---';
                 }
             });
         },
