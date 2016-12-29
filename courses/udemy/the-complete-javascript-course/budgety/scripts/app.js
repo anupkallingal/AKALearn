@@ -36,9 +36,25 @@ var uiController = (function () {
 // Global App Controller
 var controller = (function (budgetCtrl, uiCtrl) {
     
-    var DOM = uiCtrl.getDOMStrings();
+    var setupEventListeners, ctrlAddItem;
     
-    var ctrlAddItem = function () {
+    setupEventListeners = function () {
+        
+        var DOM = uiCtrl.getDOMStrings();
+    
+        document.querySelector(DOM.inputBtn).addEventListener('click', function () {
+            ctrlAddItem();
+        });
+
+        document.addEventListener('keypress', function (event) {
+            if (event.keyCode === 13 || event.which === 13) {
+                ctrlAddItem();
+            }
+        });
+    
+    };
+    
+    ctrlAddItem = function () {
  
         // 1. Get the input data
         var input = uiCtrl.getInput();
@@ -54,17 +70,12 @@ var controller = (function (budgetCtrl, uiCtrl) {
                 
     };
     
-    document.querySelector(DOM.inputBtn).addEventListener('click', function () {
-        ctrlAddItem();
-    });
-    
-    document.addEventListener('keypress', function (event) {
-        if (event.keyCode === 13 || event.which === 13) {
-            ctrlAddItem();
-        }
-    });
-    
     return {
-        
+        init: function () {
+            console.log('Application has started');
+            setupEventListeners();
+        }
     };
 })(budgetController, uiController);
+
+controller.init();
