@@ -7,6 +7,15 @@ var budgetController = (function () {
         this.id = id;
         this.description = description;
         this.value = value;
+        this.percentage = -1;
+    };
+    
+    Expense.prototype.calculatePercentage = function (totalIncome) {
+        if (totalIncome > 0) {
+            this.percentage = Math.round((this.value / totalIncome) * 100);
+        } else {
+            this.percentage = -1;
+        }
     };
     
     Income = function (id, description, value) {
@@ -98,6 +107,13 @@ var budgetController = (function () {
             
         },
         
+        calculatePercentages: function () {
+            
+            data.allItems.exp.forEach(function (current) {
+                current.calculatePercentage(data.totals.inc);
+            });
+        },
+        
         getBudget: function () {
             return {
                 budget: data.budget,
@@ -105,6 +121,13 @@ var budgetController = (function () {
                 totalExpenses: data.totals.exp,
                 percentage: data.percentage
             };
+        },
+        
+        getPercentages: function () {
+            var allPercentages = data.allItems.exp.map(function (curr) {
+                return curr.percentage;
+            });
+            return allPercentages;
         },
         
         testing: function () {
@@ -246,10 +269,13 @@ var controller = (function (budgetCtrl, uiCtrl) {
     updatePercentages = function () {
         
         // 1. Calculate the percentages
+        budgetCtrl.calculatePercentages();
         
         // 2. Read percentages from budget controller
+        var percentages = budgetCtrl.getPercentages();
         
         // 3. Update the UI with new percentages
+        console.log(percentages);
         
     };
     
