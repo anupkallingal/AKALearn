@@ -2,67 +2,100 @@
 <html lang="en">
     
     <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">        
 
         <title>Karya - Home</title>
+        
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
 
     </head>
     
     <body>
-        <header id="section-header">
-            <nav>
-                <a href="#section-features">Features</a> |
-                <a href="#section-platforms">Platforms</a> |
-                <a href="#">Login</a> |
-                <a href="#">Sign up</a>
-            </nav>
+        <nav>
+            <a href="Index.html">Logo</a> |
+            <a href="#section-features">Features</a> |
+            <a href="#section-platforms">Platforms</a> |
+            <a href="#">Login</a> |
+            <a href="#">Sign up</a>
+        </nav>
+
+        <header id="section-header" class="jumbotron">
+            <div class="container">
+                <div class="row">
+                    <h1>Tasks...<br>Manage it better.</h1>
+                    <a class="btn btn-full" href="#">Start</a>
+                    <a class="btn btn-ghost" href="#section-features">Show me more</a>                
+                </div>
+            </div>            
         </header>
         
-        <section id="section-features">
-            <h2>Features</h2>
-            <ul>
-                <li>Organize Tasks</li>
-                <li>Access Anywhere</li>
-                <li>Search</li>
-                <li>Protection</li>
-                <li>Notes</li>
-                <li>Schedule</li>
-                <li>Set status</li>
-                <li>Lists</li>
-                <li>Tags</li>
-            </ul>
-        </section>
-        
-        <section id="section-platforms">
-            <h2>Platforms</h2>
-            <ul>
-                <li>Overview</li>
-                <li>Web</li>
-                <li>Android</li>
-            </ul>
-            <h4>Coming Soon...</h4>
-            <ul>
-                <li>iOS</li>
-                <li>Windows</li>
-                <li>EMail</li>
-            </ul>
+        <section id="section-container" class="container">
+            <section id="section-features" class="row">
+                <h2>Features</h2>
+                <ul>
+                    <li>Organize Tasks</li>
+                    <li>Access Anywhere</li>
+                    <li>Search</li>
+                    <li>Protection</li>
+                    <li>Notes</li>
+                    <li>Schedule</li>
+                    <li>Set status</li>
+                    <li>Lists</li>
+                    <li>Tags</li>
+                </ul>
+            </section>
+
+            <section id="section-platforms" class="row">
+                <h2>Platforms</h2>
+                <ul>
+                    <li>Overview</li>
+                    <li>Web</li>
+                    <li>Android</li>
+                </ul>
+                <h5>Coming Soon...</h5>
+                <ul>
+                    <li>iOS</li>
+                    <li>Windows</li>
+                    <li>EMail</li>
+                </ul>
+            </section>
         </section>
         
         <footer id="section-footer">
-            <p>
-                <div>
-                    <a href="Index.html">Home</a> |
-                    <a href="#">About us</a> |
-                    <a href="#">Blog</a> |
-                    <a href="#">Contact us</a> |
+            <div class="container">
+                <div class="row">
+                    <div>
+                        <a href="Index.html">Home</a> |
+                        <a href="#">About us</a> |
+                        <a href="#">Blog</a> |
+                        <a href="#">Contact us</a> |
+                    </div>
+                    <div>
+                        <a href="#">Facebook</a> |
+                        <a href="#">Google+</a> |
+                        <a href="#">Twitter</a> |
+                    </div>
+
+                    <p>Copyright © 2017 by Karya. All rights reserved.</p>
                 </div>
-                <div>
-                    <a href="#">Facebook</a> |
-                    <a href="#">Google+</a> |
-                    <a href="#">Twitter</a> |
-                </div>
-            </p>
-        
-            <p>Copyright © 2017 by Karya. All rights reserved.</p>
+            </div>
         </footer>
+    
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    
     </body>
 </html>
