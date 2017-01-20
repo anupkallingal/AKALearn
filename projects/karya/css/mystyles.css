@@ -1,5 +1,6 @@
 body{
     z-index:0;
+
 }
 
 /* ------------------------------------------------------------- */
@@ -12,7 +13,7 @@ body{
 
 .row-content {
     margin:0px auto;
-    padding: 50px 0px 50px 0px;
+    padding: 50px 50px 50px 50px;
     border-bottom: 1px ridge;
     min-height:400px;
 }
@@ -27,6 +28,10 @@ body{
 /* Headers
 /* ------------------------------------------------------------- */
 
+#section-header {
+    margin-bottom: 0;
+}
+
 .jumbotron {
     background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(images/enjoyNature.jpg);
     background-size: cover;
@@ -40,4 +45,8 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#section-features {
+    background-color: #f4f4f4;
 }
