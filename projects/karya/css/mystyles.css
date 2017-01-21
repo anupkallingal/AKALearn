@@ -73,6 +73,21 @@ h4 {
 }
 
 /* ------------------------------------------------------------- */
+/* Navbar Links
+/* ------------------------------------------------------------- */
+.navbar .container a:link,
+.navbar .container a:visited {
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s
+}
+
+.navbar .container a:hover,
+.navbar .container a:active {
+    border-bottom: 2px solid #51a7e0;
+}
+
+/* ------------------------------------------------------------- */
 /* Headers
 /* ------------------------------------------------------------- */
 
