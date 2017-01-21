@@ -42,6 +42,12 @@ h3 {
     font-size: 110%;
 }
 
+h4 {
+    margin-bottom: 5px;
+    font-size: 110%;
+    font-weight: 300;
+}
+
 /* ------------------------------------------------------------- */
 /* Row styles
 /* ------------------------------------------------------------- */
@@ -59,7 +65,7 @@ h3 {
 }
 
 .row-footer{
-    background-color: #AfAfAf;
+    background-color: #d2d2d2;
     margin:0px auto;
     padding: 20px 0px 20px 0px;
 }
@@ -96,19 +102,20 @@ h3 {
 }
 
 .thumbnail {
-    background-color: #fcfcfc;
+    background-color: #fff;
     padding: 1%;
 }
 
-.thumbnail img {
-    padding: 15px;
-}
-
 .thumbnail .caption {
-    background-color: #fff;
+    background-color: #fcfcfc;
     border-top: 1px solid #e8e8e8;
     font-size: 90%;
     line-height: 145%;
+}
+
+.thumbnail .caption p {
+    font-size: 90%;
+    padding-left: 10px;
 }
 
 .media {
@@ -138,4 +145,12 @@ h3 {
 
 .media .media-body p {
     padding: 15px;
+}
+
+/* ----- Icons ----- */
+.platform-icon {
+    display: block;
+    text-align: center;
+    color: #3498db;
+    margin: 10px;
 }
