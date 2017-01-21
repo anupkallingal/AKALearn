@@ -91,6 +91,10 @@ h3 {
     background-color: #f4f4f4;
 }
 
+#section-features .row {
+    padding-bottom: 35px;
+}
+
 .thumbnail {
     background-color: #fcfcfc;
     padding: 1%;
@@ -107,3 +111,31 @@ h3 {
     line-height: 145%;
 }
 
+.media {
+    background-color: #fcfcfc;
+    border: 1px solid #ddd;
+}
+
+.media .media-left {
+    padding: 0;
+}
+
+.media img {
+    padding: 20px;
+    background-color: transparent;
+    border: 0px;
+    width: 128px;
+}
+
+.media .media-body {
+    background-color: #fff;
+    border-left: 1px solid #e8e8e8;
+    font-size: 90%;
+    line-height: 145%;
+    vertical-align: middle;
+    padding: 15px;
+}
+
+.media .media-body p {
+    padding: 15px;
+}
