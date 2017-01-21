@@ -154,3 +154,7 @@ h4 {
     color: #3498db;
     margin: 10px;
 }
+
+.control-label {
+    font-weight: 400;
+}
