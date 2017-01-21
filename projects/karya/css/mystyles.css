@@ -1,10 +1,13 @@
+// Base Color: #3498db
+
 body{
     z-index:0;
 
 }
 
 /* ----- Headings ----- */
-h1 {
+h1,
+h2 {
     font-weight: 300;
     text-transform: uppercase;
 }
@@ -14,6 +17,23 @@ h1 {
     margin-bottom: 20px;
     word-spacing: 4px;
     letter-spacing: 1px;
+}
+
+h2 {
+    margin-bottom: 30px;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+h2:after {
+    display: block;
+    width: 100px;
+    height: 2px;
+    background-color: #3498db;
+    content: " ";
+    margin: 0 auto;
+    margin-top: 30px;
 }
 
 /* ------------------------------------------------------------- */
