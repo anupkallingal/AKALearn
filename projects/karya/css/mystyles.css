@@ -278,8 +278,38 @@ h4 {
     padding: 10px 30px;
 }
 
-.modal .btn-default:hover {
+.modal .btn-primary:hover {
     background-color: #2487c9;
     color: #fff;
 }
 
+
+/* ------------------------------------------------------------- */
+/* User Home
+/* ------------------------------------------------------------- */
+#section-user-home {
+    min-height: 100vh;
+}
+
+#section-user-home .btn  {
+    background-image: none;
+    margin-right: 15px;
+    text-shadow: none;
+    border-radius: 200px;
+}
+
+#section-user-home .btn-primary {
+    background-color: #3498db;
+    border: 2px solid #3498db;
+    color: #fff;
+    padding: 10px 30px;
+}
+
+#section-user-home .btn-primary:hover {
+    background-color: #2487c9;
+    color: #fff;
+}
+
+.action-row {
+    padding: 0px 50px 30px 00px;
+}
