@@ -67,11 +67,15 @@ h4 {
 }
 
 .row-footer{
-    background-color: #d2d2d2;
+    background-color: #333;
     margin:0px auto;
     padding: 20px 0px 20px 0px;
 }
 
+.footer-copyright {
+    text-align: center;
+    color: #888;
+}
 /* ------------------------------------------------------------- */
 /* Navbar Links
 /* ------------------------------------------------------------- */
