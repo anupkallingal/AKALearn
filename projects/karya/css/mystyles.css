@@ -119,6 +119,7 @@ h4 {
 
 #section-footer li a {
     text-decoration: none;
+    padding: 0px 10px;
 }
 
 #section-footer li a:hover {
@@ -263,7 +264,7 @@ h4 {
 /* ------------------------------------------------------------- */
 /* Modal
 /* ------------------------------------------------------------- */
-.modal .btn {
+.modal .btn[type=submit]  {
     background-image: none;
     margin-right: 15px;
     text-shadow: none;
