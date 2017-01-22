@@ -328,7 +328,7 @@ h4 {
 
 
 /* ------------------------------------------------------------- */
-/* User lis
+/* User list
 /* ------------------------------------------------------------- */
 #section-user-list {
     min-height: 100vh;
@@ -351,4 +351,17 @@ h4 {
 #section-user-list .btn-primary:hover {
     background-color: #2487c9;
     color: #fff;
+}
+
+
+#section-user-list .panel-default .panel-heading {
+    color: #3498db;
+}
+
+#section-user-list .panel-default .panel-heading:hover {
+    color: #2487c9;
+}
+
+#section-user-list a {
+    text-decoration: none;
 }
