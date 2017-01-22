@@ -322,3 +322,33 @@ h4 {
     color: #2487c9;
 }
 
+#section-user-home a {
+    text-decoration: none;
+}
+
+
+/* ------------------------------------------------------------- */
+/* User lis
+/* ------------------------------------------------------------- */
+#section-user-list {
+    min-height: 100vh;
+}
+
+#section-user-list .btn  {
+    background-image: none;
+    margin-right: 15px;
+    text-shadow: none;
+    border-radius: 200px;
+}
+
+#section-user-list .btn-primary {
+    background-color: #3498db;
+    border: 2px solid #3498db;
+    color: #fff;
+    padding: 10px 30px;
+}
+
+#section-user-list .btn-primary:hover {
+    background-color: #2487c9;
+    color: #fff;
+}
