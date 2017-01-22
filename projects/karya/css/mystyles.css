@@ -84,6 +84,42 @@ h4 {
     margin-bottom: 0px;
 }
 
+#section-footer a:link,
+#section-footer a:visited {
+    color: #888;
+    background: transparent;
+}
+
+#section-footer .btn-facebook,
+#section-footer .btn-twitter,
+#section-footer .btn-linkedin,
+#section-footer .btn-youtube,
+#section-footer .fa-envelope-o {
+    border: 1px solid transparent;
+    border-color: rgba(0,0,0,0.2);
+    transition: color 0.2s;
+}
+
+#section-footer .btn-facebook:hover {
+    color: #3b5999;
+}
+
+#section-footer .btn-twitter:hover {
+    color: #55acee;
+}
+
+#section-footer .btn-linkedin:hover {
+    color: #0077B5;
+}
+
+#section-footer .btn-youtube:hover {
+    color: #cd201f;
+}
+
+#section-footer .fa-envelope-o:hover {
+    color: #fff;
+}
+
 /* ------------------------------------------------------------- */
 /* Navbar Links
 /* ------------------------------------------------------------- */
