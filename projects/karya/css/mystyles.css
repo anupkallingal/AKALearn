@@ -313,3 +313,16 @@ h4 {
 .action-row {
     padding: 0px 50px 30px 00px;
 }
+
+#section-user-home .panel-primary .panel-heading {
+    background-image: none;
+    background-color: #3498db;
+    border-color: #2487c9;
+    color: #fff;
+}
+
+#section-user-home .panel-primary .panel-heading:hover {
+    background-color: #2487c9;
+    color: #fff;
+}
+
