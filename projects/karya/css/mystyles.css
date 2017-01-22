@@ -271,14 +271,14 @@ h4 {
     border-radius: 200px;
 }
 
-.modal .btn-primary {
+.modal .btn-primary[type=submit] {
     background-color: #3498db;
     border: 2px solid #3498db;
     color: #fff;
     padding: 10px 30px;
 }
 
-.modal .btn-primary:hover {
+.modal .btn-primary[type=submit]:hover {
     background-color: #2487c9;
     color: #fff;
 }
