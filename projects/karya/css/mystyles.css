@@ -365,3 +365,11 @@ h4 {
 #section-user-list a {
     text-decoration: none;
 }
+
+.fa-star-high-priority {
+    color: #3498db;
+}
+
+.fa-star-normal-priority {
+    color: #acacac;
+}
