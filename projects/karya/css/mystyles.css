@@ -90,6 +90,14 @@ h4 {
     background: transparent;
 }
 
+#section-footer li a {
+    text-decoration: none;
+}
+
+#section-footer li a:hover {
+    color: #ddd;
+}
+
 #section-footer .btn-facebook,
 #section-footer .btn-twitter,
 #section-footer .btn-linkedin,
@@ -117,7 +125,7 @@ h4 {
 }
 
 #section-footer .fa-envelope-o:hover {
-    color: #fff;
+    color: #ddd;
 }
 
 /* ------------------------------------------------------------- */
