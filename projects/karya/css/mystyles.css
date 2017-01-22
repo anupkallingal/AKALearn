@@ -7,6 +7,33 @@ body{
 
 }
 
+#section-header .btn {
+    background-image: none;
+    margin-right: 15px;
+    text-shadow: none;
+    border-radius: 200px;
+}
+
+#section-header .btn-primary {
+    background-color: #3498db;
+    border: 2px solid #3498db;
+    color: #fff;
+    padding: 10px 30px;
+}
+
+#section-header .btn-default {
+    background-color: transparent;
+    border: 2px solid #51a7e0;
+    color: #51a7e0;
+    padding: 10px 10px;
+}
+
+#section-header .btn-primary:hover,
+#section-header .btn-default:hover {
+    background-color: #2487c9;
+    color: #fff;
+}
+
 /* ----- Headings ----- */
 h1,
 h2,
