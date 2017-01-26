@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">        
 
-        <title>Karya - Home</title>
+        <title>Karya - Profile</title>
         
         <!-- Bootstrap -->
         <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
@@ -60,95 +60,86 @@
         </nav>
         
         <section id="section-container">
-            <section id="section-user-home" class="row row-content">
+            <section id="section-user-profile" class="row row-content">
                 <div class="row">
-                    <div class="col-xs-12">
-                        <h2>Hello User</h2>
-                    </div>
-                </div>
-                 <div class="row action-row">
-                    <div class="col-xs-1 col-xs-offset-11">
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#addNewListModal">New List</a>
+                    <div class="col-xs-12">                    
+                        <ol class="breadcrumb">
+                            <li><a href="UserHome.html">Home</a></li>
+                            <li class="active">Profile</li>
+                        </ol>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <a  href="UserList.html">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">All</h3>
-                                </div>
-                                <div class="panel-body">
-                                    13 Items
+                    <div class="col-xs-12">                        
+                        <h2>
+                            Profile
+                        </h2>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">                        
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="firstname" class="col-sm-3 control-label">First Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Enter First Name">
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <a  href="UserList.html">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Personal</h3>
-                                </div>
-                                <div class="panel-body">
-                                    1 Item
+                            <div class="form-group">
+                                <label for="lastname" class="col-sm-3 control-label">Last Name</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Enter Last Name">
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <a  href="UserList.html">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Work</h3>
-                                </div>
-                                <div class="panel-body">
-                                    5 Items
+                            <div class="form-group has-feedback">
+                                <label for="date" class="col-sm-3 control-label">Date of Birth</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" id="date" name="date" placeholder="Date">
+                                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <a  href="UserList.html">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Grocery List</h3>
-                                </div>
-                                <div class="panel-body">
-                                    4 Items
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <a  href="UserList.html">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Kids Stuff</h3>
-                                </div>
-                                <div class="panel-body">
-                                    3 Items
+                            <div class="form-group">
+                                <label for="gender" class="col-sm-3 control-label">Gender</label>
+                                <div class="col-sm-5">
+                                    <!-- Split button -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default">Gender</button>
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="caret"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Male</a></li>
+                                            <li><a href="#">Female</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="#">Other</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-3">
-                        <a  href="UserList.html">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <button type="button" class="close">&times;</button>
-                                    <h3 class="panel-title">Picnic List</h3>
+                            <div class="form-group">
+                                <label for="telnum" class="col-xs-12 col-sm-3 control-label">Contact Tel.</label>
+                                <div class="col-xs-5 col-sm-4 col-md-3">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">(</div>
+                                        <input type="tel" class="form-control" id="areacode" name="areacode" placeholder="Area code">
+                                        <div class="input-group-addon">)</div>
+                                    </div>
                                 </div>
-                                <div class="panel-body">
-                                    0 Items
+                                <div class="col-xs-7 col-sm-5 col-md-5">
+                                        <input type="tel" class="form-control" id="telnum" name="telnum" placeholder="Tel. number">
                                 </div>
                             </div>
-                        </a>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-8">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </div>                
+                </div>
             </section>
         </section>
-
 
         <footer id="section-footer" class="row-footer">
             <div class="container">
