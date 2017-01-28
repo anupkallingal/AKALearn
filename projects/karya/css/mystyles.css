@@ -334,7 +334,7 @@ h4 {
     min-height: 100vh;
 }
 
-#section-user-list .btn  {
+#section-user-list .btn-primary  {
     background-image: none;
     margin-right: 15px;
     text-shadow: none;
@@ -353,7 +353,6 @@ h4 {
     color: #fff;
 }
 
-
 #section-user-list .panel-default .panel-heading {
     color: #3498db;
 }
@@ -371,6 +370,14 @@ h4 {
 }
 
 .fa-star-normal-priority {
+    color: #acacac;
+}
+
+.fa-color-enabled {
+    color: #3498db;
+}
+
+.fa-color-disabled {
     color: #acacac;
 }
 
