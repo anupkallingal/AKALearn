@@ -426,6 +426,26 @@ h4 {
     margin-top: 0;
     margin-bottom: 5px;
 }
+
+#section-user-notifications .btn
+{
+    background-image: none;
+    text-shadow: none;
+}
+
+#section-user-notifications .btn-default {
+    background-color: transparent;
+    border: 1px none;
+    color: #b7cfde;
+    padding: 2px 5px;
+    transition: border 0.5s;
+}
+
+#section-user-notifications .btn-default:hover {
+    border: 1px dashed #51a7e0;
+    color: #3498db;
+}
+
 .alert-message p:last-child
 {
     margin-bottom: 0;
@@ -437,49 +457,50 @@ h4 {
 }
 .alert-message-success
 {
-    border-color: #3C763D;
+    border-color: #2ecc71;
 }
 .alert-message-success h4
 {
-    color: #3C763D;
+    color: #2ecc71;
 }
 .alert-message-danger
 {
-    border-color: #d9534f;
+    border-color: #e74c3c;
 }
 .alert-message-danger h4
 {
-    color: #d9534f;
+    color: #e74c3c;
 }
 .alert-message-warning
 {
-    border-color: #f0ad4e;
+    border-color: #e67e22;
 }
 .alert-message-warning h4
 {
-    color: #f0ad4e;
+    color: #e67e22;
 }
 .alert-message-info
 {
-    border-color: #5bc0de;
+    border-color: #3498db;
 }
 .alert-message-info h4
 {
-    color: #5bc0de;
+    color: #3498db;
 }
 .alert-message-default
 {
-    border-color: #B4B4B4;
+    border-color: #2980b9;
 }
 .alert-message-default h4
 {
-    color: #000;
+    color: #2980b9;
 }
 .alert-message-notice
 {
-    border-color: #BDBD89;
+    border-color: #9b59b6;
 }
 .alert-message-notice h4
 {
-    color: #444;
+    color: #9b59b6;
 }
+
