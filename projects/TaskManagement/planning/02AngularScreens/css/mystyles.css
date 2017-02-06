@@ -1,0 +1,145 @@
+
+/** --------------------------- **/
+/**   PAGE : HOME  JUMBOTRON    **/
+/** --------------------------- **/
+/*-- The background of jumbotron --*/
+.jumbotron {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url(images/enjoyNature.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    background-attachment: fixed;
+    margin-bottom: 0px;
+}
+/*-- Position the text and buttons of the jumbotron --*/
+.jumbotron .container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/** --------------------------- **/
+/**   PAGE : HOME               **/
+/** --------------------------- **/
+#section-home .thumbnail {
+    background-color: #fff;
+    padding: 1%;
+}
+/* Section title --*/
+#section-home h2 {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    word-spacing: 2px;
+    letter-spacing: 1px;
+}
+#section-home h2:after {
+    display: block;
+    width: 100px;
+    height: 2px;
+    background-color: #9b59b6;
+    content: " ";
+    margin: 0 auto;
+    margin-top: 15px;
+}
+/* Box caption */
+#section-home .thumbnail .caption {
+    background-color: #fcfcfc;
+    border-top: 1px solid #9b59b6;
+    font-size: 90%;
+    line-height: 145%;
+}
+
+/** --------------------------- **/
+/**   SECTION : FEATURES        **/
+/** --------------------------- **/
+#section-features {
+    background-color: #f4f4f4;
+    padding: 40px 50px;
+}
+#section-features .thumbnail .caption p {
+    padding-left: 20px;
+}
+#section-features .thumbnail img {
+    padding: 10px;
+    background-color: transparent;
+    border: 0px;
+    height: 128px;
+}
+
+/** --------------------------- **/
+/**   SECTION : PLATFORMS       **/
+/** --------------------------- **/
+#section-platforms {
+    background-color: #ffffff;
+    padding: 40px 50px;
+}
+#section-platforms .thumbnail .caption p {
+    padding-left: 10px;
+}
+#section-platforms .platform-icon {
+    display: block;
+    text-align: center;
+    color: #9b59b6;
+    margin: 10px;
+}
+
+/** --------------------------- **/
+/**   SECTION : FOOTER       **/
+/** --------------------------- **/
+#section-footer {
+/*    background-color: #333;*/
+    margin:0px auto;
+    padding: 40px 0px 20px 0px;
+}
+/* Links */
+#section-footer a:link,
+#section-footer a:visited {
+    color: #888;
+    background: transparent;
+}
+/* Internal Navigation */
+#section-footer ul li {
+    float: left;
+    margin: 5px;
+}
+#section-footer li a {
+    text-decoration: none;
+    padding: 0px 10px;
+}
+#section-footer li a:hover {
+    color: #ddd;
+}
+/* Social Navigation */
+#section-footer .btn-facebook,
+#section-footer .btn-twitter,
+#section-footer .btn-linkedin,
+#section-footer .btn-youtube,
+#section-footer .fa-envelope-o {
+    border: 1px solid transparent;
+    border-color: rgba(0,0,0,0.2);
+    transition: color 0.2s;
+}
+#section-footer .btn-facebook:hover {
+    color: #3b5999;
+}
+#section-footer .btn-twitter:hover {
+    color: #55acee;
+}
+#section-footer .btn-linkedin:hover {
+    color: #0077B5;
+}
+#section-footer .btn-youtube:hover {
+    color: #cd201f;
+}
+#section-footer .fa-envelope-o:hover {
+    color: #ddd;
+}
+/* Copyright */
+.footer-copyright {
+    text-align: center;
+    color: #888;
+    margin-top: 40px;
+    margin-bottom: 0px;
+}
+
