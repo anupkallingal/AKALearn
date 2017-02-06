@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
     
     <head>
         <meta charset="utf-8">
@@ -165,43 +165,27 @@
             </section>
             
 
-            <section id="section-platforms" class="row row-content">
+            <section id="section-platforms" class="row row-content" ng-init="
+                                                                             platforms= {
+                                                                                title:'Platforms',
+                                                                                data: [
+                                                                                    {name:'Web', description:'Access your tasks through the web', iconClasses:'fa fa-laptop fa-4x platform-icon', availability:''},
+                                                                                    {name:'Android Mobile and Tabs', description:'Access your tasks through Android phone and tabs', iconClasses:'fa fa-android fa-4x platform-icon', availability:'Soon'},
+                                                                                    {name:'iPhone', description:'Access your tasks through iPhones', iconClasses:'fa fa-apple fa-4x platform-icon', availability:'Soon'},
+                                                                                    {name:'Windows Mobile and Tabs', description:'Access your tasks through Windows mobile and tabs', iconClasses:'fa fa-windows fa-4x platform-icon', availability:'Soon'}
+                                                                             ]
+                                                                             }">
                 <div class="col-xs-12">
-                    <h2 class="text-uppercase text-center">Platforms</h2>
+                    <h2 class="text-uppercase text-center">{{platforms.title}}</h2>
                 </div>
-                <div class="col-xs-12 col-sm-6 col-lg-3">
-                    <div class="thumbnail">
-                        <i class="fa fa-laptop fa-4x platform-icon" aria-hidden="true"></i>
-                        <div class="caption">
-                            <h4>Web</h4>
-                            <p>Access your tasks through the web</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-lg-3">
-                    <div class="thumbnail">
-                        <i class="fa fa-android fa-4x platform-icon" aria-hidden="true"></i>
-                        <div class="caption">
-                            <h4>Android Mobile and Tabs <span class="badge">Soon</span></h4>
-                            <p>Access your tasks through Android phone and tabs</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-lg-3">
-                    <div class="thumbnail">
-                        <i class="fa fa-apple fa-4x platform-icon" aria-hidden="true"></i>
-                        <div class="caption">
-                            <h4>iPhone <span class="badge">Soon</span></h4>
-                            <p>Access your tasks through iPhones</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6 col-lg-3">
-                    <div class="thumbnail">
-                        <i class="fa fa-windows fa-4x platform-icon" aria-hidden="true"></i>
-                        <div class="caption">
-                            <h4>Windows Mobile and Tabs <span class="badge">Soon</span></h4>
-                            <p>Access your tasks through Windows mobile and tabs</p>
+                <div class="col-xs-12">
+                    <div class="col-xs-12 col-sm-6 col-lg-3" ng-repeat="platform in platforms.data">
+                         <div class="thumbnail">
+                            <i class="{{platform.iconClasses}}" aria-hidden="true"></i>
+                            <div class="caption">
+                                <h4>{{platform.name}} <span class="badge">{{platform.availability}}</span></h4>
+                                <p>{{platform.description}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -355,6 +339,8 @@
         </div>
 
 
+        <!-- Angular JS -->
+        <script src="js/angular.min.js"></script>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
