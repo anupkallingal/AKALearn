@@ -1,0 +1,59 @@
+@brand-primary:         #3498db; 
+@brand-success:         #2ecc71;
+@brand-info:            #2980b9;
+@brand-warning:         #e67e22;
+@brand-danger:          #e74c3c;
+
+@body-bg:               #fff;
+
+@font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@component-active-color:    #fff;
+
+@navbar-default-color:             #777;
+@navbar-default-bg:                #f8f8f8;
+
+@navbar-default-link-color:                #777;
+@navbar-default-link-hover-color:          #333;
+@navbar-default-link-active-color:         #555;
+
+// Navbar brand label
+@navbar-default-brand-color:               @navbar-default-link-color;
+@navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
+
+@headings-color:          inherit;
+
+@jumbotron-heading-color:        inherit;
+
+@headings-font-weight:    500;
+=================================
+
+@brand-primary:         #9b59b6;
+@brand-success:         #2ecc71;
+@brand-info:            #3498db;
+@brand-warning:         #f39c12;
+@brand-danger:          #e74c3c;
+
+@body-bg:               #ecf0f1;
+
+@font-family-sans-serif:  "Lato","Helvetica Neue", Helvetica, Arial, sans-serif;
+
+@component-active-color:    #ecf0f1;
+
+@navbar-default-color:             lighten(@brand-primary, 30%);
+@navbar-default-bg:                darken(#7f8c8d, 30%);
+
+@navbar-default-link-color:                @navbar-default-color;
+@navbar-default-link-hover-color:          lighten(@navbar-default-color, 10%);
+@navbar-default-link-active-color:         darken(@navbar-default-link-hover-color, 10%);
+
+// Navbar brand label
+@navbar-default-brand-color:               @navbar-default-color;
+@navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
+
+@headings-color:          inherit;
+
+@jumbotron-heading-color:        #fff;
+
+@headings-font-weight:    300;
+=================================
