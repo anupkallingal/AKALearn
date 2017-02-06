@@ -69,29 +69,15 @@
         
 
         <section id="section-home">
-            <section id="section-features" class="row row-content" ng-init="
-                                                                             features= {
-                                                                                title:'Features',
-                                                                                data: [
-                                                                                    {name:'Organize Tasks', description:'Add, organize and manage tasks in an easy way.', image:'images/Organize.png'},
-                                                                                    {name:'Access Anywhere', description:'Accessible on web and multiple mobile platforms.', image:'images/Anywhere.png'},
-                                                                                    {name:'Search', description:'Easily search for tasks based on filters', image:'images/Search.png'},
-                                                                                    {name:'Protection', description:'Protect your task for unauthorized access', image:'images/Protection.png'},
-                                                                                    {name:'Notes', description:'Add notes to keep everything together', image:'images/Notes.png'},
-                                                                                    {name:'Schedule', description:'Schedule commencement of work on task.', image:'images/Schedule.png'},
-                                                                                    {name:'Set status', description:'Mark status of tasks e.g. \“In Progress” or “Complete\”', image:'images/Status.png'},
-                                                                                    {name:'Lists', description:'Keep related tasks and projects together e.g. based on location, client etc.', image:'images/List.png'},
-                                                                                    {name:'Tags', description:'Manage your tags, assign them to tasks and quickly find tagged tasks', image:'images/Tags.png'}
-                                                                                ]
-                                                                             }">
+            <section id="section-features" class="row row-content" ng-controller="featuresController as fc">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h2 class="text-uppercase text-center">{{features.title}}</h2>
+                        <h2 class="text-uppercase text-center">{{fc.title}}</h2>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="col-xs-12 col-sm-6 col-lg-3" ng-repeat="feature in features.data">
+                        <div class="col-xs-12 col-sm-6 col-lg-3" ng-repeat="feature in fc.data">
                             <div class="thumbnail">
                                 <img class="img-thumbnail" ng-src="{{feature.image}}" alt="{{feature.name}}">
                                 <div class="caption">
@@ -280,14 +266,29 @@
         <script>
             var app = angular.module('karyaApp', []);
 
+            app.controller('featuresController', function() {
+                this.title = 'Features';
+                this.data = [
+                        {name:'Organize Tasks', description:'Add, organize and manage tasks in an easy way.', image:'images/Organize.png'},
+                        {name:'Access Anywhere', description:'Accessible on web and multiple mobile platforms.', image:'images/Anywhere.png'},
+                        {name:'Search', description:'Easily search for tasks based on filters', image:'images/Search.png'},
+                        {name:'Protection', description:'Protect your task for unauthorized access', image:'images/Protection.png'},
+                        {name:'Notes', description:'Add notes to keep everything together', image:'images/Notes.png'},
+                        {name:'Schedule', description:'Schedule commencement of work on task.', image:'images/Schedule.png'},
+                        {name:'Set status', description:'Mark status of tasks e.g. \“In Progress” or “Complete\”', image:'images/Status.png'},
+                        {name:'Lists', description:'Keep related tasks and projects together e.g. based on location, client etc.', image:'images/List.png'},
+                        {name:'Tags', description:'Manage your tags, assign them to tasks and quickly find tagged tasks', image:'images/Tags.png'}
+                    ]
+            });
+
             app.controller('platformsController', function() {
                 this.title = 'Platforms';
                 this.data = [
-                            {name:'Web', description:'Access your tasks through the web', iconClasses:'fa fa-laptop fa-4x platform-icon', availability:''},
-                            {name:'Android Mobile and Tabs', description:'Access your tasks through Android phone and tabs', iconClasses:'fa fa-android fa-4x platform-icon', availability:'Soon'},
-                            {name:'iPhone', description:'Access your tasks through iPhones', iconClasses:'fa fa-apple fa-4x platform-icon', availability:'Soon'},
-                            {name:'Windows Mobile and Tabs', description:'Access your tasks through Windows mobile and tabs', iconClasses:'fa fa-windows fa-4x platform-icon', availability:'Soon'}
-                        ];
+                        {name:'Web', description:'Access your tasks through the web', iconClasses:'fa fa-laptop fa-4x platform-icon', availability:''},
+                        {name:'Android Mobile and Tabs', description:'Access your tasks through Android phone and tabs', iconClasses:'fa fa-android fa-4x platform-icon', availability:'Soon'},
+                        {name:'iPhone', description:'Access your tasks through iPhones', iconClasses:'fa fa-apple fa-4x platform-icon', availability:'Soon'},
+                        {name:'Windows Mobile and Tabs', description:'Access your tasks through Windows mobile and tabs', iconClasses:'fa fa-windows fa-4x platform-icon', availability:'Soon'}
+                    ];
             });
         </script>
     
