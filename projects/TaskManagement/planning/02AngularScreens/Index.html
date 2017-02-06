@@ -69,95 +69,35 @@
         
 
         <section id="section-home">
-            <section id="section-features" class="row row-content">
+            <section id="section-features" class="row row-content" ng-init="
+                                                                             features= {
+                                                                                title:'Features',
+                                                                                data: [
+                                                                                    {name:'Organize Tasks', description:'Add, organize and manage tasks in an easy way.', image:'images/Organize.png'},
+                                                                                    {name:'Access Anywhere', description:'Accessible on web and multiple mobile platforms.', image:'images/Anywhere.png'},
+                                                                                    {name:'Search', description:'Easily search for tasks based on filters', image:'images/Search.png'},
+                                                                                    {name:'Protection', description:'Protect your task for unauthorized access', image:'images/Protection.png'},
+                                                                                    {name:'Notes', description:'Add notes to keep everything together', image:'images/Notes.png'},
+                                                                                    {name:'Schedule', description:'Schedule commencement of work on task.', image:'images/Schedule.png'},
+                                                                                    {name:'Set status', description:'Mark status of tasks e.g. \“In Progress” or “Complete\”', image:'images/Status.png'},
+                                                                                    {name:'Lists', description:'Keep related tasks and projects together e.g. based on location, client etc.', image:'images/List.png'},
+                                                                                    {name:'Tags', description:'Manage your tags, assign them to tasks and quickly find tagged tasks', image:'images/Tags.png'}
+                                                                                ]
+                                                                             }">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h2 class="text-uppercase text-center">Features</h2>
+                        <h2 class="text-uppercase text-center">{{features.title}}</h2>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-lg-3">
-                        <div class="thumbnail">
-                            <img class="img-thumbnail" src="images/Organize.png" alt="Organize Tasks">
-                            <div class="caption">
-                                <h4 class="text-uppercase">Access Anywhere</h4>
-                                <p>Add, organize and manage tasks in an easy way.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-lg-3">
-                        <div class="thumbnail">
-                            <img class="img-thumbnail" src="images/Anywhere.png" alt="Access Anywhere">
-                            <div class="caption">
-                                <h4 class="text-uppercase">Organize Tasks</h4>
-                                <p>Accessible on web and multiple mobile platforms.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-lg-3">
-                        <div class="thumbnail">
-                            <img class="img-thumbnail" src="images/Search.png" alt="Search">
-                            <div class="caption">
-                                <h4 class="text-uppercase">Search</h4>
-                                <p>Easily search for tasks based on filters</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-lg-3">
-                        <div class="thumbnail">
-                            <img class="img-thumbnail" src="images/Protection.png" alt="Protection">
-                            <div class="caption">
-                                <h4 class="text-uppercase">Protection</h4>
-                                <p>Protect your task for unauthorized access</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-lg-3">
-                        <div class="thumbnail">
-                            <img class="img-thumbnail" src="images/Notes.png" alt="Notes">
-                            <div class="caption">
-                                <h4 class="text-uppercase">Notes</h4>
-                                <p>Add notes to keep everything together</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-lg-3">
-                        <div class="thumbnail">
-                            <img class="img-thumbnail" src="images/Schedule.png" alt="Schedule">
-                            <div class="caption">
-                                <h4 class="text-uppercase">Schedule</h4>
-                                <p>Schedule commencement of work on task.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-lg-3">
-                        <div class="thumbnail">
-                            <img class="img-thumbnail" src="images/Status.png" alt="Status">
-                            <div class="caption">
-                                <h4 class="text-uppercase">Set status</h4>
-                                <p>Mark status of tasks e.g. “In Progress” or “Complete”</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-6 col-lg-3">
-                        <div class="thumbnail">
-                            <img class="img-thumbnail" src="images/List.png" alt="List">
-                            <div class="caption">
-                                <h4 class="text-uppercase">Lists</h4>
-                                <p>Keep related tasks and projects together e.g. based on location, client etc.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6 col-lg-3">
-                        <div class="thumbnail">
-                            <img class="img-thumbnail" src="images/Tags.png" alt="Tags">
-                            <div class="caption">
-                                <h4 class="text-uppercase">Tags</h4>
-                                <p>Manage your tags, assign them to tasks and quickly find tagged tasks</p>
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 col-sm-6 col-lg-3" ng-repeat="feature in features.data">
+                            <div class="thumbnail">
+                                <img class="img-thumbnail" ng-src="{{feature.image}}" alt="{{feature.name}}">
+                                <div class="caption">
+                                    <h4 class="text-uppercase">{{feature.name}}</h4>
+                                    <p>{{feature.description}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
