@@ -2,7 +2,7 @@
 
 angular.module('karyaApp', [])
     
-        .controller('featuresController', function() {
+    .controller('FeaturesController', function() {
         this.title = 'Features';
         this.data = [
                 {name:'Organize Tasks', description:'Add, organize and manage tasks in an easy way.', image:'images/Organize.png'},
@@ -17,7 +17,7 @@ angular.module('karyaApp', [])
             ]
     })
 
-    .controller('platformsController', function() {
+    .controller('PlatformsController', function() {
         this.title = 'Platforms';
         this.data = [
                 {name:'Web', description:'Access your tasks through the web', iconClass:'fa-laptop', availability:''},
