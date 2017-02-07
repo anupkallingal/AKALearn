@@ -49,6 +49,9 @@
     font-size: 90%;
     line-height: 145%;
 }
+#section-home .toggle-button {
+    margin-bottom: 10px;
+}
 
 /** --------------------------- **/
 /**   SECTION : FEATURES        **/
@@ -66,7 +69,6 @@
     border: 0px;
     height: 128px;
 }
-
 /** --------------------------- **/
 /**   SECTION : PLATFORMS       **/
 /** --------------------------- **/

@@ -14,7 +14,12 @@ angular.module('karyaApp', [])
                 {name:'Set status', description:'Mark status of tasks e.g. \“In Progress” or “Complete\”', image:'images/Status.png'},
                 {name:'Lists', description:'Keep related tasks and projects together e.g. based on location, client etc.', image:'images/List.png'},
                 {name:'Tags', description:'Manage your tags, assign them to tasks and quickly find tagged tasks', image:'images/Tags.png'}
-            ]
+            ];
+
+        $scope.showDetails = true;
+        $scope.toggleDetails = function() {
+            $scope.showDetails = !$scope.showDetails;
+        };
     }])
 
     .controller('PlatformsController', ['$scope', function($scope) {
@@ -25,4 +30,9 @@ angular.module('karyaApp', [])
                 {name:'iPhone', description:'Access your tasks through iPhones', iconClass:'fa-apple', availability:'Soon'},
                 {name:'Windows Mobile and Tabs', description:'Access your tasks through Windows mobile and tabs', iconClass:'fa-windows', availability:'Soon'}
             ];
+
+        $scope.showDetails = true;
+        $scope.toggleDetails = function() {
+            $scope.showDetails = !$scope.showDetails;
+        };
     }]);
