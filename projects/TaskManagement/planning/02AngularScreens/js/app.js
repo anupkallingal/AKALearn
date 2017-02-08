@@ -35,4 +35,20 @@ angular.module('karyaApp', [])
         $scope.toggleDetails = function() {
             $scope.showDetails = !$scope.showDetails;
         };
+    }])
+
+    .controller('LoginModalController', ['$scope', function($scope) {
+        $scope.authenticationCredentials = {emailid:"", password:"" };
+    }])
+
+    .controller('LoginController', ['$scope', function($scope) {
+        $scope.sendCredentials = function() {
+            console.log($scope.authenticationCredentials);
+            // TODO: Send to server for authentication
+            // TODO: Switch to user home
+            $scope.authenticationCredentials = {emailid:"", password:"" };
+            $scope.loginForm.$setPristine();
+            console.log($scope.authenticationCredentials);
+        };
     }]);
+

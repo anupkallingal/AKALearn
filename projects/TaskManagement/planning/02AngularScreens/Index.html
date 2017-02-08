@@ -235,7 +235,7 @@
             </div>
         </div>
 
-        <div id="loginModal" class="modal fade" role="dialog">
+        <div id="loginModal" class="modal fade" role="dialog" ng-controller="LoginModalController">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -243,23 +243,27 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Login</h4>
                     </div>
-                    <div class="modal-body">
-                        <form class="form-horizontal" role="form" method="POST" action="UserHome.html">
-                            <div class="form-group">
+                    <div class="modal-body" ng-controller="LoginController">
+                        <form class="form-horizontal" role="form" method="POST" action="UserHome.html" name="loginForm" ng-submit="sendCredentials()" novalidate>
+                            <div class="form-group" ng-class="{ 'has-error has-feedback' : loginForm.emailid.$invalid && !loginForm.emailid.$pristine }">
                                 <label for="emailid" class="col-sm-3 control-label">Email</label>
                                 <div class="col-sm-9">
-                                    <input type="email" class="form-control" id="emailid" name="emailid" placeholder="Email">
+                                    <input type="email" class="form-control" id="emailid" name="emailid" placeholder="Email" ng-model="authenticationCredentials.emailid" required>
+                                    <span ng-show="loginForm.emailid.$invalid && !loginForm.emailid.$pristine" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                    <span ng-show="(loginForm.emailid.$invalid || loginForm.emailid.$error.required) && !loginForm.emailid.$pristine" class="help-block">Enter your registered email address.</span>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" ng-class="{ 'has-error has-feedback' : loginForm.password.$invalid && !loginForm.password.$pristine }">
                                 <label for="password" class="col-sm-3 control-label">Password</label>
                                 <div class="col-sm-9">
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                                    <input type="password" class="form-control" id="password" name="password" placeholder="Password"  ng-model="authenticationCredentials.password" required>
+                                    <span ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                                    <span ng-show="(loginForm.password.$invalid || loginForm.password.$error.required) && !loginForm.password.$pristine" class="help-block">Enter your password.</span>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-3 col-sm-9">
-                                    <button type="submit" class="btn btn-primary">Login</button>
+                                    <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Login</button>
                                 </div>
                             </div>
                         </form>
