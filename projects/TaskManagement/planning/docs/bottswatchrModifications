@@ -21,8 +21,6 @@
 @navbar-default-brand-color:               @navbar-default-link-color;
 @navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
 
-@headings-color:          inherit;
-
 @jumbotron-heading-color:        inherit;
 
 @headings-font-weight:    500;
@@ -50,8 +48,6 @@
 // Navbar brand label
 @navbar-default-brand-color:               @navbar-default-color;
 @navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
-
-@headings-color:          inherit;
 
 @jumbotron-heading-color:        #fff;
 
