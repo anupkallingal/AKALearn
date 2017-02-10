@@ -37,6 +37,31 @@ angular.module('karyaApp', [])
         };
     }])
 
+    .controller('SignupModalController', ['$scope', function($scope) {
+        $scope.signupData = {firstName:"", lastName:"", dateOfBirth:0, gender:"male", tel:{areaCode:"", number:""}, emailId:"", password:"" };
+        $scope.genders = [{value:"male", label:"Male"}, {value:"female",label:"Female"}, {value:"other",label:"Other"}];
+        $scope.invalidGenderSelection = false;
+
+    }])
+
+    .controller('SignupController', ['$scope', function($scope) {
+       $scope.sendSignup = function() {
+            console.log($scope.signupData);
+            if ($scope.signupData.gender == "") {
+                $scope.invalidGenderSelection = true;
+                console.log('incorrect');
+            }
+            else {
+                $scope.invalidGenderSelection = false;
+                // TODO: Send to server for signup
+                // TODO: Switch to user home
+                $scope.signupData = {firstName:"", lastName:"", dateOfBirth:0, gender:"male", tel:{areaCode:"", number:""}, emailId:"", password:"" };
+                $scope.loginForm.$setPristine();
+                console.log($scope.signupData);
+            }
+        };
+    }])
+
     .controller('LoginModalController', ['$scope', function($scope) {
         $scope.authenticationCredentials = {emailid:"", password:"" };
     }])
