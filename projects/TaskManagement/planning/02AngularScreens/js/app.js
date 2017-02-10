@@ -38,7 +38,7 @@ angular.module('karyaApp', [])
     }])
 
     .controller('SignupModalController', ['$scope', function($scope) {
-        $scope.signupData = {firstName:"", lastName:"", dateOfBirth:0, gender:"male", tel:{areaCode:"", number:""}, emailId:"", password:"" };
+        $scope.signupData = {firstName:"", lastName:"", dateOfBirth:0, gender:"", tel:{areaCode:"", number:""}, emailId:"", password:"" };
         $scope.genders = [{value:"male", label:"Male"}, {value:"female",label:"Female"}, {value:"other",label:"Other"}];
         $scope.invalidGenderSelection = false;
 
