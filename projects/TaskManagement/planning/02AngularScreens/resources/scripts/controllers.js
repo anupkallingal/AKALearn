@@ -22,25 +22,25 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('SignupModalController', ['$scope', function($scope) {
-        $scope.signupData = {firstName:"", lastName:"", dateOfBirth:0, gender:"", tel:{areaCode:"", number:""}, emailId:"", password:"" };
-        $scope.genders = [{value:"male", label:"Male"}, {value:"female",label:"Female"}, {value:"other",label:"Other"}];
+    .controller('SignupModalController', ['$scope', function ($scope) {
+        $scope.signupData = {firstName: "", lastName: "", dateOfBirth: "", gender: "", tel: {areaCode: "", number: ""}, emailId: "", password: "" };
+        $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
         $scope.invalidGenderSelection = false;
 
     }])
 
-    .controller('SignupController', ['$scope', function($scope) {
-       $scope.sendSignup = function() {
+    .controller('SignupController', ['$scope', 'userRegistrationService', function ($scope, userRegistrationService) {
+        $scope.sendSignup = function () {
             console.log($scope.signupData);
-            if ($scope.signupData.gender == "") {
+            if ($scope.signupData.gender === "") {
                 $scope.invalidGenderSelection = true;
                 console.log('incorrect');
-            }
-            else {
+            } else {
                 $scope.invalidGenderSelection = false;
                 // TODO: Send to server for signup
+                userRegistrationService.registerUser($scope.signupData);
                 // TODO: Switch to user home
-                $scope.signupData = {firstName:"", lastName:"", dateOfBirth:0, gender:"male", tel:{areaCode:"", number:""}, emailId:"", password:"" };
+                $scope.signupData = {firstName: "", lastName: "", dateOfBirth: 0, gender: "male", tel: {areaCode: "", number: ""}, emailId: "", password: "" };
                 $scope.loginForm.$setPristine();
                 console.log($scope.signupData);
             }

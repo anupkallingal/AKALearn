@@ -3,8 +3,9 @@
 angular.module('karyaApp')
 
     .service('productInfoService', function () {
+        var productFeatures, productPlatforms;
         
-        var productFeatures = [
+        productFeatures = [
             {name: 'Organize Tasks', description: 'Add, organize and manage tasks in an easy way.', image: 'resources/images/Organize.png'},
             {name: 'Access Anywhere', description: 'Accessible on web and multiple mobile platforms.', image: 'resources/images/Anywhere.png'},
             {name: 'Search', description: 'Easily search for tasks based on filters', image: 'resources/images/Search.png'},
@@ -16,7 +17,7 @@ angular.module('karyaApp')
             {name: 'Tags', description: 'Manage your tags, assign them to tasks and quickly find tagged tasks', image: 'resources/images/Tags.png'}
         ];
         
-        var productPlatforms = [
+        productPlatforms = [
             {name: 'Web', description: 'Access your tasks through the web', iconClass: 'fa-laptop', availability: ''},
             {name: 'Android Mobile and Tabs', description: 'Access your tasks through Android phone and tabs', iconClass: 'fa-android', availability: 'Soon'},
             {name: 'iPhone', description: 'Access your tasks through iPhones', iconClass: 'fa-apple', availability: 'Soon'},
@@ -29,5 +30,16 @@ angular.module('karyaApp')
     
         this.getProductPlatforms = function () {
             return productPlatforms;
+        };
+    })
+
+    .service('userRegistrationService', function () {
+
+        this.registerUser = function (userInfo) {
+            console.log("In registerUser () of userRegistrationService: " + userInfo);
+            // TODO Validate user info
+            // TODO Submit user info
+            // return user id
+            return 1;
         };
     });
