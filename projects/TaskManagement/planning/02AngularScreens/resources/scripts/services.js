@@ -40,7 +40,7 @@ angular.module('karyaApp')
             // TODO Validate user info
             // TODO Submit user info
             // return user id
-            return 1;
+            return -1;
         };
     })
 
