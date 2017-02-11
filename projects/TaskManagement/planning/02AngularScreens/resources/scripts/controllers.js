@@ -50,16 +50,22 @@ angular.module('karyaApp')
 
     .controller('LoginModalController', ['$scope', function ($scope) {
         $scope.authenticationCredentials = {emailid: "", password: "" };
+        $scope.invalidCredentials = false;
     }])
 
-    .controller('LoginController', ['$scope', function ($scope) {
-        $scope.sendCredentials = function () {
+    .controller('LoginController', ['$scope', 'userAuthenticationService', function ($scope, userAuthenticationService) {
+        $scope.sendCredentials = function (event) {
             console.log($scope.authenticationCredentials);
-            // TODO: Send to server for authentication
-            // TODO: Switch to user home
-            $scope.authenticationCredentials = {emailid: "", password: "" };
-            $scope.loginForm.$setPristine();
-            console.log($scope.authenticationCredentials);
+            // Send to service for authentication
+            var authenticationResponse = userAuthenticationService.authenticateUser($scope.authenticationCredentials);
+            if (authenticationResponse) {
+                console.log('User authenticated')
+                // TODO: Switch to user home
+            } else {
+                $scope.invalidCredentials = true;
+                $scope.authenticationCredentials = {emailid: "", password: "" };
+                event.preventDefault();
+            }
         };
     }]);
 

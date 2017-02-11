@@ -42,4 +42,14 @@ angular.module('karyaApp')
             // return user id
             return 1;
         };
+    })
+
+    .service('userAuthenticationService', function () {
+
+        this.authenticateUser = function (userCredentials) {
+            console.log("In authenticateUser () of userAuthenticationService: " + userCredentials);
+            // TODO Authenticate user credentials
+            // return user id
+            return false;
+        };
     });

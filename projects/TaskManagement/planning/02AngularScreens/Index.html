@@ -239,8 +239,9 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title">Login</h4>
                     </div>
-                    <div class="modal-body" ng-controller="LoginController">
-                        <form class="form-horizontal" role="form" method="POST" action="UserHome.html" name="loginForm" ng-submit="sendCredentials()" novalidate>
+                    <div class="modal-body" ng-controller="LoginController"  ng-class="{ 'has-error' : invalidCredentials }">
+                        <span ng-show="invalidCredentials" class="help-block">Invalid Credentials.</span>
+                        <form class="form-horizontal" role="form" method="POST" action="UserHome.html" name="loginForm" ng-submit="sendCredentials($event)" novalidate>
                             <div class="form-group" ng-class="{ 'has-error has-feedback' : loginForm.emailid.$invalid && !loginForm.emailid.$pristine }">
                                 <label for="emailid" class="col-sm-3 control-label">Email</label>
                                 <div class="col-sm-9">
