@@ -64,6 +64,7 @@ angular.module('karyaApp')
             } else {
                 $scope.invalidCredentials = true;
                 $scope.authenticationCredentials = {emailid: "", password: "" };
+                $scope.loginForm.$setPristine();
                 event.preventDefault();
             }
         };
