@@ -2,22 +2,22 @@
 
 angular.module('karyaApp')
     
-    .controller('FeaturesController', ['$scope', 'productInfoService', function($scope, productInfoService) {
+    .controller('FeaturesController', ['$scope', 'productInfoService', function ($scope, productInfoService) {
         $scope.title = 'Features';
         $scope.data = productInfoService.getProductFeatures();
 
         $scope.showDetails = true;
-        $scope.toggleDetails = function() {
+        $scope.toggleDetails = function () {
             $scope.showDetails = !$scope.showDetails;
         };
     }])
 
-    .controller('PlatformsController', ['$scope', 'productInfoService', function($scope, productInfoService) {
+    .controller('PlatformsController', ['$scope', 'productInfoService', function ($scope, productInfoService) {
         $scope.title = 'Platforms';
         $scope.data = productInfoService.getProductPlatforms();
 
         $scope.showDetails = true;
-        $scope.toggleDetails = function() {
+        $scope.toggleDetails = function () {
             $scope.showDetails = !$scope.showDetails;
         };
     }])
@@ -35,7 +35,7 @@ angular.module('karyaApp')
             if ($scope.signupData.gender === "") {
                 $scope.invalidGenderSelection = true;
                 console.log('incorrect');
-                event.preventDefault()
+                event.preventDefault();
             } else {
                 $scope.invalidGenderSelection = false;
                 // TODO: Send to server for signup
@@ -48,16 +48,16 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('LoginModalController', ['$scope', function($scope) {
-        $scope.authenticationCredentials = {emailid:"", password:"" };
+    .controller('LoginModalController', ['$scope', function ($scope) {
+        $scope.authenticationCredentials = {emailid: "", password: "" };
     }])
 
-    .controller('LoginController', ['$scope', function($scope) {
-        $scope.sendCredentials = function() {
+    .controller('LoginController', ['$scope', function ($scope) {
+        $scope.sendCredentials = function () {
             console.log($scope.authenticationCredentials);
             // TODO: Send to server for authentication
             // TODO: Switch to user home
-            $scope.authenticationCredentials = {emailid:"", password:"" };
+            $scope.authenticationCredentials = {emailid: "", password: "" };
             $scope.loginForm.$setPristine();
             console.log($scope.authenticationCredentials);
         };
