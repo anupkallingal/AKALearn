@@ -160,7 +160,7 @@
                         <h4 class="modal-title">Signup</h4>
                     </div>
                     <div class="modal-body" ng-controller="SignupController">
-                        <form class="form-horizontal" role="form" name="signupForm" ng-submit="sendSignup()" novalidate>
+                        <form class="form-horizontal" role="form" method="POST" action="UserHome.html" name="signupForm" ng-submit="sendSignup($event)" novalidate>
                             <div class="form-group" ng-class="{ 'has-error' : signupForm.firstname.$error.required && !signupForm.firstname.$pristine }">
                                 <label for="firstname" class="col-sm-3 control-label">First Name</label>
                                 <div class="col-sm-9">

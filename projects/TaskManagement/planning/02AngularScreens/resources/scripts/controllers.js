@@ -30,11 +30,12 @@ angular.module('karyaApp')
     }])
 
     .controller('SignupController', ['$scope', 'userRegistrationService', function ($scope, userRegistrationService) {
-        $scope.sendSignup = function () {
+        $scope.sendSignup = function (event) {
             console.log($scope.signupData);
             if ($scope.signupData.gender === "") {
                 $scope.invalidGenderSelection = true;
                 console.log('incorrect');
+                event.preventDefault()
             } else {
                 $scope.invalidGenderSelection = false;
                 // TODO: Send to server for signup
