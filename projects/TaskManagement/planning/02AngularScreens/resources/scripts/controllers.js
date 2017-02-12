@@ -2,6 +2,22 @@
 
 angular.module('karyaApp')
     
+    .controller('ProductController', ['$scope', function ($scope) {
+    }])
+
+
+    .controller('CompanyController', ['$scope', function ($scope) {
+    }])
+
+    .controller('AboutUsController', ['$scope', function ($scope) {
+    }])
+
+    .controller('BlogsController', ['$scope', function ($scope) {
+    }])
+
+    .controller('ContactUsController', ['$scope', function ($scope) {
+    }])
+
     .controller('FeaturesController', ['$scope', 'productInfoService', function ($scope, productInfoService) {
         $scope.title = 'Features';
         $scope.data = productInfoService.getProductFeatures();

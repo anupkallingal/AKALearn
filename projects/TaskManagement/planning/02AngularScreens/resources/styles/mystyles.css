@@ -52,7 +52,6 @@
 #section-home .toggle-button {
     margin-bottom: 10px;
 }
-
 /** --------------------------- **/
 /**   SECTION : FEATURES        **/
 /** --------------------------- **/
@@ -144,4 +143,9 @@
     margin-top: 40px;
     margin-bottom: 0px;
 }
-
+.dummySection {
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 250px 50px;
+    text-align: center;
+}
