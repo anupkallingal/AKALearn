@@ -19,9 +19,17 @@ angular.module('karyaApp')
 
     .controller('FeaturesController', ['$scope', 'productInfoService', function ($scope, productInfoService) {
         $scope.title = 'Features';
-        productInfoService.getProductFeatures().then(function (response) {
-            $scope.data = response.data;
-        });
+        $scope.showFeatures = false;
+        $scope.message = "Loading ...";
+        productInfoService.getProductFeatures().then(
+            function (response) {
+                $scope.data = response.data;
+                $scope.showFeatures = true;
+            },
+            function (response) {
+                $scope.message = "Error while fetching features: " + response.status + " " + response.statusText;
+            }
+        );
 
         $scope.showDetails = true;
         $scope.toggleDetails = function () {
@@ -31,9 +39,17 @@ angular.module('karyaApp')
 
     .controller('PlatformsController', ['$scope', 'productInfoService', function ($scope, productInfoService) {
         $scope.title = 'Platforms';
-        productInfoService.getProductPlatforms().then(function (response) {
-            $scope.data = response.data;
-        });
+        $scope.showPlatforms = false;
+        $scope.message = "Loading ...";
+        productInfoService.getProductPlatforms().then(
+            function (response) {
+                $scope.data = response.data;
+                $scope.showPlatforms = true;
+            },
+            function (response) {
+                $scope.message = "Error while fetching platforms: " + response.status + " " + response.statusText;
+            }
+        );
 
         $scope.showDetails = true;
         $scope.toggleDetails = function () {
