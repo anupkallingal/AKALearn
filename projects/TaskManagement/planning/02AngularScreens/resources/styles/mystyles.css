@@ -1,3 +1,17 @@
+/** --------------------------- **/
+/**   Shared Stuff              **/
+/** --------------------------- **/
+/*-- NG Dialog  --*/
+.ngdialog-message {
+    font-family: 'Lato','Helvetica Neue',sans-serif;
+}
+/*-- PlaceholderSections  --*/
+.dummySection {
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 250px 50px;
+    text-align: center;
+}
 
 /** --------------------------- **/
 /**   PAGE : HOME  JUMBOTRON    **/
@@ -136,16 +150,10 @@
 #section-footer .fa-envelope-o:hover {
     color: #ddd;
 }
-/* Copyright */
+/*-- Copyright in footer  --*/
 .footer-copyright {
     text-align: center;
     color: #888;
     margin-top: 40px;
     margin-bottom: 0px;
-}
-.dummySection {
-    height: 100vh;
-    background-color: #f4f4f4;
-    padding: 250px 50px;
-    text-align: center;
 }

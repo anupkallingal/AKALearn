@@ -5,7 +5,6 @@ angular.module('karyaApp')
     .controller('ProductController', ['$scope', function ($scope) {
     }])
 
-
     .controller('CompanyController', ['$scope', function ($scope) {
     }])
 
@@ -68,12 +67,10 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('LoginModalController', ['$scope', function ($scope) {
+    .controller('LoginController', ['$scope', 'ngDialog', 'userAuthenticationService', function ($scope, ngDialog, userAuthenticationService) {
         $scope.authenticationCredentials = {emailid: "", password: "" };
         $scope.invalidCredentials = false;
-    }])
 
-    .controller('LoginController', ['$scope', 'userAuthenticationService', function ($scope, userAuthenticationService) {
         $scope.sendCredentials = function (event) {
             console.log($scope.authenticationCredentials);
             // Send to service for authentication
@@ -81,12 +78,20 @@ angular.module('karyaApp')
             if (authenticationResponse) {
                 console.log('User authenticated');
                 // TODO: Switch to user home
+                ngDialog.close();
             } else {
                 $scope.invalidCredentials = true;
-                $scope.authenticationCredentials = {emailid: "", password: "" };
+                $scope.authenticationCredentials.password = "";
                 $scope.loginForm.$setPristine();
-                event.preventDefault();
+//                event.preventDefault();
             }
+        };
+
+    }])
+
+    .controller('HeaderController', ['$scope', 'ngDialog', function ($scope, ngDialog) {
+        $scope.openLogin = function () {
+            ngDialog.open({ template: 'resources/views/login.html', scope: $scope, className: 'ngdialog-theme-plain', controller: "LoginController" });
         };
     }]);
 

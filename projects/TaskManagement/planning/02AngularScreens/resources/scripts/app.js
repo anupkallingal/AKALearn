@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('karyaApp', ['ui.router'])
+angular.module('karyaApp', ['ui.router', 'ngDialog'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             // route for the home page
@@ -8,7 +8,8 @@ angular.module('karyaApp', ['ui.router'])
                 url: '/:scrollTo',
                 views: {
                     'header': {
-                        templateUrl : 'resources/views/appHeader.html'
+                        templateUrl : 'resources/views/appHeader.html',
+                        controller  : 'HeaderController'
                     },
                     'content': {
                         templateUrl : 'resources/views/appProduct.html',

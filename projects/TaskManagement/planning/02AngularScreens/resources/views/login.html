@@ -1,0 +1,65 @@
+<!--
+    <div class="ngdialog-message">
+        <div class="">
+            <h3>Login </h3>
+        </div>
+        <div class="">&nbsp;</div>
+        <div class="">
+            <form ng-submit="doLogin()">
+                <div class="form-group">
+                    <label class="sr-only" for="username">Username</label>
+                    <input type="text" class="form-control input-sm" id="username" placeholder="Username" ng-model="loginData.username">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="password">Password</label>
+                    <input type="password" class="form-control input-sm" id="password" placeholder="Password" ng-model="loginData.password">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="rememberMe"> Remember me
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-info btn-sm">Sign in</button>
+                <button type="button" class="btn btn-default btn-sm" ng-click=closeThisDialog("Cancel")>Cancel</button> &nbsp; &nbsp;
+
+            </form>
+        </div>
+        <div>
+
+        </div>
+    </div>
+-->
+ <!-- Modal content-->
+    <div class="ngdialog-message">
+        <div>
+            <h4>Login</h4>
+        </div>
+        <div ng-controller="LoginController">
+            <div class="alert alert-warning" ng-show="invalidCredentials">
+                <strong>Warning!</strong> Invalid Credentials..
+            </div>
+            <form class="form-horizontal" role="form" name="loginForm" ng-submit="sendCredentials($event)" novalidate>
+                <div class="form-group" ng-class="{ 'has-error has-feedback' : loginForm.emailid.$invalid && !loginForm.emailid.$pristine }">
+                    <label for="emailid" class="col-sm-3 control-label">Email</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="emailid" name="emailid" placeholder="Email" ng-model="authenticationCredentials.emailid" required>
+                        <span ng-show="loginForm.emailid.$invalid && !loginForm.emailid.$pristine" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                        <span ng-show="(loginForm.emailid.$invalid || loginForm.emailid.$error.required) && !loginForm.emailid.$pristine" class="help-block">Enter your registered email address.</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{ 'has-error has-feedback' : loginForm.password.$invalid && !loginForm.password.$pristine }">
+                    <label for="password" class="col-sm-3 control-label">Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Password"  ng-model="authenticationCredentials.password" required>
+                        <span ng-show="loginForm.password.$invalid && !loginForm.password.$pristine" class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                        <span ng-show="(loginForm.password.$invalid || loginForm.password.$error.required) && !loginForm.password.$pristine" class="help-block">Enter your password.</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
