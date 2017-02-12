@@ -21,9 +21,9 @@ angular.module('karyaApp')
         $scope.title = 'Features';
         $scope.showFeatures = false;
         $scope.message = "Loading ...";
-        productInfoService.getProductFeatures().then(
+        productInfoService.getProductFeatures().query(
             function (response) {
-                $scope.data = response.data;
+                $scope.data = response;
                 $scope.showFeatures = true;
             },
             function (response) {
@@ -41,9 +41,9 @@ angular.module('karyaApp')
         $scope.title = 'Platforms';
         $scope.showPlatforms = false;
         $scope.message = "Loading ...";
-        productInfoService.getProductPlatforms().then(
+        productInfoService.getProductPlatforms().query(
             function (response) {
-                $scope.data = response.data;
+                $scope.data = response;
                 $scope.showPlatforms = true;
             },
             function (response) {

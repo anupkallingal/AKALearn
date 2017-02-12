@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('karyaApp', ['ui.router', 'ngDialog'])
+angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
             // route for the home page

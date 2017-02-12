@@ -4,13 +4,13 @@ angular.module('karyaApp')
 
     .constant("baseURL", "http://localhost:3000/")
 
-    .service('productInfoService', ['$http', 'baseURL', function ($http, baseURL) {
+    .service('productInfoService', ['$resource', 'baseURL', function ($resource, baseURL) {
         this.getProductFeatures = function () {
-            return $http.get(baseURL + "productFeatures");
+            return $resource(baseURL + "productFeatures/:id", null,  {'update': {method: 'PUT' }});
         };
     
         this.getProductPlatforms = function () {
-            return $http.get(baseURL + "productPlatforms");
+            return $resource(baseURL + "productPlatforms/:id", null,  {'update': {method: 'PUT' }});
         };
     }])
 
