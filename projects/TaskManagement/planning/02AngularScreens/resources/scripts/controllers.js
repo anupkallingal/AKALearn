@@ -37,20 +37,18 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('SignupModalController', ['$scope', function ($scope) {
+    .controller('SignupController', ['$scope', 'userRegistrationService', function ($scope, userRegistrationService) {
         $scope.signupData = {firstName: "", lastName: "", dateOfBirth: "", gender: "", tel: {areaCode: "", number: ""}, emailId: "", password: "" };
         $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
         $scope.invalidGenderSelection = false;
         $scope.registeredEmailId = false;
-    }])
 
-    .controller('SignupController', ['$scope', 'userRegistrationService', function ($scope, userRegistrationService) {
         $scope.sendSignup = function (event) {
             console.log($scope.signupData);
             if ($scope.signupData.gender === "") {
                 $scope.invalidGenderSelection = true;
                 console.log('incorrect');
-                event.preventDefault();
+//                event.preventDefault();
             } else {
                 $scope.invalidGenderSelection = false;
                 // TODO: Send to server for signup
@@ -58,10 +56,11 @@ angular.module('karyaApp')
                 if (registrationResponse > 0) {
                     console.log('User registered with id: ' + registrationResponse);
                     // TODO: Switch to user home
+                    ngDialog.close();
                 } else {
                     console.log('User registered disallowed due to: ' + registrationResponse);
                     $scope.registeredEmailId = true;
-                    event.preventDefault();
+//                    event.preventDefault();
                 }
             }
         };
@@ -90,6 +89,9 @@ angular.module('karyaApp')
     }])
 
     .controller('HeaderController', ['$scope', 'ngDialog', function ($scope, ngDialog) {
+        $scope.openSignup = function () {
+            ngDialog.open({ template: 'resources/views/signup.html', scope: $scope, className: 'ngdialog-theme-plain', controller: "SignupController", width: 600 });
+        };
         $scope.openLogin = function () {
             ngDialog.open({ template: 'resources/views/login.html', scope: $scope, className: 'ngdialog-theme-plain', controller: "LoginController" });
         };
