@@ -19,7 +19,9 @@ angular.module('karyaApp')
 
     .controller('FeaturesController', ['$scope', 'productInfoService', function ($scope, productInfoService) {
         $scope.title = 'Features';
-        $scope.data = productInfoService.getProductFeatures();
+        productInfoService.getProductFeatures().then(function (response) {
+            $scope.data = response.data;
+        });
 
         $scope.showDetails = true;
         $scope.toggleDetails = function () {
@@ -29,7 +31,9 @@ angular.module('karyaApp')
 
     .controller('PlatformsController', ['$scope', 'productInfoService', function ($scope, productInfoService) {
         $scope.title = 'Platforms';
-        $scope.data = productInfoService.getProductPlatforms();
+        productInfoService.getProductPlatforms().then(function (response) {
+            $scope.data = response.data;
+        });
 
         $scope.showDetails = true;
         $scope.toggleDetails = function () {
