@@ -43,5 +43,18 @@
         {"id": 4, "name": "Windows Mobile and Tabs", "description": "Access your tasks through Windows mobile and tabs", "iconClass": "fa-windows", "availability": "Soon"}
     ],
     "users": [
+        {
+          "firstName": "anup",
+          "lastName": "kallingal",
+          "dateOfBirth": "13/07/1976",
+          "gender": "male",
+          "tel": {
+            "areaCode": "022",
+            "number": "28370185"
+          },
+          "emailId": "anupkallingal@gmail.com",
+          "password": "anup",
+          "id": "anupkallingal@gmail.com"
+        }
     ]
 }
