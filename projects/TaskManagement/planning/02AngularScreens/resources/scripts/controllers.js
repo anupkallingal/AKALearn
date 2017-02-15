@@ -57,7 +57,7 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('SignupController', ['$scope', 'userRegistrationService', function ($scope, userRegistrationService) {
+    .controller('SignupController', ['$scope', 'userRegistrationService', 'ngDialog', function ($scope, userRegistrationService, ngDialog) {
         $scope.signupData = {firstName: "", lastName: "", dateOfBirth: "", gender: "", tel: {areaCode: "", number: ""}, emailId: "", password: "" };
         $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
 
@@ -83,7 +83,7 @@ angular.module('karyaApp')
                     userRegistrationService.registerUser($scope.signupData,
                         function (registeredData) {
                             console.log('User registered: ' + registeredData);
-                            // TODO: ngDialog.close();
+                            ngDialog.close();
                             // TODO: Switch to user home
                         }, function (errorMessage) {
                             console.log('Unable to register user due to: ' + errorMessage);

@@ -22,7 +22,7 @@ angular.module('karyaApp')
                         var messageHTML, messageString;
                         if (errorResponse.status === -1) {
                             // The server may be down
-                            messageString = "Unable to contact seerver. Please contact your administrators.";
+                            messageString = "Unable to contact REST services. Please contact your administrators.";
                         } else if (errorResponse.status === 404) {
                             // Expected resource users not found on server
                             messageString = "Server facing technical difficulties. Please contact your administrators. Expected resource API for users not found.";
