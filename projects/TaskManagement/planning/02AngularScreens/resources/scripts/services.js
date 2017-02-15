@@ -4,6 +4,39 @@ angular.module('karyaApp')
 
     .constant("baseURL", "http://localhost:3000/")
 
+    .factory('AuthenticationFactory', ['$resource', 'baseURL', 'ngDialog', function ($resource, baseURL, ngDialog) {
+        var authFac;
+
+        authFac = {};
+
+        authFac.register = function (registerData, successFunction, errorFunction) {
+            $resource(baseURL + "users")
+                .save(registerData,
+                    function (successResponse) {
+                        console.log("In response to register() of AuthenticationFactory: " + successResponse);
+                        successFunction(successResponse);
+                    },
+                    function (errorResponse) {
+                        console.log("In response to register() of AuthenticationFactory: " + JSON.stringify(errorResponse));
+
+                        var messageHTML, messageString;
+                        if (errorResponse.status === -1) {
+                            // The server may be down
+                            messageString = "Unable to contact seerver. Please contact your administrators.";
+                        } else if (errorResponse.status === 404) {
+                            // Expected resource users not found on server
+                            messageString = "Server facing technical difficulties. Please contact your administrators. Expected resource API for users not found.";
+                        } else {
+                            messageString = "Server facing technical difficulties. Please contact your administrators. Received response status " + errorResponse.status + " [" + errorResponse.statusText + "] from server.";
+                        }
+                        errorFunction(messageString);
+                    });
+        };
+
+        return authFac;
+
+    }])
+
     .service('productInfoService', ['$resource', 'baseURL', function ($resource, baseURL) {
         this.getProductFeatures = function () {
             return $resource(baseURL + "productFeatures/:id", null,  {'update': {method: 'PUT' }});
@@ -14,16 +47,20 @@ angular.module('karyaApp')
         };
     }])
 
-    .service('userRegistrationService', function () {
+    .service('userRegistrationService', ['AuthenticationFactory', function (AuthenticationFactory) {
 
-        this.registerUser = function (userInfo) {
+        this.registerUser = function (userInfo, successFunction, errorFunction) {
             console.log("In registerUser () of userRegistrationService: " + userInfo);
-            // TODO Validate user info
-            // TODO Submit user info
-            // return user id
-            return -1;
+            // TODO Validate emailId
+
+            // Submit user info
+            userInfo.id = userInfo.emailId;
+            AuthenticationFactory.register(userInfo, successFunction, errorFunction);
+
+            // return user Info
+            return userInfo;
         };
-    })
+    }])
 
     .service('userAuthenticationService', function () {
 

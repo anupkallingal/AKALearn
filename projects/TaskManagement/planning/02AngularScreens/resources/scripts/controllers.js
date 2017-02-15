@@ -60,28 +60,37 @@ angular.module('karyaApp')
     .controller('SignupController', ['$scope', 'userRegistrationService', function ($scope, userRegistrationService) {
         $scope.signupData = {firstName: "", lastName: "", dateOfBirth: "", gender: "", tel: {areaCode: "", number: ""}, emailId: "", password: "" };
         $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
+
         $scope.invalidGenderSelection = false;
-        $scope.registeredEmailId = false;
+        $scope.displayWarningMessage = false;
+        $scope.warningMessage = "";
+        $scope.displayErrorMessage = false;
+        $scope.errorMessage = "";
 
         $scope.sendSignup = function (event) {
             console.log($scope.signupData);
+
+            $scope.displayErrorMessage = $scope.displayWarningMessage = $scope.invalidGenderSelection = false;
             if ($scope.signupData.gender === "") {
                 $scope.invalidGenderSelection = true;
                 console.log('incorrect');
-//                event.preventDefault();
+                // TODO: event.preventDefault();
             } else {
-                $scope.invalidGenderSelection = false;
-                // TODO: Send to server for signup
-                var registrationResponse = userRegistrationService.registerUser($scope.signupData);
-                if (registrationResponse > 0) {
-                    console.log('User registered with id: ' + registrationResponse);
-                    // TODO: Switch to user home
-                    ngDialog.close();
-                } else {
-                    console.log('User registered disallowed due to: ' + registrationResponse);
-                    $scope.registeredEmailId = true;
-//                    event.preventDefault();
-                }
+                // TODO: Validate duplicate username/email id
+
+                // Send to server for signup
+                var registrationResponse =
+                    userRegistrationService.registerUser($scope.signupData,
+                        function (registeredData) {
+                            console.log('User registered: ' + registeredData);
+                            // TODO: ngDialog.close();
+                            // TODO: Switch to user home
+                        }, function (errorMessage) {
+                            console.log('Unable to register user due to: ' + errorMessage);
+                            $scope.displayErrorMessage = true;
+                            $scope.errorMessage = errorMessage;
+                            // TODO: event.preventDefault();
+                        });
             }
         };
     }])

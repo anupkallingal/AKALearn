@@ -41,5 +41,7 @@
         {"id": 2, "name": "Android Mobile and Tabs", "description": "Access your tasks through Android phone and tabs", "iconClass": "fa-android", "availability": "Soon"},
         {"id": 3, "name": "iPhone", "description": "Access your tasks through iPhones", "iconClass": "fa-apple", "availability": "Soon"},
         {"id": 4, "name": "Windows Mobile and Tabs", "description": "Access your tasks through Windows mobile and tabs", "iconClass": "fa-windows", "availability": "Soon"}
+    ],
+    "users": [
     ]
 }
