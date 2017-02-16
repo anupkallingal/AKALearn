@@ -79,18 +79,17 @@ angular.module('karyaApp')
                 // TODO: Validate duplicate username/email id
 
                 // Send to server for signup
-                var registrationResponse =
-                    userRegistrationService.registerUser($scope.signupData,
-                        function (registeredData) {
-                            console.log('User registered: ' + registeredData);
-                            ngDialog.close();
-                            // TODO: Switch to user home
-                        }, function (errorMessage) {
-                            console.log('Unable to register user due to: ' + errorMessage);
-                            $scope.displayErrorMessage = true;
-                            $scope.errorMessage = errorMessage;
-                            // TODO: event.preventDefault();
-                        });
+                userRegistrationService.registerUser($scope.signupData,
+                    function (registeredData) {
+                        console.log('User registered: ' + registeredData);
+                        ngDialog.close();
+                        // TODO: Switch to user home
+                    }, function (errorMessage) {
+                        console.log('Unable to register user due to: ' + errorMessage);
+                        $scope.displayErrorMessage = true;
+                        $scope.errorMessage = errorMessage;
+                        // TODO: event.preventDefault();
+                    });
             }
         };
     }])

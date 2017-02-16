@@ -19,7 +19,7 @@ angular.module('karyaApp')
                     function (errorResponse) {
                         console.log("In response to register() of AuthenticationFactory: " + JSON.stringify(errorResponse));
 
-                        var messageHTML, messageString;
+                        var messageString;
                         if (errorResponse.status === -1) {
                             // The server may be down
                             messageString = "Unable to contact REST services. Please contact your administrators.";
@@ -27,14 +27,37 @@ angular.module('karyaApp')
                             // Expected resource users not found on server
                             messageString = "Server facing technical difficulties. Please contact your administrators. Expected resource API for users not found.";
                         } else {
-                            messageString = "Server facing technical difficulties. Please contact your administrators. Received response status " + errorResponse.status + " [" + errorResponse.statusText + "] from server.";
+                            messageString = "Server facing technical difficulties. Please contact your administrators. Received response status " + errorResponse.status + " [" + errorResponse.statusText + "] from server.\n" + errorResponse.data;
                         }
                         errorFunction(messageString);
                     });
         };
 
-        return authFac;
+        authFac.findUserWithId = function (id, successFunction, errorFunction) {
+            var User = $resource(baseURL + 'users/:userId');
+            return User.get({'userId': id},
+                function (existingUser) {
+                    console.log("In response to findUserWithId() of AuthenticationFactory: " + JSON.stringify(existingUser));
+                    successFunction(existingUser);
+                },
+                function (errorResponse) {
+                    console.log("In response to findUserWithId() of AuthenticationFactory: " + JSON.stringify(errorResponse));
 
+                    var messageString;
+                    if (errorResponse.status === 404) {
+                        // Expected resource user not found on server
+                        successFunction(null);
+                        return;
+                    } else if (errorResponse.status === -1) {
+                        // The server may be down
+                        messageString = "Unable to contact REST services. Please contact your administrators.";
+                    } else {
+                        messageString = "Server facing technical difficulties. Please contact your administrators. Received response status " + errorResponse.status + " [" + errorResponse.statusText + "] from server.\n" + errorResponse.data;
+                    }
+                    errorFunction(messageString);
+                });
+        };
+        return authFac;
     }])
 
     .service('productInfoService', ['$resource', 'baseURL', function ($resource, baseURL) {
@@ -51,14 +74,21 @@ angular.module('karyaApp')
 
         this.registerUser = function (userInfo, successFunction, errorFunction) {
             console.log("In registerUser () of userRegistrationService: " + userInfo);
-            // TODO Validate emailId
-
-            // Submit user info
-            userInfo.id = userInfo.emailId;
-            AuthenticationFactory.register(userInfo, successFunction, errorFunction);
-
-            // return user Info
-            return userInfo;
+            // Validate emailId
+            AuthenticationFactory.findUserWithId(userInfo.emailId,
+                function (existingUser) {
+                    if (existingUser === null) {
+                        // EMail id is not registered, Submit user info
+                        userInfo.id = userInfo.emailId;
+                        AuthenticationFactory.register(userInfo, successFunction, errorFunction);
+                    } else {
+                        // Email id is already registered
+                        console.log("Duplicate email registration: " + userInfo.emailId);
+                        errorFunction("A user with specified email id is already registered");
+                    }
+                }, function (errorMessage) {
+                    errorFunction(errorMessage);
+                });
         };
     }])
 
