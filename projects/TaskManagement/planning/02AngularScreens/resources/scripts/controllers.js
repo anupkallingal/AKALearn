@@ -62,6 +62,7 @@ angular.module('karyaApp')
         $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
 
         $scope.invalidGenderSelection = false;
+        $scope.invalidRegisteredEmailEntry = false;
         $scope.displayWarningMessage = false;
         $scope.warningMessage = "";
         $scope.displayErrorMessage = false;
@@ -70,7 +71,7 @@ angular.module('karyaApp')
         $scope.sendSignup = function (event) {
             console.log($scope.signupData);
 
-            $scope.displayErrorMessage = $scope.displayWarningMessage = $scope.invalidGenderSelection = false;
+            $scope.displayErrorMessage = $scope.displayWarningMessage = $scope.invalidGenderSelection = $scope.invalidRegisteredEmailEntry = false;
             if ($scope.signupData.gender === "") {
                 $scope.invalidGenderSelection = true;
                 console.log('incorrect');
@@ -99,6 +100,7 @@ angular.module('karyaApp')
                             console.log(errorMessage);
                             $scope.displayErrorMessage = true;
                             $scope.errorMessage = errorMessage;
+                            $scope.invalidRegisteredEmailEntry = true;
                             // TODO: event.preventDefault();
                         }
                     }, function (errorMessage) {
