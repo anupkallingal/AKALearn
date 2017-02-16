@@ -71,24 +71,15 @@ angular.module('karyaApp')
     }])
 
     .service('userRegistrationService', ['AuthenticationFactory', function (AuthenticationFactory) {
+        this.findUser = function (userId, successFunction, errorFunction) {
+            console.log("In findUser () of userRegistrationService: " + userId);
+            AuthenticationFactory.findUserWithId(userId, successFunction, errorFunction);
+        };
 
         this.registerUser = function (userInfo, successFunction, errorFunction) {
             console.log("In registerUser () of userRegistrationService: " + userInfo);
-            // Validate emailId
-            AuthenticationFactory.findUserWithId(userInfo.emailId,
-                function (existingUser) {
-                    if (existingUser === null) {
-                        // EMail id is not registered, Submit user info
-                        userInfo.id = userInfo.emailId;
-                        AuthenticationFactory.register(userInfo, successFunction, errorFunction);
-                    } else {
-                        // Email id is already registered
-                        console.log("Duplicate email registration: " + userInfo.emailId);
-                        errorFunction("A user with specified email id is already registered");
-                    }
-                }, function (errorMessage) {
-                    errorFunction(errorMessage);
-                });
+            userInfo.id = userInfo.emailId;
+            AuthenticationFactory.register(userInfo, successFunction, errorFunction);
         };
     }])
 

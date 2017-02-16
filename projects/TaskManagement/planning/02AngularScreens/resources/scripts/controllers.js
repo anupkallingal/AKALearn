@@ -76,20 +76,38 @@ angular.module('karyaApp')
                 console.log('incorrect');
                 // TODO: event.preventDefault();
             } else {
-                // TODO: Validate duplicate username/email id
-
-                // Send to server for signup
-                userRegistrationService.registerUser($scope.signupData,
-                    function (registeredData) {
-                        console.log('User registered: ' + registeredData);
-                        ngDialog.close();
-                        // TODO: Switch to user home
+                // Search for duplicate username/email id
+                userRegistrationService.findUser($scope.signupData.emailId,
+                    function (user) {
+                        // No user with submitted email id exists
+                        if (user === null) {
+                            // Send to server for signup
+                            userRegistrationService.registerUser($scope.signupData,
+                                function (registeredData) {
+                                    console.log('User registered: ' + registeredData);
+                                    ngDialog.close();
+                                    // TODO: Switch to user home
+                                }, function (errorMessage) {
+                                    console.log('Unable to register user due to: ' + errorMessage);
+                                    $scope.displayErrorMessage = true;
+                                    $scope.errorMessage = errorMessage;
+                                    // TODO: event.preventDefault();
+                                });
+                        } else {
+                            // username/email id is aready registered
+                            var errorMessage = "The emailId " + $scope.signupData.emailId + "is already registered";
+                            console.log(errorMessage);
+                            $scope.displayErrorMessage = true;
+                            $scope.errorMessage = errorMessage;
+                            // TODO: event.preventDefault();
+                        }
                     }, function (errorMessage) {
-                        console.log('Unable to register user due to: ' + errorMessage);
+                        console.log('Unable to find user due to: ' + errorMessage);
                         $scope.displayErrorMessage = true;
                         $scope.errorMessage = errorMessage;
                         // TODO: event.preventDefault();
                     });
+
             }
         };
     }])
