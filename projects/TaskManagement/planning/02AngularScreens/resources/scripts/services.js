@@ -60,6 +60,36 @@ angular.module('karyaApp')
                     errorFunction(messageString);
                 });
         };
+
+        authFac.findUserWithCredentials = function (userCredentials, successFunction, errorFunction) {
+            console.log("In findUserWithCredentials() of AuthenticationFactory: " + JSON.stringify(userCredentials));
+            var User = $resource(baseURL + 'users', {'id': userCredentials.emailid, 'password': userCredentials.password});
+            return User.query({'id': userCredentials.emailid, 'password': userCredentials.password},
+                function (existingUser) {
+                    console.log("In response to findUserWithCredentials() of AuthenticationFactory: " + JSON.stringify(existingUser));
+                    if (existingUser.length === 1) {
+                        successFunction(existingUser[0]);
+                    } else {
+                        successFunction(null);
+                    }
+                },
+                function (errorResponse) {
+                    console.log("In response to findUserWithCredentials() of AuthenticationFactory: " + JSON.stringify(errorResponse));
+
+                    var messageString;
+                    if (errorResponse.status === 404) {
+                        // Expected resource user not found on server
+                        successFunction(null);
+                        return;
+                    } else if (errorResponse.status === -1) {
+                        // The server may be down
+                        messageString = "Unable to contact REST services. Please contact your administrators.";
+                    } else {
+                        messageString = "Server facing technical difficulties. Please contact your administrators. Received response status " + errorResponse.status + " [" + errorResponse.statusText + "] from server.\n" + errorResponse.data;
+                    }
+                    errorFunction(messageString);
+                });
+        };
         return authFac;
     }])
 
@@ -71,14 +101,4 @@ angular.module('karyaApp')
         this.getProductPlatforms = function () {
             return $resource(baseURL + "productPlatforms/:id", null,  {'update': {method: 'PUT' }});
         };
-    }])
-
-    .service('userAuthenticationService', function () {
-
-        this.authenticateUser = function (userCredentials) {
-            console.log("In authenticateUser () of userAuthenticationService: " + userCredentials);
-            // TODO Authenticate user credentials
-            // return user id
-            return false;
-        };
-    });
+    }]);

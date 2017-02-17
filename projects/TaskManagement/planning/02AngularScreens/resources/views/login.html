@@ -3,8 +3,11 @@
             <h4>Login</h4>
         </div>
         <div>
-            <div class="alert alert-warning" ng-show="invalidCredentials">
-                <strong>Warning!</strong> Invalid Credentials..
+            <div class="alert alert-danger" ng-show="displayErrorMessage">
+                {{errorMessage}}
+            </div>
+            <div class="alert alert-warning" ng-show="displayWarningMessage">
+                {{warningMessage}}
             </div>
             <form class="form-horizontal" role="form" name="loginForm" ng-submit="sendCredentials($event)" novalidate>
                 <div class="form-group" ng-class="{ 'has-error has-feedback' : loginForm.emailid.$invalid && !loginForm.emailid.$pristine }">

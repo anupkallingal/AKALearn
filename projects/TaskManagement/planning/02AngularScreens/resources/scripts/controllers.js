@@ -114,25 +114,42 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('LoginController', ['$scope', 'ngDialog', 'userAuthenticationService', function ($scope, ngDialog, userAuthenticationService) {
+    .controller('LoginController', ['$scope', 'AuthenticationFactory', 'ngDialog', function ($scope, AuthenticationFactory, ngDialog) {
         $scope.authenticationCredentials = {emailid: "", password: "" };
-        $scope.invalidCredentials = false;
+        $scope.displayWarningMessage = false;
+        $scope.warningMessage = "";
+        $scope.displayErrorMessage = false;
+        $scope.errorMessage = "";
 
         $scope.sendCredentials = function (event) {
-            console.log($scope.authenticationCredentials);
+            console.log("Received crdentials: " + $scope.authenticationCredentials + " for authentication ");
 
-            // Send to service for authentication
-            var authenticationResponse = userAuthenticationService.authenticateUser($scope.authenticationCredentials);
-            if (authenticationResponse) {
-                console.log('User authenticated');
-                // TODO: Switch to user home
-                ngDialog.close();
-            } else {
-                $scope.invalidCredentials = true;
-                $scope.authenticationCredentials.password = "";
-                $scope.loginForm.$setPristine();
-//                event.preventDefault();
-            }
+            $scope.displayErrorMessage = $scope.displayWarningMessage = false;
+            // Search for user with specified credentials
+            AuthenticationFactory.findUserWithCredentials($scope.authenticationCredentials,
+                function (user) {
+                    if (user !== null) {
+                        // User is found
+                        console.log('User authenticated: ' + user);
+                        // TODO: Do whatever?
+                        // TODO: Switch to user home
+                        ngDialog.close();
+                    } else {
+                        // No such user found
+                        console.log("Incorrect login attempt with following credentials" + $scope.authenticationCredentials);
+                        $scope.displayErrorMessage = true;
+                        $scope.errorMessage = "Please check your email and password.";
+                        // TODO: event.preventDefault();
+                    }
+
+                }, function (errorMessage) {
+                    console.log('Unable to find user due to: ' + errorMessage);
+                    $scope.displayErrorMessage = true;
+                    $scope.errorMessage = errorMessage;
+                    $scope.authenticationCredentials.password = "";
+                    $scope.loginForm.$setPristine();
+                    // TODO: event.preventDefault();
+                });
         };
 
     }])
