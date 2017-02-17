@@ -57,7 +57,7 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('SignupController', ['$scope', 'userRegistrationService', 'ngDialog', function ($scope, userRegistrationService, ngDialog) {
+    .controller('SignupController', ['$scope', 'AuthenticationFactory', 'ngDialog', function ($scope, AuthenticationFactory, ngDialog) {
         $scope.signupData = {firstName: "", lastName: "", dateOfBirth: "", gender: "", tel: {areaCode: "", number: ""}, emailId: "", password: "" };
         $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
 
@@ -72,18 +72,18 @@ angular.module('karyaApp')
             console.log($scope.signupData);
 
             $scope.displayErrorMessage = $scope.displayWarningMessage = $scope.invalidGenderSelection = $scope.invalidRegisteredEmailEntry = false;
-            if ($scope.signupData.gender === "") {
+            if ($scope.signupData.gender === null || $scope.signupData.gender === "") {
                 $scope.invalidGenderSelection = true;
                 console.log('incorrect');
                 // TODO: event.preventDefault();
             } else {
                 // Search for duplicate username/email id
-                userRegistrationService.findUser($scope.signupData.emailId,
+                AuthenticationFactory.findUserWithId($scope.signupData.emailId,
                     function (user) {
                         // No user with submitted email id exists
                         if (user === null) {
                             // Send to server for signup
-                            userRegistrationService.registerUser($scope.signupData,
+                            AuthenticationFactory.register($scope.signupData,
                                 function (registeredData) {
                                     console.log('User registered: ' + registeredData);
                                     ngDialog.close();
@@ -96,7 +96,7 @@ angular.module('karyaApp')
                                 });
                         } else {
                             // username/email id is aready registered
-                            var errorMessage = "The emailId " + $scope.signupData.emailId + "is already registered";
+                            var errorMessage = "The emailId " + $scope.signupData.emailId + " is already registered";
                             console.log(errorMessage);
                             $scope.displayErrorMessage = true;
                             $scope.errorMessage = errorMessage;
@@ -120,6 +120,7 @@ angular.module('karyaApp')
 
         $scope.sendCredentials = function (event) {
             console.log($scope.authenticationCredentials);
+
             // Send to service for authentication
             var authenticationResponse = userAuthenticationService.authenticateUser($scope.authenticationCredentials);
             if (authenticationResponse) {

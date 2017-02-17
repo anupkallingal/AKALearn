@@ -10,6 +10,9 @@ angular.module('karyaApp')
         authFac = {};
 
         authFac.register = function (registerData, successFunction, errorFunction) {
+            // Set id to email id
+            registerData.id = registerData.emailId;
+            // Save data to server
             $resource(baseURL + "users")
                 .save(registerData,
                     function (successResponse) {
@@ -67,19 +70,6 @@ angular.module('karyaApp')
     
         this.getProductPlatforms = function () {
             return $resource(baseURL + "productPlatforms/:id", null,  {'update': {method: 'PUT' }});
-        };
-    }])
-
-    .service('userRegistrationService', ['AuthenticationFactory', function (AuthenticationFactory) {
-        this.findUser = function (userId, successFunction, errorFunction) {
-            console.log("In findUser () of userRegistrationService: " + userId);
-            AuthenticationFactory.findUserWithId(userId, successFunction, errorFunction);
-        };
-
-        this.registerUser = function (userInfo, successFunction, errorFunction) {
-            console.log("In registerUser () of userRegistrationService: " + userInfo);
-            userInfo.id = userInfo.emailId;
-            AuthenticationFactory.register(userInfo, successFunction, errorFunction);
         };
     }])
 
