@@ -158,21 +158,29 @@ angular.module('karyaApp')
         $scope.loggedIn = false;
         $scope.userName = '';
 
+        if (AuthenticationFactory.isAuthenticated()) {
+            $scope.loggedIn = AuthenticationFactory.isAuthenticated();
+            $scope.userName = AuthenticationFactory.getUsername();
+        }
+
         $scope.openSignup = function () {
             ngDialog.open({ template: 'resources/views/signup.html', scope: $scope, className: 'ngdialog-theme-plain', controller: "SignupController", width: 600 });
         };
         $scope.openLogin = function () {
             ngDialog.open({ template: 'resources/views/login.html', scope: $scope, className: 'ngdialog-theme-plain', controller: "LoginController" });
         };
-        $scope.logout = function() {
+        $scope.logout = function () {
             AuthenticationFactory.logout();
             $scope.loggedIn = false;
-            $scope.username = '';
+            $scope.userName = '';
         };
 
         $rootScope.$on('login:Successful', function () {
             $scope.loggedIn = AuthenticationFactory.isAuthenticated();
             $scope.userName = AuthenticationFactory.getUsername();
         });
+    }])
+
+    .controller('UserController', ['$scope', function ($scope) {
     }]);
 

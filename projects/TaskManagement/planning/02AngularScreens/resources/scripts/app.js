@@ -3,6 +3,25 @@
 angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
+
+            // route for the user page
+            .state('user', {
+                url: '/user',
+                views: {
+                    'header': {
+                        templateUrl : 'resources/views/companyHeader.html',
+                        controller  : 'HeaderController'
+                    },
+                    'content': {
+                        template: '<h1 class="dummySection">User page To be Completed</h1>',
+                        controller  : 'UserController'
+                    },
+                    'footer': {
+                        templateUrl : 'resources/views/companyFooter.html'
+                    }
+                }
+            })
+
             // route for the home page
             .state('app', {
                 url: '/:scrollTo',
@@ -32,7 +51,8 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
                 url: '/company',
                 views: {
                     'header': {
-                        templateUrl : 'resources/views/companyHeader.html'
+                        templateUrl : 'resources/views/companyHeader.html',
+                        controller  : 'HeaderController'
                     },
                     'content': {
                         template: '<h1 class="dummySection">To be Completed</h1>',
@@ -76,6 +96,7 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
                     }
                 }
             });
+
         $urlRouterProvider.otherwise('/');
     });
 
