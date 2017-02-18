@@ -15,8 +15,10 @@
                         <li><a ui-sref="app({scrollTo: 'section-platforms'})"><span class="glyphicon glyphicon-phone" aria-hidden="true"></span> Platforms</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a data-toggle="modal" data-target="#signupModal"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a data-toggle="modal" data-target="#loginModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li ng-if="!loggedIn"><a ng-click="openSignup()" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                        <li ng-if="!loggedIn"><a ng-click="openLogin()" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li ng-if="loggedIn"><a ui-sref="user">{{userName}}</a></li>
+                        <li ng-if="loggedIn"><a ng-click="logout()" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </div>
             </div>
