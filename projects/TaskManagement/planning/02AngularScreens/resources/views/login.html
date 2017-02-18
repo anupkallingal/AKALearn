@@ -9,7 +9,7 @@
             <div class="alert alert-warning" ng-show="displayWarningMessage">
                 {{warningMessage}}
             </div>
-            <form class="form-horizontal" role="form" name="loginForm" ng-submit="sendCredentials($event)" novalidate>
+            <form class="form-horizontal" role="form" name="loginForm" ng-submit="doLogin()" novalidate>
                 <div class="form-group" ng-class="{ 'has-error has-feedback' : loginForm.emailid.$invalid && !loginForm.emailid.$pristine }">
                     <label for="emailid" class="col-sm-3 control-label">Email</label>
                     <div class="col-sm-9">

@@ -61,10 +61,10 @@ angular.module('karyaApp')
                 });
         };
 
-        authFac.findUserWithCredentials = function (userCredentials, successFunction, errorFunction) {
-            console.log("In findUserWithCredentials() of AuthenticationFactory: " + JSON.stringify(userCredentials));
+        authFac.login = function (userCredentials, successFunction, errorFunction) {
+            console.log("In login() of AuthenticationFactory: " + JSON.stringify(userCredentials));
             var User = $resource(baseURL + 'users', {'id': userCredentials.emailid, 'password': userCredentials.password});
-            return User.query({'id': userCredentials.emailid, 'password': userCredentials.password},
+            User.query({'id': userCredentials.emailid, 'password': userCredentials.password},
                 function (existingUser) {
                     console.log("In response to findUserWithCredentials() of AuthenticationFactory: " + JSON.stringify(existingUser));
                     if (existingUser.length === 1) {
@@ -90,6 +90,7 @@ angular.module('karyaApp')
                     errorFunction(messageString);
                 });
         };
+
         return authFac;
     }])
 

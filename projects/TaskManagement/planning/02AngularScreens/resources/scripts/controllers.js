@@ -121,12 +121,12 @@ angular.module('karyaApp')
         $scope.displayErrorMessage = false;
         $scope.errorMessage = "";
 
-        $scope.sendCredentials = function (event) {
+        $scope.doLogin = function () {
             console.log("Received crdentials: " + $scope.authenticationCredentials + " for authentication ");
 
             $scope.displayErrorMessage = $scope.displayWarningMessage = false;
-            // Search for user with specified credentials
-            AuthenticationFactory.findUserWithCredentials($scope.authenticationCredentials,
+
+            AuthenticationFactory.login($scope.authenticationCredentials,
                 function (user) {
                     if (user !== null) {
                         // User is found
