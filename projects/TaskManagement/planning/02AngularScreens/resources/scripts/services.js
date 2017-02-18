@@ -68,7 +68,8 @@ angular.module('karyaApp')
                 .save(registerData,
                     function (successResponse) {
                         console.log("In response to register() of AuthenticationFactory: " + successResponse);
-                        successFunction(successResponse);
+                        // Login the new user
+                        authFac.login({username: registerData.id, password: registerData.password}, successFunction, errorFunction);
                     },
                     function (errorResponse) {
                         console.log("In response to register() of AuthenticationFactory: " + JSON.stringify(errorResponse));
