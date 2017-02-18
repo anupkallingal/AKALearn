@@ -4,10 +4,49 @@ angular.module('karyaApp')
 
     .constant("baseURL", "http://localhost:3000/")
 
-    .factory('AuthenticationFactory', ['$resource', 'baseURL', 'ngDialog', function ($resource, baseURL, ngDialog) {
-        var authFac;
+    .factory('$localStorage', ['$window', function ($window) {
+        return {
+            store: function (key, value) {
+                $window.localStorage[key] = value;
+            },
+            get: function (key, defaultValue) {
+                return $window.localStorage[key] || defaultValue;
+            },
+            remove: function (key) {
+                $window.localStorage.removeItem(key);
+            },
+            storeObject: function (key, value) {
+                $window.localStorage[key] = JSON.stringify(value);
+            },
+            getObject: function (key, defaultValue) {
+                return JSON.parse($window.localStorage[key] || defaultValue);
+            }
+        };
+    }])
 
+    .factory('AuthenticationFactory', ['$rootScope', '$resource', '$http', '$localStorage', 'baseURL', 'ngDialog', function ($rootScope, $resource, $http, $localStorage, baseURL, ngDialog) {
+        var authFac, TOKEN_KEY, isAuthenticated, username, authToken;
         authFac = {};
+        TOKEN_KEY = 'Token';
+        isAuthenticated = false;
+        username = '';
+        authToken = undefined;
+
+        function useCredentials(credentials) {
+            console.log("In useCredentials() of AuthenticationFactory: " + JSON.stringify(credentials));
+            isAuthenticated = true;
+            username = credentials.username;
+            authToken = credentials.token;
+
+            // Set the token as header for your requests!
+            $http.defaults.headers.common['x-access-token'] = authToken;
+        }
+
+        function storeUserCredentials(credentials) {
+            console.log("In storeUserCredentials() of AuthenticationFactory: " + JSON.stringify(credentials));
+            $localStorage.storeObject(TOKEN_KEY, credentials);
+            useCredentials(credentials);
+        }
 
         authFac.register = function (registerData, successFunction, errorFunction) {
             // Set id to email id
@@ -63,11 +102,14 @@ angular.module('karyaApp')
 
         authFac.login = function (userCredentials, successFunction, errorFunction) {
             console.log("In login() of AuthenticationFactory: " + JSON.stringify(userCredentials));
+            // TODO: Switch to proper authentication service
             var User = $resource(baseURL + 'users', {'id': userCredentials.emailid, 'password': userCredentials.password});
             User.query({'id': userCredentials.emailid, 'password': userCredentials.password},
                 function (existingUser) {
                     console.log("In response to findUserWithCredentials() of AuthenticationFactory: " + JSON.stringify(existingUser));
                     if (existingUser.length === 1) {
+                        storeUserCredentials({'username': existingUser[0].firstName, 'token': existingUser[0].lastName}); // TODO: LastName -> Token
+                        $rootScope.$broadcast('login:Successful');
                         successFunction(existingUser[0]);
                     } else {
                         successFunction(null);
@@ -89,6 +131,14 @@ angular.module('karyaApp')
                     }
                     errorFunction(messageString);
                 });
+        };
+
+        authFac.isAuthenticated = function () {
+            return isAuthenticated;
+        };
+
+        authFac.getUsername = function () {
+            return username;
         };
 
         return authFac;
