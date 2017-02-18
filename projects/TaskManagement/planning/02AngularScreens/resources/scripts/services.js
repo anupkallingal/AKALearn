@@ -48,6 +48,18 @@ angular.module('karyaApp')
             useCredentials(credentials);
         }
 
+        function destroyUserCredentials() {
+            authToken = undefined;
+            username = '';
+            isAuthenticated = false;
+
+            // Clear the header token
+            $http.defaults.headers.common['x-access-token'] = authToken;
+
+            // Clear entry in local storage
+            $localStorage.remove(TOKEN_KEY);
+        }
+
         authFac.register = function (registerData, successFunction, errorFunction) {
             // Set id to email id
             registerData.id = registerData.emailId;
@@ -131,6 +143,12 @@ angular.module('karyaApp')
                     }
                     errorFunction(messageString);
                 });
+        };
+
+        authFac.logout = function () {
+            // TODO: Notify the server
+            // $resource(baseURL + "users/logout").get(function (response) {});
+            destroyUserCredentials();
         };
 
         authFac.isAuthenticated = function () {

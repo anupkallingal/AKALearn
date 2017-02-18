@@ -164,6 +164,12 @@ angular.module('karyaApp')
         $scope.openLogin = function () {
             ngDialog.open({ template: 'resources/views/login.html', scope: $scope, className: 'ngdialog-theme-plain', controller: "LoginController" });
         };
+        $scope.logout = function() {
+            AuthenticationFactory.logout();
+            $scope.loggedIn = false;
+            $scope.username = '';
+        };
+
         $rootScope.$on('login:Successful', function () {
             $scope.loggedIn = AuthenticationFactory.isAuthenticated();
             $scope.userName = AuthenticationFactory.getUsername();
