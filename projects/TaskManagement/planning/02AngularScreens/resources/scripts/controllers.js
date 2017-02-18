@@ -114,7 +114,7 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('LoginController', ['$scope', 'AuthenticationFactory', 'ngDialog', function ($scope, AuthenticationFactory, ngDialog) {
+    .controller('LoginController', ['$scope', 'AuthenticationFactory', '$state', 'ngDialog', function ($scope, AuthenticationFactory, $state, ngDialog) {
         $scope.authenticationCredentials = {emailid: "", password: "" };
         $scope.displayWarningMessage = false;
         $scope.warningMessage = "";
@@ -131,9 +131,9 @@ angular.module('karyaApp')
                     if (user !== null) {
                         // User is found
                         console.log('User authenticated: ' + user);
-                        // TODO: Do whatever?
-                        // TODO: Switch to user home
                         ngDialog.close();
+                        // Switch to user home
+                        $state.go('user', {}, {reload: true});
                     } else {
                         // No such user found
                         console.log("Incorrect login attempt with following credentials" + $scope.authenticationCredentials);
@@ -154,7 +154,7 @@ angular.module('karyaApp')
 
     }])
 
-    .controller('HeaderController', ['$scope', '$rootScope', 'AuthenticationFactory', 'ngDialog', function ($scope, $rootScope, AuthenticationFactory, ngDialog) {
+    .controller('HeaderController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', 'ngDialog', function ($scope, $rootScope, AuthenticationFactory, $state, ngDialog) {
         $scope.loggedIn = false;
         $scope.userName = '';
 
@@ -173,6 +173,7 @@ angular.module('karyaApp')
             AuthenticationFactory.logout();
             $scope.loggedIn = false;
             $scope.userName = '';
+            $state.go('app', {}, {reload: true});
         };
 
         $rootScope.$on('login:Successful', function () {
