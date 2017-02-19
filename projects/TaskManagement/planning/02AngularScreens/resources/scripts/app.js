@@ -13,12 +13,23 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
                         controller  : 'HeaderController'
                     },
                     'content': {
-                        templateUrl : 'resources/views/userLists.html',
+                        templateUrl : 'resources/views/user.html',
                         controller  : 'UserController'
                     },
                     'footer': {
                         templateUrl : 'resources/views/companyFooter.html',
                         controller  : 'FooterController'
+                    }
+                }
+            })
+
+            // route for the user lists page
+            .state('user.lists', {
+                url: '/user/lists',
+                views: {
+                    'content@': {
+                        templateUrl : 'resources/views/userLists.html',
+                        controller  : 'ListsController'
                     }
                 }
             })

@@ -197,7 +197,11 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('UserController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', 'userInfoService', function ($scope, $rootScope, AuthenticationFactory, $state, userInfoService) {
+    .controller('UserController', ['$scope', '$state', function ($scope, $state) {
+        $state.go('user.lists', {}, {reload: true});
+    }])
+
+    .controller('ListsController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', 'userInfoService', function ($scope, $rootScope, AuthenticationFactory, $state, userInfoService) {
         $scope.userName = '';
         $scope.shortName = '';
         $scope.showLists = false;

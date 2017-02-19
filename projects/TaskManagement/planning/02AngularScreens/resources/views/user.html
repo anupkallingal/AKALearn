@@ -1,0 +1,15 @@
+            <section id="section-user" class="row row-content">
+                <div class="col-xs-12" ng-if="showLists">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="text-uppercase text-center">Hello {{shortName}}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" ng-if="!showLists">
+                    <div class="alert alert-danger">
+                         <h4>{{message}}</h4>
+                    </div>
+                </div>
+            </section>
+            
