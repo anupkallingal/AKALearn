@@ -158,10 +158,12 @@ angular.module('karyaApp')
     .controller('HeaderController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', 'ngDialog', function ($scope, $rootScope, AuthenticationFactory, $state, ngDialog) {
         $scope.loggedIn = false;
         $scope.userName = '';
+        $scope.displayName = '';
 
         if (AuthenticationFactory.isAuthenticated()) {
             $scope.loggedIn = AuthenticationFactory.isAuthenticated();
             $scope.userName = AuthenticationFactory.getUsername();
+            $scope.displayName = AuthenticationFactory.getDisplayName();
         }
 
         $scope.openSignup = function () {
@@ -174,12 +176,14 @@ angular.module('karyaApp')
             AuthenticationFactory.logout();
             $scope.loggedIn = false;
             $scope.userName = '';
+            $scope.displayName = '';
             $state.go('app', {}, {reload: true});
         };
 
         $rootScope.$on('login:Successful', function () {
             $scope.loggedIn = AuthenticationFactory.isAuthenticated();
             $scope.userName = AuthenticationFactory.getUsername();
+            $scope.displayName = AuthenticationFactory.getDisplayName();
         });
 
         $scope.stateis = function (curstate) {
@@ -195,15 +199,18 @@ angular.module('karyaApp')
 
     .controller('UserController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', 'userInfoService', function ($scope, $rootScope, AuthenticationFactory, $state, userInfoService) {
         $scope.userName = '';
+        $scope.shortName = '';
         $scope.showLists = false;
         $scope.message = "Loading ...";
 
         if (AuthenticationFactory.isAuthenticated()) {
             $scope.userName = AuthenticationFactory.getUsername();
+            $scope.shortName = AuthenticationFactory.getShortName();
         }
 
         $rootScope.$on('login:Successful', function () {
             $scope.userName = AuthenticationFactory.getUsername();
+            $scope.shortName = AuthenticationFactory.getShortName();
         });
 
         userInfoService.getLists($scope.userName,
