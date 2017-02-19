@@ -17,7 +17,8 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
                         controller  : 'UserController'
                     },
                     'footer': {
-                        templateUrl : 'resources/views/companyFooter.html'
+                        templateUrl : 'resources/views/companyFooter.html',
+                        controller  : 'FooterController'
                     }
                 }
             })
@@ -35,7 +36,8 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
                         controller  : 'ProductController'
                     },
                     'footer': {
-                        templateUrl : 'resources/views/companyFooter.html'
+                        templateUrl : 'resources/views/companyFooter.html',
+                        controller  : 'FooterController'
                     }
                 },
                 onEnter: function ($location, $stateParams, $anchorScroll, $timeout) {
@@ -59,7 +61,8 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
                         controller  : 'CompanyController'
                     },
                     'footer': {
-                        templateUrl : 'resources/views/companyFooter.html'
+                        templateUrl : 'resources/views/companyFooter.html',
+                        controller  : 'FooterController'
                     }
                 }
             })

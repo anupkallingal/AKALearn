@@ -183,6 +183,9 @@ angular.module('karyaApp')
         });
     }])
 
+    .controller('FooterController', ['$scope', '$rootScope', '$state', function ($scope, $rootScope, $state) {
+    }])
+
     .controller('UserController', ['$scope', function ($scope) {
     }]);
 
