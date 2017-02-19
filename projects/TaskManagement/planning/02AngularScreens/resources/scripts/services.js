@@ -25,7 +25,7 @@ angular.module('karyaApp')
     }])
 
     .factory('AuthenticationFactory', ['$rootScope', '$resource', '$http', '$localStorage', 'baseURL', 'ngDialog', function ($rootScope, $resource, $http, $localStorage, baseURL, ngDialog) {
-        var authFac, TOKEN_KEY, isAuthenticated, username, authToken;
+        var authFac, TOKEN_KEY, isAuthenticated, username, displayName, authToken;
         authFac = {};
         TOKEN_KEY = 'Token';
         isAuthenticated = false;
@@ -172,5 +172,13 @@ angular.module('karyaApp')
     
         this.getProductPlatforms = function () {
             return $resource(baseURL + "productPlatforms/:id", null,  {'update': {method: 'PUT' }});
+        };
+    }])
+
+    .service('userInfoService', ['$resource', 'baseURL', function ($resource, baseURL) {
+
+        this.getLists = function (userName, successFunction, errorFunction) {
+            var User = $resource(baseURL + 'lists', {'owner': userName});
+            User.query({'owner': userName}, successFunction, errorFunction);
         };
     }]);

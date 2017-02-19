@@ -98,6 +98,14 @@
     color: #9b59b6;
     margin: 10px;
 }
+/** --------------------------- **/
+/**   SECTION : USERS        **/
+/** --------------------------- **/
+#section-user {
+    height: 100vh;
+    background-color: #ffffff;
+    padding: 40px 50px;
+}
 
 /** --------------------------- **/
 /**   SECTION : FOOTER       **/

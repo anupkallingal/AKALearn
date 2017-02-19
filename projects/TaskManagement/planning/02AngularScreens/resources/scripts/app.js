@@ -13,7 +13,7 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
                         controller  : 'HeaderController'
                     },
                     'content': {
-                        template: '<h1 class="dummySection">User page To be Completed</h1>',
+                        templateUrl : 'resources/views/userLists.html',
                         controller  : 'UserController'
                     },
                     'footer': {

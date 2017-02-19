@@ -1,0 +1,29 @@
+            <section id="section-user" class="row row-content">
+                <div class="col-xs-12" ng-if="showLists">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="text-uppercase text-center">Hello {{userName}}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12 col-sm-6 col-lg-3" ng-repeat="feature in data">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <div class="text-uppercase text-primary text-center">{{feature.name}}</div>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="text-info text-center">{{feature.subItemsCount}} Items</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" ng-if="!showLists">
+                    <div class="alert alert-danger">
+                         <h4>{{message}}</h4>
+                    </div>
+                </div>
+            </section>
+            

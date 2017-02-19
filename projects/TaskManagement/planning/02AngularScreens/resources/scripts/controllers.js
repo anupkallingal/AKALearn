@@ -193,6 +193,27 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('UserController', ['$scope', function ($scope) {
+    .controller('UserController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', 'userInfoService', function ($scope, $rootScope, AuthenticationFactory, $state, userInfoService) {
+        $scope.userName = '';
+        $scope.showLists = false;
+        $scope.message = "Loading ...";
+
+        if (AuthenticationFactory.isAuthenticated()) {
+            $scope.userName = AuthenticationFactory.getUsername();
+        }
+
+        $rootScope.$on('login:Successful', function () {
+            $scope.userName = AuthenticationFactory.getUsername();
+        });
+
+        userInfoService.getLists($scope.userName,
+            function (response) {
+                console.log("Ready with data to display" + JSON.stringify(response));
+                $scope.data = response;
+                $scope.showLists = true;
+            },
+            function (response) {
+                $scope.message = "Error while fetching user lists: " + response.status + " " + response.statusText;
+            });
     }]);
 
