@@ -30,12 +30,14 @@ angular.module('karyaApp')
         TOKEN_KEY = 'Token';
         isAuthenticated = false;
         username = '';
+        displayName = '';
         authToken = undefined;
 
         function useCredentials(credentials) {
             console.log("In useCredentials() of AuthenticationFactory: " + JSON.stringify(credentials));
             isAuthenticated = true;
             username = credentials.username;
+            displayName = credentials.displayName;
             authToken = credentials.token;
 
             // Set the token as header for your requests!
@@ -121,7 +123,7 @@ angular.module('karyaApp')
                 function (existingUser) {
                     console.log("In response to findUserWithCredentials() of AuthenticationFactory: " + JSON.stringify(existingUser));
                     if (existingUser.length === 1) {
-                        storeUserCredentials({'username': existingUser[0].firstName, 'token': existingUser[0].lastName}); // TODO: LastName -> Token
+                        storeUserCredentials({'username': existingUser[0].id, 'displayName': existingUser[0].firstName + ' ' + existingUser[0].lastName, 'token': existingUser[0].lastName}); // TODO: LastName -> Token
                         $rootScope.$broadcast('login:Successful');
                         successFunction(existingUser[0]);
                     } else {
