@@ -25,11 +25,12 @@ angular.module('karyaApp')
     }])
 
     .factory('AuthenticationFactory', ['$rootScope', '$resource', '$http', '$localStorage', 'baseURL', 'ngDialog', function ($rootScope, $resource, $http, $localStorage, baseURL, ngDialog) {
-        var authFac, TOKEN_KEY, isAuthenticated, username, displayName, authToken;
+        var authFac, TOKEN_KEY, isAuthenticated, username, shortName, displayName, authToken;
         authFac = {};
         TOKEN_KEY = 'Token';
         isAuthenticated = false;
         username = '';
+        shortName = '';
         displayName = '';
         authToken = undefined;
 
@@ -37,6 +38,7 @@ angular.module('karyaApp')
             console.log("In useCredentials() of AuthenticationFactory: " + JSON.stringify(credentials));
             isAuthenticated = true;
             username = credentials.username;
+            shortName = credentials.shortName;
             displayName = credentials.displayName;
             authToken = credentials.token;
 
@@ -123,7 +125,7 @@ angular.module('karyaApp')
                 function (existingUser) {
                     console.log("In response to findUserWithCredentials() of AuthenticationFactory: " + JSON.stringify(existingUser));
                     if (existingUser.length === 1) {
-                        storeUserCredentials({'username': existingUser[0].id, 'displayName': existingUser[0].firstName + ' ' + existingUser[0].lastName, 'token': existingUser[0].lastName}); // TODO: LastName -> Token
+                        storeUserCredentials({'username': existingUser[0].id, 'shortName': existingUser[0].firstName, 'displayName': existingUser[0].firstName + ' ' + existingUser[0].lastName, 'token': existingUser[0].lastName}); // TODO: LastName -> Token
                         $rootScope.$broadcast('login:Successful');
                         successFunction(existingUser[0]);
                     } else {
@@ -160,6 +162,14 @@ angular.module('karyaApp')
 
         authFac.getUsername = function () {
             return username;
+        };
+
+        authFac.getShortName = function () {
+            return shortName;
+        };
+
+        authFac.getDisplayName = function () {
+            return displayName;
         };
 
         return authFac;
