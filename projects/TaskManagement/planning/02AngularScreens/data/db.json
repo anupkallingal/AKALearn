@@ -56,5 +56,37 @@
           "password": "anup",
           "id": "anupkallingal@gmail.com"
         }
+    ],
+    "lists": [
+        {
+            "name": "personal",
+            "subItemsCount": 1,
+            "owner": "anupkallingal@gmail.com",
+            "id": 1
+        },
+        {
+            "name": "work",
+            "subItemsCount": 5,
+            "owner": "anupkallingal@gmail.com",
+            "id": 2
+        },
+        {
+            "name": "grocery list",
+            "subItemsCount": 4,
+            "owner": "anupkallingal@gmail.com",
+            "id": 3
+        },
+        {
+            "name": "kids stuff",
+            "subItemsCount": 3,
+            "owner": "anupkallingal@gmail.com",
+            "id": 4
+        },
+        {
+            "name": "picnic list",
+            "subItemsCount": 0,
+            "owner": "anupkallingal@gmail.com",
+            "id": 5
+        }
     ]
 }
