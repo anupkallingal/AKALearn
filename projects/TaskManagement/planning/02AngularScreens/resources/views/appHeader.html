@@ -18,7 +18,7 @@
                         <li ng-if="!loggedIn"><a ng-click="openSignup()" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                         <li ng-if="!loggedIn"><a ng-click="openLogin()" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
-                        <li ng-if="loggedIn" ng-class="{active: stateis('user')}"><a ui-sref="user">{{userName}}</a></li>
+                        <li ng-if="loggedIn" ng-class="{active: stateis('user')}"><a ui-sref="user"><div class="text-capitalize">{{displayName}}</div></a></li>
                         <li ng-if="loggedIn"><a ><i class="fa fa-bell-o" aria-hidden="true"></i> Notifications</a></li>
                         <li ng-if="loggedIn"><a ><i class="fa fa-cog" aria-hidden="true"></i> Settings</a></li>
                         <li ng-if="loggedIn"><a ng-click="logout()" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
