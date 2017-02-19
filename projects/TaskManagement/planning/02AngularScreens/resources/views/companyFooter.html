@@ -3,10 +3,10 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-4">
                         <ul class="list-unstyled">
-                            <li><a ui-sref="app({scrollTo: 'section-header'})">Home</a></li>
-                            <li><a ui-sref="company.aboutus">About</a></li>
-                            <li><a ui-sref="company.blogs">Blogs</a></li>
-                            <li><a ui-sref="company.contactus">Contact us</a></li>
+                            <li ng-class="{active: stateis('app')}"><a ui-sref="app({scrollTo: 'section-header'})">Home</a></li>
+                            <li ng-class="{active: stateis('company.aboutus')}"><a ui-sref="company.aboutus">About</a></li>
+                            <li ng-class="{active: stateis('company.blogs')}"><a ui-sref="company.blogs">Blogs</a></li>
+                            <li ng-class="{active: stateis('company.contactus')}"><a ui-sref="company.contactus">Contact us</a></li>
                         </ul>
                     </div>
 

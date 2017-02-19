@@ -181,9 +181,16 @@ angular.module('karyaApp')
             $scope.loggedIn = AuthenticationFactory.isAuthenticated();
             $scope.userName = AuthenticationFactory.getUsername();
         });
+
+        $scope.stateis = function (curstate) {
+            return $state.is(curstate);
+        };
     }])
 
     .controller('FooterController', ['$scope', '$rootScope', '$state', function ($scope, $rootScope, $state) {
+        $scope.stateis = function (curstate) {
+            return $state.is(curstate);
+        };
     }])
 
     .controller('UserController', ['$scope', function ($scope) {
