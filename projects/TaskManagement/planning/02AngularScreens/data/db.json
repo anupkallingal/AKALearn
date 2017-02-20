@@ -88,5 +88,70 @@
             "owner": "anupkallingal@gmail.com",
             "id": 5
         }
+    ],
+    "tasks": [
+        {
+            "id": 1,
+            "owner": "anupkallingal@gmail.com",
+            "parentListId": 2,
+            "name": "Scrum Meeting",
+            "priority": false,
+            "scheduledFor": 1200,
+            "dueDate": 1200
+        },
+        {
+            "id": 2,
+            "owner": "anupkallingal@gmail.com",
+            "parentListId": 2,
+            "name": "Architect Meeting",
+            "priority": true,
+            "scheduledFor": 1200,
+            "dueDate": 1200
+        },
+        {
+            "id": 3,
+            "owner": "anupkallingal@gmail.com",
+            "parentListId": 2,
+            "name": "Team Event",
+            "priority": true,
+            "scheduledFor": 1200,
+            "dueDate": 1200
+        },
+        {
+            "id": 4,
+            "owner": "anupkallingal@gmail.com",
+            "parentListId": 2,
+            "name": "Technical Review",
+            "priority": false,
+            "scheduledFor": 1200,
+            "dueDate": 1200
+        },
+        {
+            "id": 5,
+            "owner": "anupkallingal@gmail.com",
+            "parentListId": 2,
+            "name": "Monthly Sales Call",
+            "priority": true,
+            "scheduledFor": 1200,
+            "dueDate": 1200
+        },
+        {
+            "id": 6,
+            "owner": "anupkallingal@gmail.com",
+            "parentListId": 2,
+            "name": "Support Issues",
+            "priority": true,
+            "scheduledFor": 1200,
+            "dueDate": 1200
+        },
+        {
+            "id": 7,
+            "owner": "anupkallingal@gmail.com",
+            "parentListId": 2,
+            "name": "Appraisal Meeting",
+            "priority": true,
+            "scheduledFor": 1200,
+            "dueDate": 1200
+        }
     ]
 }
