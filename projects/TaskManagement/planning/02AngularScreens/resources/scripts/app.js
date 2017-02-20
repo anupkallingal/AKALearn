@@ -34,6 +34,17 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
                 }
             })
 
+            // route for the user list page
+            .state('user.list', {
+                url: '/user/lists/:id',
+                views: {
+                    'content@': {
+                        templateUrl : 'resources/views/userList.html',
+                        controller  : 'ListController'
+                    }
+                }
+            })
+
             // route for the home page
             .state('app', {
                 url: '/:scrollTo',

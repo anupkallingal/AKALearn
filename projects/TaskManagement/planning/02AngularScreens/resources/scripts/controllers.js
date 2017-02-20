@@ -220,8 +220,46 @@ angular.module('karyaApp')
         userInfoService.getLists($scope.userName,
             function (response) {
                 console.log("Ready with data to display" + JSON.stringify(response));
-                $scope.data = response;
+                $scope.userLists = response;
                 $scope.showLists = true;
+            },
+            function (response) {
+                $scope.message = "Error while fetching user lists: " + response.status + " " + response.statusText;
+            });
+    }])
+
+    .controller('ListController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', '$stateParams', 'userInfoService', function ($scope, $rootScope, AuthenticationFactory, $state, $stateParams, userInfoService) {
+        $scope.userName = '';
+        $scope.shortName = '';
+        $scope.listName = '';
+        $scope.showList = false;
+        $scope.taskList = [];
+        $scope.message = "Loading ...";
+
+        if (AuthenticationFactory.isAuthenticated()) {
+            $scope.userName = AuthenticationFactory.getUsername();
+            $scope.shortName = AuthenticationFactory.getShortName();
+        }
+
+        $rootScope.$on('login:Successful', function () {
+            $scope.userName = AuthenticationFactory.getUsername();
+            $scope.shortName = AuthenticationFactory.getShortName();
+        });
+
+        userInfoService.getList($stateParams.id,
+            function (response) {
+                console.log("Ready with data to display" + JSON.stringify(response));
+                $scope.listName = response.name;
+            },
+            function (response) {
+                $scope.message = "Error while fetching user lists: " + response.status + " " + response.statusText;
+            });
+
+        userInfoService.getTasksForParent($stateParams.id,
+            function (response) {
+                console.log("Ready with data to display" + JSON.stringify(response));
+                $scope.taskList = response;
+                $scope.showList = true;
             },
             function (response) {
                 $scope.message = "Error while fetching user lists: " + response.status + " " + response.statusText;
