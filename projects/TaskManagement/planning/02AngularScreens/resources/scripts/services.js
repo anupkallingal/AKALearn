@@ -201,4 +201,9 @@ angular.module('karyaApp')
             var User = $resource(baseURL + 'tasks', {'parentListId': listId});
             User.query({'parentListId': listId}, successFunction, errorFunction);
         };
+
+        this.getTask = function (taskId, successFunction, errorFunction) {
+            var Task = $resource(baseURL + 'tasks/:id', {'id': taskId});
+            Task.get({'id': taskId}, successFunction, errorFunction);
+        };
     }]);

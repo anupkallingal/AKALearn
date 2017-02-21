@@ -264,5 +264,33 @@ angular.module('karyaApp')
             function (response) {
                 $scope.message = "Error while fetching user lists: " + response.status + " " + response.statusText;
             });
+    }])
+
+    .controller('TaskController', ['$scope', 'AuthenticationFactory', '$stateParams', 'userInfoService', function ($scope, AuthenticationFactory, $stateParams, userInfoService) {
+        $scope.listName = '';
+        $scope.task = {};
+        $scope.showTask = false;
+        $scope.message = "Loading ...";
+
+        if (AuthenticationFactory.isAuthenticated()) {
+            userInfoService.getTask($stateParams.id,
+                function (response) {
+                    console.log("Ready with data to display" + JSON.stringify(response));
+                    $scope.task = response;
+                    // Parent List Info
+                    userInfoService.getList($scope.task.parentListId,
+                        function (listResponse) {
+                            console.log("Ready with data of parent" + JSON.stringify(listResponse));
+                            $scope.listName = listResponse.name;
+                        },
+                        function (listResponse) {
+                            $scope.message = "Error while fetching parent list: " + response.status + " " + response.statusText;
+                        });
+                    $scope.showTask = true;
+                },
+                function (response) {
+                    $scope.message = "Error while fetching user task: " + response.status + " " + response.statusText;
+                });
+        }
     }]);
 

@@ -45,6 +45,17 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
                 }
             })
 
+            // route for the user task page
+            .state('user.task', {
+                url: '/user/tasks/:id',
+                views: {
+                    'content@': {
+                        templateUrl : 'resources/views/userTask.html',
+                        controller  : 'TaskController'
+                    }
+                }
+            })
+
             // route for the home page
             .state('app', {
                 url: '/:scrollTo',
