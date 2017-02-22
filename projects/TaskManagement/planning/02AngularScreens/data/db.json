@@ -60,25 +60,25 @@
     "lists": [
         {
             "name": "personal",
-            "subItemsCount": 1,
+            "subItemsCount": 0,
             "owner": "anupkallingal@gmail.com",
             "id": 1
         },
         {
             "name": "work",
-            "subItemsCount": 5,
+            "subItemsCount": 7,
             "owner": "anupkallingal@gmail.com",
             "id": 2
         },
         {
             "name": "grocery list",
-            "subItemsCount": 4,
+            "subItemsCount": 0,
             "owner": "anupkallingal@gmail.com",
             "id": 3
         },
         {
             "name": "kids stuff",
-            "subItemsCount": 3,
+            "subItemsCount": 0,
             "owner": "anupkallingal@gmail.com",
             "id": 4
         },
