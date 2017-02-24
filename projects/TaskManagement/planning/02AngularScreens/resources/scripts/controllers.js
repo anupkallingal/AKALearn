@@ -57,7 +57,7 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('SignupController', ['$scope', 'AuthenticationFactory', '$state', 'ngDialog', function ($scope, AuthenticationFactory, $state, ngDialog) {
+    .controller('SignupController', ['$scope', 'AuthenticationFactory', '$state', 'ngDialog', 'dateFormat', function ($scope, AuthenticationFactory, $state, ngDialog, dateFormat) {
         $scope.signupData = {firstName: "", lastName: "", dateOfBirth: "", gender: "", tel: {areaCode: "", number: ""}, emailId: "", password: "" };
         $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
 
@@ -67,6 +67,7 @@ angular.module('karyaApp')
         $scope.warningMessage = "";
         $scope.displayErrorMessage = false;
         $scope.errorMessage = "";
+        $scope.dateFormat = dateFormat;
 
         $scope.sendSignup = function (event) {
             console.log($scope.signupData);
