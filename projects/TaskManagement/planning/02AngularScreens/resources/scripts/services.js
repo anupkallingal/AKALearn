@@ -4,6 +4,8 @@ angular.module('karyaApp')
 
     .constant("baseURL", "http://localhost:3000/")
 
+    .constant("dateFormat", "dd / MM / yyyy")
+
     .factory('$localStorage', ['$window', function ($window) {
         return {
             store: function (key, value) {
