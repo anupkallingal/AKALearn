@@ -28,8 +28,12 @@
                             <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.dateOfBirth.$error.required && !signupForm.dateOfBirth.$pristine }">
                                 <label for="date" class="col-sm-3 control-label">Date of Birth</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="Date" ng-model="signupData.dateOfBirth" required>
-                                    <span class="glyphicon glyphicon-calendar form-control-feedback"></span>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="Date" ng-model="signupData.dateOfBirth" required>
+                                        <span class="input-group-addon" style="cursor: pointer">
+                                            <i class="fa fa-lg fa-calendar"></i>
+                                        </span>
+                                    </div>
                                     <span ng-show="signupForm.dateOfBirth.$error.required && !signupForm.dateOfBirth.$pristine" class="help-block">Your date of birth is required.</span>
                                 </div>
                             </div>
