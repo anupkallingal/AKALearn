@@ -267,13 +267,14 @@ angular.module('karyaApp')
             });
     }])
 
-    .controller('TaskController', ['$scope', 'AuthenticationFactory', '$stateParams', 'userInfoService', function ($scope, AuthenticationFactory, $stateParams, userInfoService) {
+    .controller('TaskController', ['$scope', 'AuthenticationFactory', '$stateParams', 'userInfoService', 'dateFormat', function ($scope, AuthenticationFactory, $stateParams, userInfoService, dateFormat) {
         $scope.userLists = [];
         $scope.listName = '';
 
         $scope.task = {};
         $scope.showTask = false;
         $scope.message = "Loading ...";
+        $scope.dateFormat = dateFormat;
 
         if (AuthenticationFactory.isAuthenticated()) {
             userInfoService.getLists($scope.userName,
