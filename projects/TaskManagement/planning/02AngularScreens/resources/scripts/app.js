@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog'])
+angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog', '720kb.datepicker'])
     .config(function ($stateProvider, $urlRouterProvider) {
         $stateProvider
 
