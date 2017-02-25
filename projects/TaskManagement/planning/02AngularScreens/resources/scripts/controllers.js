@@ -70,13 +70,12 @@ angular.module('karyaApp')
         $scope.dateFormat = dateFormat;
 
         // TODO: Move method to services.js
-        // parse a date in dd / mm / yyyy format
+        // parse a date in dd/mm/yyyy format
         function parseDate(input) {
             var parts, convertedDate;
-            parts = input.split(' / ');
+            parts = input.split('/');
             // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
             convertedDate = new Date(parts[2], parts[1] - 1, parts[0]); // Note: months are 0-based;
-            console.log('convertedDate: ' + convertedDate);
             return convertedDate;
         }
 
@@ -297,7 +296,7 @@ angular.module('karyaApp')
             });
     }])
 
-    .controller('TaskController', ['$scope', 'AuthenticationFactory', '$stateParams', 'userInfoService', 'dateFormat', function ($scope, AuthenticationFactory, $stateParams, userInfoService, dateFormat) {
+    .controller('TaskController', ['$scope', 'AuthenticationFactory', '$stateParams', 'userInfoService', 'dateFormat', 'dateLocale', function ($scope, AuthenticationFactory, $stateParams, userInfoService, dateFormat, dateLocale) {
         $scope.userLists = [];
         $scope.listName = '';
 
@@ -315,6 +314,9 @@ angular.module('karyaApp')
                     userInfoService.getTask($stateParams.id,
                         function (response) {
                             console.log("Ready with task data to display" + JSON.stringify(response));
+                            // TODO: The date coversion code should be moved to service layer
+                            response.scheduledForDisplay = new Date(response.scheduledFor).toLocaleDateString(dateLocale);
+                            response.dueDateDisplay = new Date(response.dueDate).toLocaleDateString(dateLocale);
                             $scope.task = response;
                             // Parent List Info (TODO: Try to remove the code below)
                             userInfoService.getList($scope.task.parentListId,

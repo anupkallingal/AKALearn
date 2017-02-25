@@ -4,7 +4,9 @@ angular.module('karyaApp')
 
     .constant("baseURL", "http://localhost:3000/")
 
-    .constant("dateFormat", "dd / MM / yyyy")
+    .constant("dateFormat", "dd/MM/yyyy")
+
+    .constant("dateLocale", "en-GB")
 
     .factory('$localStorage', ['$window', function ($window) {
         return {
