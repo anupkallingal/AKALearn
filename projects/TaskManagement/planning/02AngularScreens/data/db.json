@@ -96,8 +96,8 @@
             "parentListId": 2,
             "name": "Scrum Meeting",
             "priority": "normal",
-            "scheduledFor": "13 / 07 / 1976",
-            "dueDate": "13 / 07 / 1977"
+            "scheduledFor": 206044200000,
+            "dueDate": 206144200000
         },
         {
             "id": 2,
@@ -105,8 +105,8 @@
             "parentListId": 2,
             "name": "Architect Meeting",
             "priority": "high",
-            "scheduledFor": "13 / 08 / 1976",
-            "dueDate": "13 / 08 / 1977"
+            "scheduledFor": 206244200000,
+            "dueDate": 206344200000
         },
         {
             "id": 3,
@@ -114,8 +114,8 @@
             "parentListId": 2,
             "name": "Team Event",
             "priority": "high",
-            "scheduledFor": "13 / 09 / 1976",
-            "dueDate": "13 / 09 / 1977"
+            "scheduledFor": 206444200000,
+            "dueDate": 206544200000
         },
         {
             "id": 4,
@@ -123,8 +123,8 @@
             "parentListId": 2,
             "name": "Technical Review",
             "priority": "normal",
-            "scheduledFor": "13 / 10 / 1976",
-            "dueDate": "13 / 10 / 1977"
+            "scheduledFor": 206644200000,
+            "dueDate": 206744200000
         },
         {
             "id": 5,
@@ -132,8 +132,8 @@
             "parentListId": 2,
             "name": "Monthly Sales Call",
             "priority": "high",
-            "scheduledFor": "13 / 11 / 1976",
-            "dueDate": "13 / 11 / 1977"
+            "scheduledFor": 206844200000,
+            "dueDate": 206944200000
         },
         {
             "id": 6,
@@ -141,8 +141,8 @@
             "parentListId": 2,
             "name": "Support Issues",
             "priority": "high",
-            "scheduledFor": "13 / 12 / 1976",
-            "dueDate": "13 / 12 / 1977"
+            "scheduledFor": 207044200000,
+            "dueDate": 207144200000
         },
         {
             "id": 7,
@@ -150,8 +150,8 @@
             "parentListId": 2,
             "name": "Appraisal Meeting",
             "priority": "high",
-            "scheduledFor": "13 / 01 / 1977",
-            "dueDate": "13 / 01 / 1978"
+            "scheduledFor": 207244200000,
+            "dueDate": 207344200000
         }
     ]
 }
