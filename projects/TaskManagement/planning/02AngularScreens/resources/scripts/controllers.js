@@ -58,7 +58,7 @@ angular.module('karyaApp')
     }])
 
     .controller('SignupController', ['$scope', 'AuthenticationFactory', '$state', 'ngDialog', 'dateFormat', function ($scope, AuthenticationFactory, $state, ngDialog, dateFormat) {
-        $scope.signupData = {firstName: "", lastName: "", dateOfBirth: "", gender: "", tel: {areaCode: "", number: ""}, emailId: "", password: "" };
+        $scope.signupData = {firstName: "", lastName: "", dateOfBirth: 0, gender: "", tel: {areaCode: "", number: ""}, emailId: "", password: "", dateOfBirthDisplay: "" };
         $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
 
         $scope.invalidGenderSelection = false;
@@ -68,6 +68,17 @@ angular.module('karyaApp')
         $scope.displayErrorMessage = false;
         $scope.errorMessage = "";
         $scope.dateFormat = dateFormat;
+
+        // TODO: Move method to services.js
+        // parse a date in dd / mm / yyyy format
+        function parseDate(input) {
+            var parts, convertedDate;
+            parts = input.split(' / ');
+            // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+            convertedDate = new Date(parts[2], parts[1] - 1, parts[0]); // Note: months are 0-based;
+            console.log('convertedDate: ' + convertedDate);
+            return convertedDate;
+        }
 
         $scope.sendSignup = function (event) {
             console.log($scope.signupData);
@@ -81,24 +92,42 @@ angular.module('karyaApp')
                 // Search for duplicate username/email id
                 AuthenticationFactory.findUserWithId($scope.signupData.emailId,
                     function (user) {
+                        var errorMessage;
                         // No user with submitted email id exists
                         if (user === null) {
-                            // Send to server for signup
-                            AuthenticationFactory.register($scope.signupData,
-                                function (registeredData) {
-                                    console.log('User registered: ' + registeredData);
-                                    ngDialog.close();
-                                    // Switch to user home
-                                    $state.go('user', {}, {reload: true});
-                                }, function (errorMessage) {
-                                    console.log('Unable to register user due to: ' + errorMessage);
-                                    $scope.displayErrorMessage = true;
-                                    $scope.errorMessage = errorMessage;
-                                    // TODO: event.preventDefault();
-                                });
+                            // Handle date conversion
+                            $scope.signupData.dateOfBirth = undefined;
+                            try {
+                                $scope.signupData.dateOfBirth = parseDate($scope.signupData.dateOfBirthDisplay).getTime();
+                            } catch (e) {
+                                console.log(e.message);
+                            }
+                            console.log('The dateOfBirth after conversion: ' + $scope.signupData.dateOfBirth);
+                            if ($scope.signupData.dateOfBirth) {
+                                delete $scope.signupData.dateOfBirthDisplay;
+                                // Send to server for signup
+                                AuthenticationFactory.register($scope.signupData,
+                                    function (registeredData) {
+                                        console.log('User registered: ' + registeredData);
+                                        ngDialog.close();
+                                        // Switch to user home
+                                        $state.go('user', {}, {reload: true});
+                                    }, function (errorMessage) {
+                                        console.log('Unable to register user due to: ' + errorMessage);
+                                        $scope.displayErrorMessage = true;
+                                        $scope.errorMessage = errorMessage;
+                                        // TODO: event.preventDefault();
+                                    });
+                            } else {
+                                errorMessage = "The date of birth " + $scope.signupData.dateOfBirthDisplay + " is invalid";
+                                console.log(errorMessage);
+                                $scope.displayErrorMessage = true;
+                                $scope.errorMessage = errorMessage;
+                                $scope.invalidDateOfBirth = true;
+                            }
                         } else {
                             // username/email id is aready registered
-                            var errorMessage = "The emailId " + $scope.signupData.emailId + " is already registered";
+                            errorMessage = "The emailId " + $scope.signupData.emailId + " is already registered";
                             console.log(errorMessage);
                             $scope.displayErrorMessage = true;
                             $scope.errorMessage = errorMessage;
@@ -114,6 +143,7 @@ angular.module('karyaApp')
 
             }
         };
+
     }])
 
     .controller('LoginController', ['$scope', 'AuthenticationFactory', '$state', 'ngDialog', function ($scope, AuthenticationFactory, $state, ngDialog) {

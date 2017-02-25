@@ -46,7 +46,7 @@
         {
           "firstName": "anup",
           "lastName": "kallingal",
-          "dateOfBirth": "13 / 07 / 1976",
+          "dateOfBirth": 206044200000,
           "gender": "male",
           "tel": {
             "areaCode": "022",
