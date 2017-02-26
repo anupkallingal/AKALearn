@@ -57,7 +57,7 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('SignupController', ['$scope', 'AuthenticationFactory', '$state', 'ngDialog', 'dateFormat', function ($scope, AuthenticationFactory, $state, ngDialog, dateFormat) {
+    .controller('SignupController', ['$scope', 'AuthenticationFactory', '$state', 'ngDialog', 'dateFormat', 'dateService', function ($scope, AuthenticationFactory, $state, ngDialog, dateFormat, dateService) {
         $scope.signupData = {firstName: "", lastName: "", dateOfBirth: 0, gender: "", tel: {areaCode: "", number: ""}, emailId: "", password: "", dateOfBirthDisplay: "" };
         $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
 
@@ -68,16 +68,6 @@ angular.module('karyaApp')
         $scope.displayErrorMessage = false;
         $scope.errorMessage = "";
         $scope.dateFormat = dateFormat;
-
-        // TODO: Move method to services.js
-        // parse a date in dd/mm/yyyy format
-        function parseDate(input) {
-            var parts, convertedDate;
-            parts = input.split('/');
-            // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
-            convertedDate = new Date(parts[2], parts[1] - 1, parts[0]); // Note: months are 0-based;
-            return convertedDate;
-        }
 
         $scope.sendSignup = function (event) {
             console.log($scope.signupData);
@@ -97,7 +87,7 @@ angular.module('karyaApp')
                             // Handle date conversion
                             $scope.signupData.dateOfBirth = undefined;
                             try {
-                                $scope.signupData.dateOfBirth = parseDate($scope.signupData.dateOfBirthDisplay).getTime();
+                                $scope.signupData.dateOfBirth = dateService.toDateValue($scope.signupData.dateOfBirthDisplay);
                             } catch (e) {
                                 console.log(e.message);
                             }
@@ -296,7 +286,7 @@ angular.module('karyaApp')
             });
     }])
 
-    .controller('TaskController', ['$scope', '$state', 'AuthenticationFactory', '$stateParams', 'userInfoService', 'dateFormat', 'dateLocale', function ($scope, $state, AuthenticationFactory, $stateParams, userInfoService, dateFormat, dateLocale) {
+    .controller('TaskController', ['$scope', '$state', 'AuthenticationFactory', '$stateParams', 'userInfoService', 'dateFormat', 'dateService', function ($scope, $state, AuthenticationFactory, $stateParams, userInfoService, dateFormat, dateService) {
         $scope.userLists = [];
         $scope.listName = '';
 
@@ -315,8 +305,8 @@ angular.module('karyaApp')
                         function (response) {
                             console.log("Ready with task data to display" + JSON.stringify(response));
                             // TODO: The date coversion code should be moved to service layer
-                            response.scheduledForDisplay = new Date(response.scheduledFor).toLocaleDateString(dateLocale);
-                            response.dueDateDisplay = new Date(response.dueDate).toLocaleDateString(dateLocale);
+                            response.scheduledForDisplay = dateService.toDateString(response.scheduledFor);
+                            response.dueDateDisplay = dateService.toDateString(response.dueDate);
                             $scope.task = response;
                             // Parent List Info (TODO: Try to remove the code below)
                             userInfoService.getList($scope.task.parentListId,

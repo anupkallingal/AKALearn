@@ -213,9 +213,29 @@ angular.module('karyaApp')
 
         this.updateTask = function (taskId, updatedTask, successFunction, errorFunction) {
             var Task = $resource(baseURL + 'tasks/:id', {'id': taskId}, {
-                'update': { method:'PUT' }
+                'update': { method: 'PUT' }
             });
             // Save data to server
             Task.update(updatedTask, successFunction, errorFunction);
+        };
+    }])
+
+    .service('dateService', ['dateFormat', 'dateLocale', function (dateFormat, dateLocale) {
+
+        // parse a date in dd/mm/yyyy format
+        this.toDateValue = function (dateString) {
+            var parts, convertedDate, dateValue;
+            parts = dateString.split('/');
+            // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+            convertedDate = new Date(parts[2], parts[1] - 1, parts[0]); // Note: months are 0-based;
+            dateValue = convertedDate.getTime();
+            return dateValue;
+        };
+
+        this.toDateString = function (dateValue) {
+            var convertedDate, dateString;
+            convertedDate = new Date(dateValue);
+            dateString = convertedDate.toLocaleDateString(dateLocale);
+            return dateString;
         };
     }]);
