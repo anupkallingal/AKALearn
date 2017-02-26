@@ -332,15 +332,41 @@ angular.module('karyaApp')
             console.log("Received task: " + JSON.stringify($scope.task) + " for updation ");
 
             $scope.displayErrorMessage = $scope.displayWarningMessage = false;
-            userInfoService.updateTask($stateParams.id, $scope.task,
-                function (response) {
-                    console.log("Ready with updated task data" + JSON.stringify(response));
-                    // Switch to view mode
-                    $state.go('user.task', {id: $stateParams.id}, {reload: true});
-                },
-                function (response) {
-                    $scope.message = "Error while updating task data: " + response.status + " " + response.statusText;
-                });
+            // Handle date conversion
+            $scope.task.scheduledFor = undefined;
+            $scope.task.dueDate = undefined;
+            try {
+                $scope.task.scheduledFor = dateService.toDateValue($scope.task.scheduledForDisplay);
+                $scope.task.dueDate = dateService.toDateValue($scope.task.dueDateDisplay);
+            } catch (e) {
+                console.log(e.message);
+            }
+            console.log('The scheduledFor after conversion: ' + $scope.task.scheduledFor);
+            console.log('The dueDate after conversion: ' + $scope.task.dueDate);
+            if ($scope.task.scheduledFor && $scope.task.dueDate) {
+                // Proceed to update
+                userInfoService.updateTask($stateParams.id, $scope.task,
+                    function (response) {
+                        console.log("Ready with updated task data" + JSON.stringify(response));
+                        // Switch to view mode
+                        $state.go('user.task', {id: $stateParams.id}, {reload: true});
+                    },
+                    function (response) {
+                        $scope.message = "Error while updating task data: " + response.status + " " + response.statusText;
+                    });
+            } else {
+                var errorMessage = "";
+                if (!$scope.task.scheduledFor) {
+                    errorMessage = "The scheduled for date " + $scope.task.scheduledForDisplay + " is invalid";
+                    $scope.invalidScheduledForDateOfBirth = true;
+                } else {
+                    errorMessage = "The due date " + $scope.task.dueDateDisplay + " is invalid";
+                    $scope.invalidDueDateOfBirth = true;
+                }
+                console.log(errorMessage);
+                $scope.displayErrorMessage = true;
+                $scope.errorMessage = errorMessage;
+            }
         };
     }]);
 
