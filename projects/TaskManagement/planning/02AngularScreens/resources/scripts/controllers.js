@@ -337,5 +337,18 @@ angular.module('karyaApp')
                     $scope.message = "Error while fetching user lists: " + response.status + " " + response.statusText;
                 });
         }
+
+        $scope.updateTask = function () {
+            console.log("Received task: " + JSON.stringify($scope.task) + " for updation ");
+
+            $scope.displayErrorMessage = $scope.displayWarningMessage = false;
+            userInfoService.updateTask($stateParams.id, $scope.task,
+                function (response) {
+                    console.log("Ready with updated task data" + JSON.stringify(response));
+                },
+                function (response) {
+                    $scope.message = "Error while updating task data: " + response.status + " " + response.statusText;
+                });
+        };
     }]);
 

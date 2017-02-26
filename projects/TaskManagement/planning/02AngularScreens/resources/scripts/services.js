@@ -210,4 +210,12 @@ angular.module('karyaApp')
             var Task = $resource(baseURL + 'tasks/:id', {'id': taskId});
             Task.get({'id': taskId}, successFunction, errorFunction);
         };
+
+        this.updateTask = function (taskId, updatedTask, successFunction, errorFunction) {
+            var Task = $resource(baseURL + 'tasks/:id', {'id': taskId}, {
+                'update': { method:'PUT' }
+            });
+            // Save data to server
+            Task.update(updatedTask, successFunction, errorFunction);
+        };
     }]);
