@@ -296,7 +296,7 @@ angular.module('karyaApp')
             });
     }])
 
-    .controller('TaskController', ['$scope', 'AuthenticationFactory', '$stateParams', 'userInfoService', 'dateFormat', 'dateLocale', function ($scope, AuthenticationFactory, $stateParams, userInfoService, dateFormat, dateLocale) {
+    .controller('TaskController', ['$scope', '$state', 'AuthenticationFactory', '$stateParams', 'userInfoService', 'dateFormat', 'dateLocale', function ($scope, $state, AuthenticationFactory, $stateParams, userInfoService, dateFormat, dateLocale) {
         $scope.userLists = [];
         $scope.listName = '';
 
@@ -345,6 +345,8 @@ angular.module('karyaApp')
             userInfoService.updateTask($stateParams.id, $scope.task,
                 function (response) {
                     console.log("Ready with updated task data" + JSON.stringify(response));
+                    // Switch to view mode
+                    $state.go('user.task', {id: $stateParams.id}, {reload: true});
                 },
                 function (response) {
                     $scope.message = "Error while updating task data: " + response.status + " " + response.statusText;
