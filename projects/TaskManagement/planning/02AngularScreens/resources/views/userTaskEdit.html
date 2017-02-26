@@ -18,7 +18,7 @@
                         <div class="col-xs-12">
                             <div class="col-xs-12" >
                                 <form class="form-horizontal" role="form" name="taskForm">
-                                    <fieldset disabled>
+                                    <fieldset>
                                         <div class="form-group" ng-class="{ 'has-error' : taskForm.taskName.$error.required && !taskForm.taskName.$pristine }">
                                             <label for="taskName" class="col-sm-3 control-label">Task Name</label>
                                             <div class="col-sm-5">
@@ -72,11 +72,8 @@
                                         </div>
                                     </fieldset>
                                     <div class="form-group">
-                                        <div class="col-sm-offset-6 col-sm-1">
-                                            <a ui-sref="user.task.edit({id: task.id})" class="btn btn-block btn-primary">Edit</a>
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <button type="submit" class="btn btn-block btn-danger">Remove</button>
+                                        <div class="col-sm-offset-7 col-sm-1">
+                                            <button type="submit" class="btn btn-block btn-primary">Update</button>
                                         </div>
                                     </div>
                                 </form>

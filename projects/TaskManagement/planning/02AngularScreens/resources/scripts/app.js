@@ -56,6 +56,18 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog', '720kb.datepi
                 }
             })
 
+            // TODO: Do we need to have this. Should it be merged with user.task
+            // route for the user task page
+            .state('user.task.edit', {
+                url: '/user/tasks/:id/edit',
+                views: {
+                    'content@': {
+                        templateUrl : 'resources/views/userTaskEdit.html',
+                        controller  : 'TaskController'
+                    }
+                }
+            })
+
             // route for the home page
             .state('app', {
                 url: '/:scrollTo',
