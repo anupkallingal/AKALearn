@@ -68,6 +68,16 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog', '720kb.datepi
                 }
             })
 
+            .state('user.task.delete', {
+                url: '/user/tasks/:id/delete',
+                views: {
+                    'content@': {
+                        templateUrl : 'resources/views/userTaskDelete.html',
+                        controller  : 'TaskController'
+                    }
+                }
+            })
+
             // route for the home page
             .state('app', {
                 url: '/:scrollTo',

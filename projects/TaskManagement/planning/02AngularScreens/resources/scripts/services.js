@@ -218,6 +218,11 @@ angular.module('karyaApp')
             // Save data to server
             Task.update(updatedTask, successFunction, errorFunction);
         };
+
+        this.deleteTask = function (taskId, successFunction, errorFunction) {
+            var Task = $resource(baseURL + 'tasks/:id', {'id': taskId});
+            Task.remove({'id': taskId}, successFunction, errorFunction);
+        };
     }])
 
     .service('dateService', ['dateFormat', 'dateLocale', function (dateFormat, dateLocale) {

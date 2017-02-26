@@ -368,5 +368,18 @@ angular.module('karyaApp')
                 $scope.errorMessage = errorMessage;
             }
         };
+
+        $scope.deleteTask = function () {
+            console.log("Received task: " + JSON.stringify($scope.task) + " for deletion ");
+            userInfoService.deleteTask($stateParams.id,
+                function (response) {
+                    console.log("Completed deletion of task " + JSON.stringify(response));
+                    // Switch to view mode
+                    $state.go('user.list', {id: $scope.task.parentListId}, {reload: true});
+                },
+                function (response) {
+                    $scope.message = "Error while deleting task data: " + response.status + " " + response.statusText;
+                });
+        };
     }]);
 
