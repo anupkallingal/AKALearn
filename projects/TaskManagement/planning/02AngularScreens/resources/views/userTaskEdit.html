@@ -11,7 +11,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-12">
-                            <h2 class="text-uppercase text-center">{{task.name}}</h2>
+                            <h2 class="text-uppercase text-center">Update {{task.name}}</h2>
                         </div>
                     </div>
                     <div class="row">
@@ -78,8 +78,11 @@
                                         </div>
                                     </fieldset>
                                     <div class="form-group">
-                                        <div class="col-sm-offset-7 col-sm-1">
+                                        <div class="col-sm-offset-6 col-sm-1">
                                             <button type="submit" class="btn btn-block btn-primary">Update</button>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a ui-sref="user.task({id: task.id})" class="btn btn-block btn-default">Cancel</a>
                                         </div>
                                     </div>
                                 </form>
