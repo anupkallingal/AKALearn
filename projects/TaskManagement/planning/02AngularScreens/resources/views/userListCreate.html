@@ -1,0 +1,54 @@
+            <section id="section-user" class="row row-content">
+                <div class="col-xs-12" ng-if="showList">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ol class="breadcrumb">
+                                <li class="text-uppercase"><a ui-sref="user.lists">Lists</a></li>
+                                <li class="text-uppercase active">Add</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="text-uppercase text-center">Create List</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12" >
+                                <div class="alert alert-danger" ng-show="displayErrorMessage">
+                                    {{errorMessage}}
+                                </div>
+                                <div class="alert alert-warning" ng-show="displayWarningMessage">
+                                    {{warningMessage}}
+                                </div>
+                                <form class="form-horizontal" role="form" name="listForm" ng-submit="createList()" novalidate>
+                                    <fieldset>
+                                        <div class="form-group" ng-class="{ 'has-error' : listForm.listName.$error.required && !listForm.listName.$pristine }">
+                                            <label for="listName" class="col-sm-3 control-label">List Name</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" id="listName" name="listName" placeholder="Enter List Name" ng-model="list.name" required>
+                                                <span ng-show="listForm.listName.$error.required && !listForm.listName.$pristine" class="help-block">List name is required.</span>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-6 col-sm-1">
+                                            <button type="submit" ng-disabled="listForm.$invalid" class="btn btn-block btn-primary">Create</button>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a ui-sref="user.lists" class="btn btn-block btn-default">Cancel</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" ng-if="!showList">
+                    <div class="alert alert-danger">
+                         <h4>{{message}}</h4>
+                    </div>
+                </div>
+            </section>
+            

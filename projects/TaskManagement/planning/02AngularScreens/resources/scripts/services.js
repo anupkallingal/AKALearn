@@ -196,6 +196,12 @@ angular.module('karyaApp')
             User.query({'owner': userName}, successFunction, errorFunction);
         };
 
+        this.createList = function (newList, successFunction, errorFunction) {
+            // Save data to server
+            var listsResource = $resource(baseURL + "lists");
+            listsResource.save(newList, successFunction, errorFunction);
+        };
+
         this.getList = function (listId, successFunction, errorFunction) {
             var User = $resource(baseURL + 'lists/:id', {'id': listId});
             User.get({'id': listId}, successFunction, errorFunction);

@@ -248,6 +248,43 @@ angular.module('karyaApp')
             });
     }])
 
+    .controller('AddListController', ['$scope', '$state', '$rootScope', 'AuthenticationFactory', 'userInfoService', function ($scope, $state, $rootScope, AuthenticationFactory, userInfoService) {
+        $scope.userName = "";
+        $scope.list = {
+            "name": "",
+            "subItemsCount": 0,
+            "owner": ""
+        };
+        $scope.showList = false;
+        $scope.message = "Loading ...";
+
+        if (AuthenticationFactory.isAuthenticated()) {
+            $scope.userName = AuthenticationFactory.getUsername();
+            $scope.showList = true;
+        }
+
+        $rootScope.$on('login:Successful', function () {
+            $scope.userName = AuthenticationFactory.getUsername();
+            $scope.showList = true;
+        });
+
+        $scope.createList = function () {
+            console.log("Received list: " + JSON.stringify($scope.list) + " for creation ");
+            $scope.list.owner = $scope.userName;
+            // Proceed to creation
+            userInfoService.createList($scope.list,
+                function (response) {
+                    console.log("Ready with created list: " + JSON.stringify(response));
+                    // Switch to view lists mode
+                    $state.go('user.lists', {}, {reload: true});
+                },
+                function (response) {
+                    $scope.message = "Error while creating list data: " + response.status + " " + response.statusText;
+                });
+        };
+
+    }])
+
     .controller('ListController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', '$stateParams', 'userInfoService', function ($scope, $rootScope, AuthenticationFactory, $state, $stateParams, userInfoService) {
         $scope.userName = '';
         $scope.shortName = '';
