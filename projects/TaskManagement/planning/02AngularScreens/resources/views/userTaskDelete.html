@@ -5,7 +5,8 @@
                             <ol class="breadcrumb">
                                 <li class="text-uppercase"><a ui-sref="user.lists">Lists</a></li>
                                 <li class="text-uppercase"><a ui-sref="user.list({id: task.parentListId})">{{listName}}</a></li>
-                                <li class="text-uppercase active">{{task.name}}</li>
+                                <li class="text-uppercase"><a ui-sref="user.task({id: task.id})">{{task.name}}</a></li>
+                                <li class="text-uppercase active">Remove</li>
                             </ol>
                         </div>
                     </div>
