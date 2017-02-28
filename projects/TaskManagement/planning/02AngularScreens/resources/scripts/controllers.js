@@ -288,6 +288,7 @@ angular.module('karyaApp')
     .controller('ListController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', '$stateParams', 'userInfoService', function ($scope, $rootScope, AuthenticationFactory, $state, $stateParams, userInfoService) {
         $scope.userName = '';
         $scope.shortName = '';
+        $scope.listId = $stateParams.id;
         $scope.listName = '';
         $scope.showList = false;
         $scope.taskList = [];
@@ -420,7 +421,7 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('AddTaskController', ['$scope', '$state', '$rootScope', 'AuthenticationFactory', 'userInfoService', 'dateFormat', 'dateService', function ($scope, $state, $rootScope, AuthenticationFactory, userInfoService, dateFormat, dateService) {
+    .controller('AddTaskController', ['$scope', '$state', '$stateParams', '$rootScope', 'AuthenticationFactory', 'userInfoService', 'dateFormat', 'dateService', function ($scope, $state, $stateParams, $rootScope, AuthenticationFactory, userInfoService, dateFormat, dateService) {
         $scope.userLists = [];
         $scope.listName = '';
 
@@ -428,6 +429,10 @@ angular.module('karyaApp')
         $scope.showTask = false;
         $scope.message = "Loading ...";
         $scope.dateFormat = dateFormat;
+        if($stateParams.parentListId !== null && $stateParams.parentListId !== undefined) {
+            $scope.task.parentListId = parseInt($stateParams.parentListId);
+        }
+        console.log("Default Task: " + JSON.stringify($scope.task));
         if (AuthenticationFactory.isAuthenticated()) {
             userInfoService.getLists($scope.userName,
                 function (response) {

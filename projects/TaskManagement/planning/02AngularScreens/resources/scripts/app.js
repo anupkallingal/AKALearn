@@ -67,6 +67,17 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog', '720kb.datepi
                 }
             })
 
+            // route for the add new user task page
+            .state('user.list.addTask', {
+                url: '/user/lists/:parentListId/addTask',
+                views: {
+                    'content@': {
+                        templateUrl : 'resources/views/userTaskCreate.html',
+                        controller  : 'AddTaskController'
+                    }
+                }
+            })
+
             // route for the user task page
             .state('user.task', {
                 url: '/user/tasks/:id',
