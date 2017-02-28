@@ -1,0 +1,98 @@
+            <section id="section-user" class="row row-content">
+                <div class="col-xs-12" ng-if="showTask">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ol class="breadcrumb">
+                                <li class="text-uppercase"><a ui-sref="user.tasks">Tasks</a></li>
+                                <li class="text-uppercase active">Add</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="text-uppercase text-center">Create Task</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="col-xs-12" >
+                                <div class="alert alert-danger" ng-show="displayErrorMessage">
+                                    {{errorMessage}}
+                                </div>
+                                <div class="alert alert-warning" ng-show="displayWarningMessage">
+                                    {{warningMessage}}
+                                </div>
+                                <form class="form-horizontal" role="form" name="taskForm" ng-submit="createTask()" novalidate>
+                                    <fieldset>
+                                        <div class="form-group" ng-class="{ 'has-error' : taskForm.taskName.$error.required && !taskForm.taskName.$pristine }">
+                                            <label for="taskName" class="col-sm-3 control-label">Task Name</label>
+                                            <div class="col-sm-5">
+                                                <input type="text" class="form-control" id="taskName" name="taskName" placeholder="Enter Task Name" ng-model="task.name" required>
+                                                <span ng-show="taskForm.taskName.$error.required && !taskForm.taskName.$pristine" class="help-block">Task name is required.</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group"  ng-class="{ 'has-error' : invalidParenetListSelection }">
+                                            <label for="gender" class="col-sm-3 control-label">Parent List</label>
+                                            <div class="col-sm-5">
+                                                <select class="form-control text-capitalize" ng-model="task.parentListId" ng-options="userList.id as userList.name for userList in userLists">
+                                                    <option value="">Parent List?</option>
+                                                </select>
+                                                <span ng-show="invalidParenetListSelection" class="help-block">Select a list.</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="taskPriority" class="col-sm-3 control-label">Task Priority</label>
+                                            <div class="col-sm-5">
+                                                <label class="btn btn-default"><input type="radio" ng-model="task.priority" value="high"><i class="fa text-primary fa-star" aria-hidden="true"></i>High</label>
+                                                <label class="btn btn-default"><input type="radio" ng-model="task.priority" value="normal"><i class="fa text-primary fa-star-o" aria-hidden="true"></i>Normal</label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-feedback">
+                                            <label for="scheduledFor" class="col-sm-3 control-label">Scheduled For</label>
+                                            <div class="col-sm-5">
+                                                <datepicker date-format='{{dateFormat}}' date-month-title="selected year" selector="form-control"
+                                                            button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" >
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="scheduledFor" name="scheduledFor" placeholder="Scheduled Date" ng-model="task.scheduledForDisplay">
+                                                        <span class="input-group-addon" style="cursor: pointer">
+                                                            <i class="fa fa-lg fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </datepicker>
+                                            </div>
+                                        </div>
+                                        <div class="form-group has-feedback">
+                                            <label for="dueDate" class="col-sm-3 control-label">Due Date</label>
+                                            <div class="col-sm-5">
+                                                <datepicker date-format='{{dateFormat}}' date-month-title="selected year" selector="form-control"
+                                                            button-prev="<i class='fa fa-arrow-left'></i>" button-next="<i class='fa fa-arrow-right'></i>" >
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="dueDate" name="dueDate" placeholder="Due Date" ng-model="task.dueDateDisplay">
+                                                        <span class="input-group-addon" style="cursor: pointer">
+                                                            <i class="fa fa-lg fa-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </datepicker>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-6 col-sm-1">
+                                            <button type="submit" ng-disabled="taskForm.$invalid" class="btn btn-block btn-primary">Create</button>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <a ui-sref="user.lists" class="btn btn-block btn-default">Cancel</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" ng-if="!showTask">
+                    <div class="alert alert-danger">
+                         <h4>{{message}}</h4>
+                    </div>
+                </div>
+            </section>
+            

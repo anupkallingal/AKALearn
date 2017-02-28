@@ -418,5 +418,75 @@ angular.module('karyaApp')
                     $scope.message = "Error while deleting task data: " + response.status + " " + response.statusText;
                 });
         };
-    }]);
+    }])
 
+    .controller('AddTaskController', ['$scope', '$state', '$rootScope', 'AuthenticationFactory', 'userInfoService', 'dateFormat', 'dateService', function ($scope, $state, $rootScope, AuthenticationFactory, userInfoService, dateFormat, dateService) {
+        $scope.userLists = [];
+        $scope.listName = '';
+
+        $scope.task = {"priority": "normal"};
+        $scope.showTask = false;
+        $scope.message = "Loading ...";
+        $scope.dateFormat = dateFormat;
+        if (AuthenticationFactory.isAuthenticated()) {
+            userInfoService.getLists($scope.userName,
+                function (response) {
+                    console.log("Ready with lists to display" + JSON.stringify(response));
+                    $scope.userLists = response;
+                    $scope.showTask = true;
+                },
+                function (response) {
+                    $scope.message = "Error while fetching user task: " + response.status + " " + response.statusText;
+                });
+        }
+
+        $scope.createTask = function () {
+            console.log("Received task: " + JSON.stringify($scope.task) + " for creation ");
+
+            $scope.displayErrorMessage = $scope.displayWarningMessage = $scope.invalidParenetListSelection = false;
+            // Validate parent list
+            console.log("$scope.task.parentListId: " + $scope.task.parentListId);
+            if ($scope.task.parentListId === null || $scope.task.parentListId === undefined || $scope.task.parentListId === "") {
+                $scope.invalidParenetListSelection = true;
+                console.log('Incorrect parent list');
+            } else {
+                // Handle date conversion
+                $scope.task.scheduledFor = undefined;
+                $scope.task.dueDate = undefined;
+                try {
+                    $scope.task.scheduledFor = dateService.toDateValue($scope.task.scheduledForDisplay);
+                    $scope.task.dueDate = dateService.toDateValue($scope.task.dueDateDisplay);
+                } catch (e) {
+                    console.log(e.message);
+                }
+                console.log('The scheduledFor after conversion: ' + $scope.task.scheduledFor);
+                console.log('The dueDate after conversion: ' + $scope.task.dueDate);
+                if ($scope.task.scheduledFor && $scope.task.dueDate) {
+                    // Set the owner
+                    $scope.task.owner = $scope.userName;
+                    // Proceed to creation
+                    userInfoService.createTask($scope.task,
+                        function (response) {
+                            console.log("Ready with created task: " + JSON.stringify(response));
+                            // Switch to view lists mode
+                            $state.go('user.lists', {}, {reload: true});
+                        },
+                        function (response) {
+                            $scope.message = "Error while creating task data: " + response.status + " " + response.statusText;
+                        });
+                } else {
+                    var errorMessage = "";
+                    if (!$scope.task.scheduledFor) {
+                        errorMessage = "The scheduled for date " + $scope.task.scheduledForDisplay + " is invalid";
+                        $scope.invalidScheduledForDateOfBirth = true;
+                    } else {
+                        errorMessage = "The due date " + $scope.task.dueDateDisplay + " is invalid";
+                        $scope.invalidDueDateOfBirth = true;
+                    }
+                    console.log(errorMessage);
+                    $scope.displayErrorMessage = true;
+                    $scope.errorMessage = errorMessage;
+                }
+            }
+        };
+    }]);
