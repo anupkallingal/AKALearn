@@ -533,4 +533,49 @@ angular.module('karyaApp')
                     // TODO: event.preventDefault();
                 });
         }
+
+        $scope.updateProfile = function () {
+            console.log("Received profile: " + JSON.stringify($scope.userProfile) + " for updation ");
+
+            $scope.displayErrorMessage = $scope.displayWarningMessage = $scope.invalidGenderSelection = false;
+            if ($scope.userProfile.gender === null || $scope.userProfile.gender === "") {
+                $scope.invalidGenderSelection = true;
+                console.log('incorrect');
+                // TODO: event.preventDefault();
+            } else {
+
+                // Handle date conversion
+                $scope.userProfile.dateOfBirth = undefined;
+                try {
+                    $scope.userProfile.dateOfBirth = dateService.toDateValue($scope.userProfile.dateOfBirthDisplay);
+                } catch (e) {
+                    console.log(e.message);
+                }
+                console.log('The dateOfBirth after conversion: ' + $scope.userProfile.dateOfBirth);
+                if ($scope.userProfile.dateOfBirth) {
+//                    delete $scope.userProfile.dateOfBirthDisplay;
+
+                    AuthenticationFactory.updateProfile($scope.task,
+                        function (response) {
+                            console.log('User updated: ' + JSON.stringify(response));
+                            // Switch to view mode
+                            $state.go('user.profile', {}, {reload: true});
+                        },
+                        function (response) {
+                            var errorMessage = "Error while updating user profile: " + response;
+                            console.log(errorMessage);
+                            $scope.displayErrorMessage = true;
+                            $scope.errorMessage = errorMessage;
+                        });
+
+                } else {
+                    var errorMessage = "The date of birth " + $scope.userProfile.dateOfBirthDisplay + " is invalid";
+                    console.log(errorMessage);
+                    $scope.displayErrorMessage = true;
+                    $scope.errorMessage = errorMessage;
+                    $scope.invalidDateOfBirth = true;
+                }
+
+            }
+        };
     }]);

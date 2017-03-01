@@ -96,6 +96,10 @@ angular.module('karyaApp')
                     });
         };
 
+        authFac.updateProfile = function (registerData, successFunction, errorFunction) {
+            errorFunction("Work in progress, not yet functional");
+        };
+
         authFac.findUserWithId = function (id, successFunction, errorFunction) {
             var User = $resource(baseURL + 'users/:userId');
             return User.get({'userId': id},
