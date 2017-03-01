@@ -429,8 +429,8 @@ angular.module('karyaApp')
         $scope.showTask = false;
         $scope.message = "Loading ...";
         $scope.dateFormat = dateFormat;
-        if($stateParams.parentListId !== null && $stateParams.parentListId !== undefined) {
-            $scope.task.parentListId = parseInt($stateParams.parentListId);
+        if ($stateParams.parentListId !== null && $stateParams.parentListId !== undefined) {
+            $scope.task.parentListId = parseInt($stateParams.parentListId, 10);
         }
         console.log("Default Task: " + JSON.stringify($scope.task));
         if (AuthenticationFactory.isAuthenticated()) {
@@ -494,4 +494,43 @@ angular.module('karyaApp')
                 }
             }
         };
+    }])
+
+    .controller('ProfileController', ['$scope', '$state', 'AuthenticationFactory', 'dateFormat', 'dateService', function ($scope, $state, AuthenticationFactory, dateFormat, dateService) {
+        $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
+        $scope.userName = '';
+        $scope.displayName = '';
+
+        $scope.userProfile = {};
+        $scope.showProfile = false;
+        $scope.message = "Loading ...";
+        $scope.dateFormat = dateFormat;
+
+        if (AuthenticationFactory.isAuthenticated()) {
+            $scope.userName = AuthenticationFactory.getUsername();
+            $scope.displayName = AuthenticationFactory.getDisplayName();
+            console.log('Search for $scope.userName: ' + $scope.userName);
+
+            AuthenticationFactory.findUserWithId($scope.userName,
+                function (user) {
+                    var errorMessage;
+                    // No user with submitted email id exists
+                    if (user === null) {
+                        console.log('Unable to find user with id: ' + $scope.userName);
+                        $scope.displayErrorMessage = true;
+                        $scope.errorMessage = errorMessage;
+                    } else {
+                        user.dateOfBirthDisplay = dateService.toDateString(user.dateOfBirth);
+                        console.log("Ready with user data to display" + JSON.stringify(user));
+
+                        $scope.userProfile = user;
+                        $scope.showProfile = true;
+                    }
+                }, function (errorMessage) {
+                    console.log('Unable to find user due to: ' + errorMessage);
+                    $scope.displayErrorMessage = true;
+                    $scope.errorMessage = errorMessage;
+                    // TODO: event.preventDefault();
+                });
+        }
     }]);
