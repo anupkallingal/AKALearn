@@ -111,12 +111,22 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog', '720kb.datepi
                 }
             })
 
-            // route for the user lists page
+            // route for the user profile page
             .state('user.profile', {
                 url: '/user/profile',
                 views: {
                     'content@': {
                         templateUrl : 'resources/views/userProfile.html',
+                        controller  : 'ProfileController'
+                    }
+                }
+            })
+
+            .state('user.profile.editProfile', {
+                url: '/user/profile/editProfile',
+                views: {
+                    'content@': {
+                        templateUrl : 'resources/views/userProfileEdit.html',
                         controller  : 'ProfileController'
                     }
                 }
