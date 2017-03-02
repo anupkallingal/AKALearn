@@ -1,4 +1,5 @@
-'use strict';
+/*jslint node: true */
+"use strict";
 
 angular.module('karyaApp')
 
@@ -98,18 +99,18 @@ angular.module('karyaApp')
 
         authFac.updateProfile = function (userProfile, successFunction, errorFunction) {
             var messageString;
-            console.log("Trying to update: " + JSON.stringify(userProfile))
+            console.log("Trying to update: " + JSON.stringify(userProfile));
             authFac.findUserWithId(userProfile.id,
                 function (existingUser) {
                     if (existingUser !== null) {
-                        console.log("Found user to update: " + JSON.stringify(existingUser))
+                        console.log("Found user to update: " + JSON.stringify(existingUser));
                         // Update existingUser with profile fields
                         existingUser.firstName = userProfile.firstName;
                         existingUser.lastName = userProfile.lastName;
                         existingUser.dateOfBirth = userProfile.dateOfBirth;
                         existingUser.gender = userProfile.gender;
                         existingUser.tel = userProfile.tel;
-                        console.log("Updating user to: " + JSON.stringify(userProfile))
+                        console.log("Updating user to: " + JSON.stringify(userProfile));
                         var UserResource = $resource(baseURL + 'users/:id', {'id': userProfile.id}, {
                             'update': { method: 'PUT' }
                         });
@@ -127,15 +128,15 @@ angular.module('karyaApp')
 
         authFac.updatePassword = function (userId, currentPassword, newPassword, successFunction, errorFunction) {
             var messageString;
-            console.log("Trying to update password: " + userId)
+            console.log("Trying to update password: " + userId);
             authFac.findUserWithId(userId,
                 function (existingUser) {
                     if (existingUser !== null) {
-                        console.log("Found user to update: " + JSON.stringify(existingUser))
-                        if(existingUser.password === currentPassword) {
+                        console.log("Found user to update: " + JSON.stringify(existingUser));
+                        if (existingUser.password === currentPassword) {
                             // Update existingUser password
                             existingUser.password = newPassword;
-                            console.log("Updating user to: " + JSON.stringify(existingUser))
+                            console.log("Updating user to: " + JSON.stringify(existingUser));
                             var UserResource = $resource(baseURL + 'users/:id', {'id': userId}, {
                                 'update': { method: 'PUT' }
                             });

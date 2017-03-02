@@ -1,4 +1,5 @@
-'use strict';
+/*jslint node: true */
+"use strict";
 
 angular.module('karyaApp')
     
@@ -582,7 +583,7 @@ angular.module('karyaApp')
             console.log("Received password data: " + JSON.stringify($scope.passwordData) + " for updation ");
 
             $scope.displayErrorMessage = $scope.displayWarningMessage = $scope.invalidConfirmPassword = false;
-            if($scope.passwordData.newPassword === $scope.passwordData.confirmNewPassword) {
+            if ($scope.passwordData.newPassword === $scope.passwordData.confirmNewPassword) {
                 AuthenticationFactory.updatePassword($scope.userProfile.id, $scope.passwordData.currentPassword, $scope.passwordData.newPassword,
                     function (response) {
                         console.log('User password updated: ' + JSON.stringify(response));

@@ -1,4 +1,5 @@
-'use strict';
+/*jslint node: true */
+"use strict";
 
 angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog', '720kb.datepicker'])
     .config(function ($stateProvider, $urlRouterProvider) {
