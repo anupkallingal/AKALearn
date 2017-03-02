@@ -552,10 +552,9 @@ angular.module('karyaApp')
                     console.log(e.message);
                 }
                 console.log('The dateOfBirth after conversion: ' + $scope.userProfile.dateOfBirth);
-                if ($scope.userProfile.dateOfBirth) {
-//                    delete $scope.userProfile.dateOfBirthDisplay;
 
-                    AuthenticationFactory.updateProfile($scope.task,
+                if ($scope.userProfile.dateOfBirth) {
+                    AuthenticationFactory.updateProfile($scope.userProfile,
                         function (response) {
                             console.log('User updated: ' + JSON.stringify(response));
                             // Switch to view mode
@@ -567,7 +566,6 @@ angular.module('karyaApp')
                             $scope.displayErrorMessage = true;
                             $scope.errorMessage = errorMessage;
                         });
-
                 } else {
                     var errorMessage = "The date of birth " + $scope.userProfile.dateOfBirthDisplay + " is invalid";
                     console.log(errorMessage);

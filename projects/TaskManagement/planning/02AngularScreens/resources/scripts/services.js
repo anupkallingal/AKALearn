@@ -96,8 +96,33 @@ angular.module('karyaApp')
                     });
         };
 
-        authFac.updateProfile = function (registerData, successFunction, errorFunction) {
-            errorFunction("Work in progress, not yet functional");
+        authFac.updateProfile = function (userProfile, successFunction, errorFunction) {
+            var messageString;
+            console.log("Trying to update: " + JSON.stringify(userProfile))
+            authFac.findUserWithId(userProfile.id,
+                function (existingUser) {
+                    if (existingUser !== null) {
+                        console.log("Found user to update: " + JSON.stringify(existingUser))
+                        // Update existingUser with profile fields
+                        existingUser.firstName = userProfile.firstName;
+                        existingUser.lastName = userProfile.lastName;
+                        existingUser.dateOfBirth = userProfile.dateOfBirth;
+                        existingUser.gender = userProfile.gender;
+                        existingUser.tel = userProfile.tel;
+                        console.log("Updating user to: " + JSON.stringify(userProfile))
+                        var UserResource = $resource(baseURL + 'users/:id', {'id': userProfile.id}, {
+                            'update': { method: 'PUT' }
+                        });
+                        // Save data to server
+                        UserResource.update(existingUser, successFunction, errorFunction);
+                    } else {
+                        messageString = "Unable to find record with specified id " + JSON.stringify(userProfile);
+                        console.log(messageString);
+                        errorFunction(messageString);
+                    }
+                }, function (error) {
+                    errorFunction(error);
+                });
         };
 
         authFac.findUserWithId = function (id, successFunction, errorFunction) {
