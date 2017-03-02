@@ -125,6 +125,37 @@ angular.module('karyaApp')
                 });
         };
 
+        authFac.updatePassword = function (userId, currentPassword, newPassword, successFunction, errorFunction) {
+            var messageString;
+            console.log("Trying to update password: " + userId)
+            authFac.findUserWithId(userId,
+                function (existingUser) {
+                    if (existingUser !== null) {
+                        console.log("Found user to update: " + JSON.stringify(existingUser))
+                        if(existingUser.password === currentPassword) {
+                            // Update existingUser password
+                            existingUser.password = newPassword;
+                            console.log("Updating user to: " + JSON.stringify(existingUser))
+                            var UserResource = $resource(baseURL + 'users/:id', {'id': userId}, {
+                                'update': { method: 'PUT' }
+                            });
+                            // Save data to server
+                            UserResource.update(existingUser, successFunction, errorFunction);
+                        } else {
+                            messageString = "The specified current password doesnot match ";
+                            console.log(messageString);
+                            errorFunction(messageString);
+                        }
+                    } else {
+                        messageString = "Unable to find record with specified id " + userId;
+                        console.log(messageString);
+                        errorFunction(messageString);
+                    }
+                }, function (error) {
+                    errorFunction(error);
+                });
+        };
+
         authFac.findUserWithId = function (id, successFunction, errorFunction) {
             var User = $resource(baseURL + 'users/:userId');
             return User.get({'userId': id},

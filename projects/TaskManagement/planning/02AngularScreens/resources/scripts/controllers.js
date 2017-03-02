@@ -502,6 +502,7 @@ angular.module('karyaApp')
         $scope.displayName = '';
 
         $scope.userProfile = {};
+        $scope.passwordData = {};
         $scope.showProfile = false;
         $scope.message = "Loading ...";
         $scope.dateFormat = dateFormat;
@@ -574,6 +575,32 @@ angular.module('karyaApp')
                     $scope.invalidDateOfBirth = true;
                 }
 
+            }
+        };
+
+        $scope.updatePassword = function () {
+            console.log("Received password data: " + JSON.stringify($scope.passwordData) + " for updation ");
+
+            $scope.displayErrorMessage = $scope.displayWarningMessage = $scope.invalidConfirmPassword = false;
+            if($scope.passwordData.newPassword === $scope.passwordData.confirmNewPassword) {
+                AuthenticationFactory.updatePassword($scope.userProfile.id, $scope.passwordData.currentPassword, $scope.passwordData.newPassword,
+                    function (response) {
+                        console.log('User password updated: ' + JSON.stringify(response));
+                        // Switch to view mode
+                        $state.go('user.profile', {}, {reload: true});
+                    },
+                    function (response) {
+                        var errorMessage = "Error while updating user password: " + response;
+                        console.log(errorMessage);
+                        $scope.displayErrorMessage = true;
+                        $scope.errorMessage = errorMessage;
+                    });
+            } else {
+                var errorMessage = "The new password and its confirmation are not the same ";
+                console.log(errorMessage);
+                $scope.displayErrorMessage = true;
+                $scope.errorMessage = errorMessage;
+                $scope.invalidConfirmPassword = true;
             }
         };
     }]);

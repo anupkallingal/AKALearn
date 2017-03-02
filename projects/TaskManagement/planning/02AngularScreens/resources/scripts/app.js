@@ -132,6 +132,16 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog', '720kb.datepi
                 }
             })
 
+            .state('user.profile.editPassword', {
+                url: '/user/profile/editPassword',
+                views: {
+                    'content@': {
+                        templateUrl : 'resources/views/userPasswordEdit.html',
+                        controller  : 'ProfileController'
+                    }
+                }
+            })
+
             // route for the home page
             .state('app', {
                 url: '/:scrollTo',
