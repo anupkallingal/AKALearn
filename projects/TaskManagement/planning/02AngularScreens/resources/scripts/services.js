@@ -298,6 +298,48 @@ angular.module('karyaApp')
         };
     }])
 
+    .service('userNotificationsService', ['$resource', 'baseURL', function ($resource, baseURL) {
+        this.getArchivedNotifications = function (userName, successFunction, errorFunction) {
+            var NotificationsResource = $resource(baseURL + 'notifications', {'owner': userName, 'status': 'archived'});
+            NotificationsResource.query({'owner': userName}, successFunction, errorFunction);
+        };
+
+        this.getActiveNotifications = function (userName, successFunction, errorFunction) {
+            var NotificationsResource = $resource(baseURL + 'notifications', {'owner': userName, 'status_ne': 'archived'});
+            NotificationsResource.query({'owner': userName}, successFunction, errorFunction);
+        };
+
+        this.getNewNotifications = function (userName, successFunction, errorFunction) {
+            var NotificationsResource = $resource(baseURL + 'notifications', {'owner': userName, 'status': 'new'});
+            NotificationsResource.query({'owner': userName}, successFunction, errorFunction);
+        };
+
+        this.getNotification = function (notificationId, successFunction, errorFunction) {
+            var NotificationsResource = $resource(baseURL + 'notifications/:id', {'id': notificationId});
+            NotificationsResource.get({'id': notificationId}, successFunction, errorFunction);
+        };
+
+        this.updateNotification = function (notificationId, updatedState, successFunction, errorFunction) {
+            var NotificationsResource = $resource(baseURL + 'notifications/:id', {'id': notificationId}, {
+                'update': { method: 'PUT' }
+            });
+            NotificationsResource.get({'id': notificationId},
+                function (existingNotification) {
+                    console.log("Foun notification: " + JSON.stringify(existingNotification));
+                    if (existingNotification !== null) {
+                        existingNotification.state = updatedState;
+                        // Save data to server
+                        NotificationsResource.update(existingNotification, successFunction, errorFunction);
+                    } else {
+                        var messageString = "Unable to find record with specified id " + notificationId;
+                        console.log(messageString);
+                        errorFunction(messageString);
+                    }
+                },
+                errorFunction);
+        };
+    }])
+
     .service('dateService', ['dateFormat', 'dateLocale', function (dateFormat, dateLocale) {
 
         // parse a date in dd/mm/yyyy format
