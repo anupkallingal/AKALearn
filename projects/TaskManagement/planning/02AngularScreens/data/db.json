@@ -153,5 +153,79 @@
             "scheduledFor": 207244200000,
             "dueDate": 207344200000
         }
+    ],
+    "notifications": [
+        {
+            "id": 0,
+            "owner": "anupkallingal@gmail.com",
+            "name": "Tasks For Day",
+            "type": "Tasks For Day",
+            "content": "Following is the list of tasks scheduled for today",
+            "notificationDate": 1486244100000,
+            "status": "archived"
+        },
+        {
+            "id": 1,
+            "owner": "anupkallingal@gmail.com",
+            "name": "Tasks For Day",
+            "type": "Tasks For Day",
+            "content": "Following is the list of tasks scheduled for today",
+            "notificationDate": 1486244200000,
+            "status": "read"
+        },
+        {
+            "id": 2,
+            "owner": "anupkallingal@gmail.com",
+            "name": "New Task Created",
+            "type": "New Task Created",
+            "content": "New task 'Technical review' has been created. It is scheduled for 03rd Jan.",
+            "notificationDate": 1486244300000,
+            "status": "read"
+        },
+        {
+            "id": 3,
+            "owner": "anupkallingal@gmail.com",
+            "name": "Task Updated",
+            "type": "Task Updated",
+            "content": "The work task Team Event has been updated.",
+            "notificationDate": 1486244400000,
+            "status": "unread"
+        },
+        {
+            "id": 4,
+            "owner": "anupkallingal@gmail.com",
+            "name": "Task Complete",
+            "type": "Task Complete",
+            "content": "The work task Scrum meeting is completed.",
+            "notificationDate": 1486244500000,
+            "status": "unread"
+        },
+        {
+            "id": 5,
+            "owner": "anupkallingal@gmail.com",
+            "name": "Task Overdue",
+            "type": "Task Overdue",
+            "content": "The grocery list task Rice is overdue.",
+            "notificationDate": 1486244600000,
+            "status": "new"
+        },
+        {
+            "id": 6,
+            "owner": "anupkallingal@gmail.com",
+            "name": "Priority Task Overdue",
+            "type": "Priority Task Overdue",
+            "content": "The kids stuff task Pay school fees is overdue.",
+            "notificationDate": 1486244700000,
+            "status": "new"
+        },
+        {
+            "id": 7,
+            "owner": "anupkallingal@gmail.com",
+            "name": "Tasks For Day",
+            "type": "Tasks For Day",
+            "content": "Following is the list of tasks scheduled for today",
+            "notificationDate": 1486244800000,
+            "status": "new"
+        }
     ]
 }
