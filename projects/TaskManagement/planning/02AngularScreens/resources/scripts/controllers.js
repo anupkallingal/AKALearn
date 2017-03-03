@@ -176,15 +176,25 @@ angular.module('karyaApp')
 
     }])
 
-    .controller('HeaderController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', 'ngDialog', function ($scope, $rootScope, AuthenticationFactory, $state, ngDialog) {
+    .controller('HeaderController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', 'ngDialog', 'userNotificationsService', function ($scope, $rootScope, AuthenticationFactory, $state, ngDialog, userNotificationsService) {
         $scope.loggedIn = false;
         $scope.userName = '';
         $scope.displayName = '';
+        $scope.newNotifications = '';
 
         if (AuthenticationFactory.isAuthenticated()) {
             $scope.loggedIn = AuthenticationFactory.isAuthenticated();
             $scope.userName = AuthenticationFactory.getUsername();
             $scope.displayName = AuthenticationFactory.getDisplayName();
+
+            userNotificationsService.getNewNotifications($scope.userName,
+                function (notifications) {
+                    console.log("Received following new notifications: " + JSON.stringify(notifications));
+                    $scope.newNotifications = notifications.length;
+                }, function (error) {
+                    console.log("Error while fecthing new notifications " + JSON.stringify(error));
+                    $scope.newNotifications = '';
+                });
         }
 
         $scope.openSignup = function () {

@@ -18,7 +18,7 @@
                         <li ng-if="!loggedIn"><a ng-click="openSignup()" ><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
                         <li ng-if="!loggedIn"><a ng-click="openLogin()" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
-                        <li ng-if="loggedIn"><a ><i class="fa fa-bell-o" aria-hidden="true"></i> Notifications</a></li>
+                        <li ng-if="loggedIn"><a ><i class="fa fa-bell-o" aria-hidden="true"></i> Notifications <span class="badge">{{newNotifications}}</span></a></li>
                         <li ng-if="loggedIn" class="dropdown">
                             <a  class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><div class="text-capitalize">{{displayName}}<span class="caret"></span></div></a>
                             <ul class="dropdown-menu">
