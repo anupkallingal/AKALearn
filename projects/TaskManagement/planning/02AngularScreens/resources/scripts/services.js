@@ -300,17 +300,17 @@ angular.module('karyaApp')
 
     .service('userNotificationsService', ['$resource', 'baseURL', function ($resource, baseURL) {
         this.getArchivedNotifications = function (userName, successFunction, errorFunction) {
-            var NotificationsResource = $resource(baseURL + 'notifications', {'owner': userName, 'status': 'archived'});
+            var NotificationsResource = $resource(baseURL + 'notifications', {'owner': userName, 'status': 'archived', '_sort': 'notificationDate', '_order': 'DESC'});
             NotificationsResource.query({'owner': userName}, successFunction, errorFunction);
         };
 
         this.getActiveNotifications = function (userName, successFunction, errorFunction) {
-            var NotificationsResource = $resource(baseURL + 'notifications', {'owner': userName, 'status_ne': 'archived'});
+            var NotificationsResource = $resource(baseURL + 'notifications', {'owner': userName, 'status_ne': 'archived', '_sort': 'notificationDate', '_order': 'DESC'});
             NotificationsResource.query({'owner': userName}, successFunction, errorFunction);
         };
 
         this.getNewNotifications = function (userName, successFunction, errorFunction) {
-            var NotificationsResource = $resource(baseURL + 'notifications', {'owner': userName, 'status': 'new'});
+            var NotificationsResource = $resource(baseURL + 'notifications', {'owner': userName, 'status': 'new', '_sort': 'notificationDate', '_order': 'DESC'});
             NotificationsResource.query({'owner': userName}, successFunction, errorFunction);
         };
 
@@ -356,6 +356,13 @@ angular.module('karyaApp')
             var convertedDate, dateString;
             convertedDate = new Date(dateValue);
             dateString = convertedDate.toLocaleDateString(dateLocale);
+            return dateString;
+        };
+
+        this.toDateTimeString = function (dateValue) {
+            var convertedDate, dateString;
+            convertedDate = new Date(dateValue);
+            dateString = convertedDate.toLocaleString(dateLocale);
             return dateString;
         };
     }]);
