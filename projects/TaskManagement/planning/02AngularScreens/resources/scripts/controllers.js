@@ -524,7 +524,7 @@ angular.module('karyaApp')
         userNotificationsService.getActiveNotifications($scope.userName,
             function (response) {
                 angular.forEach(response, function(value, key) {
-                    value.notificationDateDisplay = dateService.toDateTimeString(value.notificationDate);
+                    value.notificationDateDisplay = dateService.toSortedDateTimeString(value.notificationDate);
                 });
                 console.log("Ready with data to display" + JSON.stringify(response));
                 $scope.userNotifications = response;

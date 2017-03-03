@@ -365,4 +365,15 @@ angular.module('karyaApp')
             dateString = convertedDate.toLocaleString(dateLocale);
             return dateString;
         };
+
+        this.toSortedDateTimeString = function (dateValue) {
+            var convertedDate, dateString;
+            convertedDate = new Date(dateValue);
+            if(convertedDate.toDateString() == new Date().toDateString()) {
+                dateString = convertedDate.toLocaleTimeString();
+            } else {
+                dateString = convertedDate.toLocaleDateString(dateLocale);
+            }
+            return dateString;
+        };
     }]);
