@@ -1,0 +1,37 @@
+            <section id="section-notifications" class="row row-content">
+                <div class="col-xs-12" ng-if="showNotifications">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ol class="breadcrumb">
+                                <li class="text-uppercase active">Notifications</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h2 class="text-uppercase text-center">Notifications</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="row" ng-repeat="userNotification in userNotifications">
+                                <div class="col-xs-8 text-uppercase text-primary">
+                                    {{userNotification.name}}
+                                </div>
+                                <div class="col-xs-4 text-right">
+                                    {{userNotification.notificationDateDisplay}}
+                                </div>
+                                <div class="col-xs-12 text-info">
+                                    {{userNotification.content}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12" ng-if="!showNotifications">
+                    <div class="alert alert-danger">
+                         <h4>{{message}}</h4>
+                    </div>
+                </div>
+            </section>
+            

@@ -108,6 +108,21 @@
 }
 
 /** --------------------------- **/
+/**   SECTION : NOTIFICATION        **/
+/** --------------------------- **/
+#section-notifications {
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 40px 50px;
+}
+
+#section-notifications .row .row {
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    padding: 5px;
+}
+
+/** --------------------------- **/
 /**   SECTION : FOOTER       **/
 /** --------------------------- **/
 #section-footer {

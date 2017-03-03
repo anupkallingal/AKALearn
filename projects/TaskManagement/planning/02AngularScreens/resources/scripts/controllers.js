@@ -507,6 +507,34 @@ angular.module('karyaApp')
         };
     }])
 
+    .controller('NotificationsController', ['$scope', '$rootScope', 'AuthenticationFactory', 'userNotificationsService', 'dateService', function ($scope, $rootScope, AuthenticationFactory, userNotificationsService, dateService) {
+        $scope.userName = '';
+        $scope.userNotifications = [];
+        $scope.showNotifications = false;
+        $scope.message = "Loading ...";
+
+        if (AuthenticationFactory.isAuthenticated()) {
+            $scope.userName = AuthenticationFactory.getUsername();
+        }
+
+        $rootScope.$on('login:Successful', function () {
+            $scope.userName = AuthenticationFactory.getUsername();
+        });
+
+        userNotificationsService.getActiveNotifications($scope.userName,
+            function (response) {
+                angular.forEach(response, function(value, key) {
+                    value.notificationDateDisplay = dateService.toDateTimeString(value.notificationDate);
+                });
+                console.log("Ready with data to display" + JSON.stringify(response));
+                $scope.userNotifications = response;
+                $scope.showNotifications = true;
+            },
+            function (response) {
+                $scope.message = "Error while fetching user lists: " + response.status + " " + response.statusText;
+            });
+    }])
+
     .controller('ProfileController', ['$scope', '$state', 'AuthenticationFactory', 'dateFormat', 'dateService', function ($scope, $state, AuthenticationFactory, dateFormat, dateService) {
         $scope.genders = [{value: "male", label: "Male"}, {value: "female", label: "Female"}, {value: "other", label: "Other"}];
         $scope.userName = '';

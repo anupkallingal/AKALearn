@@ -24,6 +24,17 @@ angular.module('karyaApp', ['ui.router', 'ngResource', 'ngDialog', '720kb.datepi
                 }
             })
 
+            // route for the user notifications page
+            .state('user.notifications', {
+                url: '/user/notifications',
+                views: {
+                    'content@': {
+                        templateUrl : 'resources/views/userNotifications.html',
+                        controller  : 'NotificationsController'
+                    }
+                }
+            })
+
             // route for the user lists page
             .state('user.lists', {
                 url: '/user/lists',
