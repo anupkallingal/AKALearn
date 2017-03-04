@@ -394,6 +394,11 @@ angular.module('karyaApp')
                 function (response) {
                     $scope.message = "Error while fetching user lists: " + response.status + " " + response.statusText;
                 });
+            $scope.$watch('task.dueDateDisplay',
+                function (newVal, oldVal, scope) {
+                    $scope.task.dueDate = dateService.toDateValue($scope.task.dueDateDisplay);
+                    $scope.task.isOverDue = dateService.isOverDue($scope.task.dueDate);
+                }, true);
         }
 
         $scope.updateTask = function () {
@@ -474,6 +479,11 @@ angular.module('karyaApp')
                 function (response) {
                     $scope.message = "Error while fetching user task: " + response.status + " " + response.statusText;
                 });
+            $scope.$watch('task.dueDateDisplay',
+                function (newVal, oldVal, scope) {
+                    $scope.task.dueDate = dateService.toDateValue($scope.task.dueDateDisplay);
+                    $scope.task.isOverDue = dateService.isOverDue($scope.task.dueDate);
+                }, true);
         }
 
         $scope.createTask = function () {
