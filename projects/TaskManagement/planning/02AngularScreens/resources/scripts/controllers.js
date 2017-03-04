@@ -507,7 +507,7 @@ angular.module('karyaApp')
         };
     }])
 
-    .controller('NotificationsController', ['$scope', '$rootScope', 'AuthenticationFactory', 'userNotificationsService', 'dateService', function ($scope, $rootScope, AuthenticationFactory, userNotificationsService, dateService) {
+    .controller('NotificationsController', ['$scope', '$rootScope', 'AuthenticationFactory', 'userNotificationsService', 'dateService', 'iconService', function ($scope, $rootScope, AuthenticationFactory, userNotificationsService, dateService, iconService) {
         $scope.userName = '';
         $scope.userNotifications = [];
         $scope.showNotifications = false;
@@ -523,8 +523,9 @@ angular.module('karyaApp')
 
         userNotificationsService.getActiveNotifications($scope.userName,
             function (response) {
-                angular.forEach(response, function(value, key) {
+                angular.forEach(response, function (value, key) {
                     value.notificationDateDisplay = dateService.toSortedDateTimeString(value.notificationDate);
+                    value.typeIcon = iconService.getNotificationIcon(value.type);
                 });
                 console.log("Ready with data to display" + JSON.stringify(response));
                 $scope.userNotifications = response;

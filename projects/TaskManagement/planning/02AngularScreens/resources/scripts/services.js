@@ -340,6 +340,28 @@ angular.module('karyaApp')
         };
     }])
 
+    .service('iconService', [function () {
+        // Get the icon for notification based on its type
+        this.getNotificationIcon = function (notificationType) {
+            switch (notificationType) {
+            case "Tasks For Day":
+                return "fa-list";
+            case "New Task Created":
+                return "fa-plus-square";
+            case "Task Updated":
+                return "fa-pencil-square";
+            case "Task Complete":
+                return "fa-check-square";
+            case "Task Overdue":
+                return "fa-bell-o";
+            case "Priority Task Overdue":
+                return "fa-bell";
+            default:
+                return "fa-list";
+            }
+        };
+    }])
+
     .service('dateService', ['dateFormat', 'dateLocale', function (dateFormat, dateLocale) {
 
         // parse a date in dd/mm/yyyy format
@@ -369,7 +391,7 @@ angular.module('karyaApp')
         this.toSortedDateTimeString = function (dateValue) {
             var convertedDate, dateString;
             convertedDate = new Date(dateValue);
-            if(convertedDate.toDateString() == new Date().toDateString()) {
+            if (convertedDate.toDateString() === new Date().toDateString()) {
                 dateString = convertedDate.toLocaleTimeString();
             } else {
                 dateString = convertedDate.toLocaleDateString(dateLocale);
