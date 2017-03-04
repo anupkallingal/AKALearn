@@ -47,6 +47,14 @@
                                                 <label class="btn btn-default"><input type="radio" ng-model="task.priority" value="normal"><i class="fa text-primary fa-star-o" aria-hidden="true"></i>Normal</label>
                                             </div>
                                         </div>
+                                        <div class="form-group"  ng-class="{ 'has-error' : invalidStatusSelection }">
+                                            <label for="status" class="col-sm-3 control-label">Status</label>
+                                            <div class="col-sm-5">
+                                                <select class="form-control text-capitalize" ng-model="task.status" ng-options="availableStatus.value as availableStatus.label for availableStatus in availableStatuses">
+                                                </select>
+                                                <span ng-show="invalidStatusSelection" class="help-block">Select a status.</span>
+                                            </div>
+                                        </div>
                                         <div class="form-group has-feedback">
                                             <label for="scheduledFor" class="col-sm-3 control-label">Scheduled For</label>
                                             <div class="col-sm-5">
