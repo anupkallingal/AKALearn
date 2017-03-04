@@ -11,6 +11,13 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <span class="fa" aria-hidden="true" ng-class="{'fa-star': task.priority == 'high', 'fa-star-o': task.priority != 'high', 'text-primary': task.priority == 'high', 'text-muted': task.priority != 'high'} "></span>
+                            &nbsp;
+                            <span class="fa" aria-hidden="true" ng-class="{'fa-check-circle-o': task.status === 'COMPLETE', 'fa-arrow-circle-right': task.status === 'IN PROGRESS', 'fa-circle-o': task.status === 'BACKLOG', 'text-primary': task.status === 'COMPLETE' || task.status === 'IN PROGRESS', 'text-muted': task.status === 'BACKLOG'}"></span>
+                            &nbsp;
+                            <span class="fa" aria-hidden="true" ng-class="{'fa-bell': task.isOverDue, 'fa-bell-o': !task.isOverDue, 'text-danger': task.isOverDue, 'text-muted': !task.isOverDue}" ng-hide="task.status === 'COMPLETE'"></span>
+                        </div>
                         <div class="col-xs-12">
                             <h2 class="text-uppercase text-center">Update {{task.name}}</h2>
                         </div>

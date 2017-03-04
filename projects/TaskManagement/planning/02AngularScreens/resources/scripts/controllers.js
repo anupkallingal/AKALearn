@@ -374,6 +374,7 @@ angular.module('karyaApp')
                             // TODO: The date coversion code should be moved to service layer
                             response.scheduledForDisplay = dateService.toDateString(response.scheduledFor);
                             response.dueDateDisplay = dateService.toDateString(response.dueDate);
+                            response.isOverDue = dateService.isOverDue(response.dueDate);
                             $scope.task = response;
                             // Parent List Info (TODO: Try to remove the code below)
                             userInfoService.getList($scope.task.parentListId,
