@@ -252,6 +252,20 @@ angular.module('karyaApp')
             function (response) {
                 console.log("Ready with data to display" + JSON.stringify(response));
                 $scope.userLists = response;
+                // TODO: Is this the optimal way?
+                angular.forEach(response, function (value, key) {
+                    value.subItemsCount = "Loading...";
+                    userInfoService.getTasksForParent(value.id,
+                        function (response) {
+                            console.log("Identified tasks in list: " + JSON.stringify(response));
+                            value.subItemsCount = response.length;
+                        },
+                        function (response) {
+                            $scope.message = "Error while fetching tasks in list: " + value.id + "(" + response.status + " " + response.statusText + ")";
+                            value.subItemsCount = "NA";
+                        });
+                });
+
                 $scope.showLists = true;
             },
             function (response) {
