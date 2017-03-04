@@ -38,18 +38,22 @@
 
 @component-active-color:    #ecf0f1;
 
-@navbar-default-color:             lighten(@brand-primary, 30%);
-@navbar-default-bg:                darken(#7f8c8d, 30%);
-
-@navbar-default-link-color:                @navbar-default-color;
-@navbar-default-link-hover-color:          lighten(@navbar-default-color, 10%);
-@navbar-default-link-active-color:         darken(@navbar-default-link-hover-color, 10%);
-
-// Navbar brand label
-@navbar-default-brand-color:               @navbar-default-color;
-@navbar-default-brand-hover-color:         darken(@navbar-default-brand-color, 10%);
+@navbar-inverse-color:                  lighten(@brand-primary, 15%)
+@navbar-inverse-bg:                     darken(#7f8c8d, 30%)
+@navbar-inverse-link-color              lighten(@brand-primary, 15%)
+@navbar-inverse-link-hover-color        lighten(@navbar-inverse-color, 10%);
+@navbar-inverse-brand-hover-color       darken(@navbar-inverse-link-hover-color, 10%);
 
 @jumbotron-heading-color:        #fff;
 
 @headings-font-weight:    300;
-=================================
+
+@state-success-text:    #2ecc71
+@state-success-bg:      lighten(@state-success-text, 50%)
+@state-info-text:       #3498db
+@state-info-bg:         lighten(@state-info-text, 50%)
+@state-warning-text:    #f39c12
+@state-warning-bg:      lighten(@state-warning-text, 50%)
+@state-danger-text:     #e74c3c
+@state-danger-bg:       lighten(@state-warning-text, 50%)
+
