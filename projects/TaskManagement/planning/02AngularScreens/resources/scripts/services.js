@@ -404,6 +404,6 @@ angular.module('karyaApp')
         };
 
         this.getNow = function () {
-            return new Date();
+            return new Date(1488375000000);
         };
     }]);
