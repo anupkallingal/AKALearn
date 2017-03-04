@@ -391,11 +391,19 @@ angular.module('karyaApp')
         this.toSortedDateTimeString = function (dateValue) {
             var convertedDate, dateString;
             convertedDate = new Date(dateValue);
-            if (convertedDate.toDateString() === new Date().toDateString()) {
+            if (convertedDate.toDateString() === this.getNow().toDateString()) {
                 dateString = convertedDate.toLocaleTimeString();
             } else {
                 dateString = convertedDate.toLocaleDateString(dateLocale);
             }
             return dateString;
+        };
+
+        this.isOverDue = function (dateValue) {
+            return this.getNow().getTime() >= dateValue;
+        };
+
+        this.getNow = function () {
+            return new Date();
         };
     }]);

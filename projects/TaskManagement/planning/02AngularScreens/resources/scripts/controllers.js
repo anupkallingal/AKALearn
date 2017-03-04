@@ -310,7 +310,7 @@ angular.module('karyaApp')
 
     }])
 
-    .controller('ListController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', '$stateParams', 'userInfoService', function ($scope, $rootScope, AuthenticationFactory, $state, $stateParams, userInfoService) {
+    .controller('ListController', ['$scope', '$rootScope', 'AuthenticationFactory', '$state', '$stateParams', 'userInfoService', 'dateService', function ($scope, $rootScope, AuthenticationFactory, $state, $stateParams, userInfoService, dateService) {
         $scope.userName = '';
         $scope.shortName = '';
         $scope.listId = $stateParams.id;
@@ -342,6 +342,9 @@ angular.module('karyaApp')
             function (response) {
                 console.log("Ready with data to display" + JSON.stringify(response));
                 $scope.taskList = response;
+                angular.forEach(response, function (value, key) {
+                    value.isOverDue = dateService.isOverDue(value.dueDate);
+                });
                 $scope.showList = true;
             },
             function (response) {
