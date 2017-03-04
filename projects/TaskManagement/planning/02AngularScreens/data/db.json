@@ -116,7 +116,7 @@
             "parentListId": 2,
             "name": "Team Event",
             "priority": "high",
-            "status": "INPROGRESS",
+            "status": "IN PROGRESS",
             "scheduledFor": 206444200000,
             "dueDate": 206544200000
         },
