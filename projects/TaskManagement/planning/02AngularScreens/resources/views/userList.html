@@ -25,13 +25,13 @@
                                             <div class="text-uppercase text-primary text-center">{{task.name}}</div>
                                         </div>
                                         <div class="panel-body">
-                                            <div class="col-xs-3 col-xs-offset-2 col-sm-2 col-sm-offset-3 text-center" ng-class="task.priority == 'high' ? 'text-primary' : 'text-muted'">
+                                            <div class="col-xs-3 col-xs-offset-2 col-sm-2 col-sm-offset-3 text-center" data-toggle="tooltip" title="Priority: {{task.priority}}" ng-class="task.priority == 'high' ? 'text-primary' : 'text-muted'">
                                                 <i class="fa" aria-hidden="true" ng-class="task.priority == 'high' ? 'fa-star' : 'fa-star-o'"></i>
                                             </div>
-                                            <div class="col-xs-3 col-sm-2 text-center" ng-class="task.status === 'COMPLETE' ? 'text-primary' : task.status === 'IN PROGRESS' ? 'text-primary' : 'text-muted'">
+                                            <div class="col-xs-3 col-sm-2 text-center" data-toggle="tooltip" title="Status: {{task.status}}" ng-class="task.status === 'COMPLETE' ? 'text-primary' : task.status === 'IN PROGRESS' ? 'text-primary' : 'text-muted'">
                                                 <i class="fa" aria-hidden="true" ng-class="task.status === 'COMPLETE' ? 'fa-check-circle-o' : task.status === 'IN PROGRESS' ? 'fa-arrow-circle-right' : 'fa-circle-o'"></i>
                                             </div>
-                                            <div class="col-xs-3 col-sm-2 text-center" ng-class="task.isOverDue ? 'text-danger' : 'text-muted'">
+                                            <div class="col-xs-3 col-sm-2 text-center" data-toggle="tooltip" title="Over Due: {{task.isOverDue}}" ng-class="task.isOverDue ? 'text-danger' : 'text-muted'">
                                                 <i class="fa" aria-hidden="true" ng-class="task.isOverDue ? 'fa-bell' : 'fa-bell-o'" ng-hide="task.status === 'COMPLETE'"></i>
                                             </div>
                                         </div>
