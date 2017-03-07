@@ -96,7 +96,7 @@
             "parentListId": 2,
             "name": "Scrum Meeting",
             "priority": "normal",
-            "status": "COMPLETE",
+            "status": "complete",
             "scheduledFor": 1488342600000,
             "dueDate": 1488371400000
         },
@@ -106,7 +106,7 @@
             "parentListId": 2,
             "name": "Architect Meeting",
             "priority": "high",
-            "status": "BACKLOG",
+            "status": "backlog",
             "scheduledFor": 1488360600000,
             "dueDate": 1488371400000
         },
@@ -116,7 +116,7 @@
             "parentListId": 2,
             "name": "Team Event",
             "priority": "high",
-            "status": "IN PROGRESS",
+            "status": "in progress",
             "scheduledFor": 1488378600000,
             "dueDate": 1488389400000
         },
@@ -126,7 +126,7 @@
             "parentListId": 2,
             "name": "Scrum Meeting",
             "priority": "normal",
-            "status": "BACKLOG",
+            "status": "backlog",
             "scheduledFor": 1488429000000,
             "dueDate": 1488457800000 
         },
@@ -136,7 +136,7 @@
             "parentListId": 2,
             "name": "Technical Review",
             "priority": "normal",
-            "status": "BACKLOG",
+            "status": "backlog",
             "scheduledFor": 1488447000000,
             "dueDate": 1488457800000
         },
@@ -146,7 +146,7 @@
             "parentListId": 2,
             "name": "Monthly Sales Call",
             "priority": "high",
-            "status": "BACKLOG",
+            "status": "backlog",
             "scheduledFor": 1488454200000,
             "dueDate": 1489577400000
         },
@@ -156,7 +156,7 @@
             "parentListId": 2,
             "name": "Scrum Meeting",
             "priority": "normal",
-            "status": "BACKLOG",
+            "status": "backlog",
             "scheduledFor": 1488515400000,
             "dueDate": 1488544200000
         },
@@ -166,7 +166,7 @@
             "parentListId": 2,
             "name": "Support Issues",
             "priority": "high",
-            "status": "BACKLOG",
+            "status": "backlog",
             "scheduledFor": 1488529800000,
             "dueDate": 1488537000000
         },
@@ -176,7 +176,7 @@
             "parentListId": 2,
             "name": "Appraisal Meeting",
             "priority": "high",
-            "status": "BACKLOG",
+            "status": "backlog",
             "scheduledFor": 1488540600000,
             "dueDate": 1489577400000
         }

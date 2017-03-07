@@ -354,7 +354,7 @@ angular.module('karyaApp')
 
     .controller('TaskController', ['$scope', '$state', 'AuthenticationFactory', '$stateParams', 'userInfoService', 'dateFormat', 'dateService', function ($scope, $state, AuthenticationFactory, $stateParams, userInfoService, dateFormat, dateService) {
         $scope.userLists = [];
-        $scope.availableStatuses = [{value: "BACKLOG", label: "Backlog"}, {value: "IN PROGRESS", label: "In Progress"}, {value: "COMPLETE", label: "Complete"}];
+        $scope.availableStatuses = [{value: "backlog", label: "Backlog"}, {value: "in progress", label: "In Progress"}, {value: "complete", label: "Complete"}];
         $scope.listName = '';
 
         $scope.task = {};
@@ -458,10 +458,10 @@ angular.module('karyaApp')
 
     .controller('AddTaskController', ['$scope', '$state', '$stateParams', '$rootScope', 'AuthenticationFactory', 'userInfoService', 'dateFormat', 'dateService', function ($scope, $state, $stateParams, $rootScope, AuthenticationFactory, userInfoService, dateFormat, dateService) {
         $scope.userLists = [];
-        $scope.availableStatuses = [{value: "BACKLOG", label: "Backlog"}, {value: "IN PROGRESS", label: "In Progress"}, {value: "COMPLETE", label: "Complete"}];
+        $scope.availableStatuses = [{value: "backlog", label: "Backlog"}, {value: "in progress", label: "In Progress"}, {value: "complete", label: "Complete"}];
         $scope.listName = '';
 
-        $scope.task = {"priority": "normal", "status": "BACKLOG"};
+        $scope.task = {"priority": "normal", "status": "backlog"};
         $scope.showTask = false;
         $scope.message = "Loading ...";
         $scope.dateFormat = dateFormat;

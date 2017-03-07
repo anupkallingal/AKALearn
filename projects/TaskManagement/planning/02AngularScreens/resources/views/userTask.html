@@ -13,9 +13,9 @@
                         <div class="col-xs-12 text-center">
                             <span class="fa" aria-hidden="true" ng-class="{'fa-star': task.priority == 'high', 'fa-star-o': task.priority != 'high', 'text-primary': task.priority == 'high', 'text-muted': task.priority != 'high'} " data-toggle="tooltip" title="Priority: {{task.priority}}"></span>
                             &nbsp;
-                            <span class="fa" aria-hidden="true" ng-class="{'fa-check-circle-o': task.status === 'COMPLETE', 'fa-arrow-circle-right': task.status === 'IN PROGRESS', 'fa-circle-o': task.status === 'BACKLOG', 'text-primary': task.status === 'COMPLETE' || task.status === 'IN PROGRESS', 'text-muted': task.status === 'BACKLOG'}" data-toggle="tooltip" title="Status: {{task.status}}"></span>
+                            <span class="fa" aria-hidden="true" ng-class="{'fa-check-circle-o': task.status === 'complete', 'fa-arrow-circle-right': task.status === 'in progress', 'fa-circle-o': task.status === 'backlog', 'text-primary': task.status === 'complete' || task.status === 'in progress', 'text-muted': task.status === 'backlog'}" data-toggle="tooltip" title="Status: {{task.status}}"></span>
                             &nbsp;
-                            <span class="fa" aria-hidden="true" ng-class="{'fa-bell': task.isOverDue, 'fa-bell-o': !task.isOverDue, 'text-danger': task.isOverDue, 'text-muted': !task.isOverDue}" ng-hide="task.status === 'COMPLETE'" data-toggle="tooltip" title="Over Due: {{task.isOverDue}}"></span>
+                            <span class="fa" aria-hidden="true" ng-class="{'fa-bell': task.isOverDue, 'fa-bell-o': !task.isOverDue, 'text-danger': task.isOverDue, 'text-muted': !task.isOverDue}" ng-hide="task.status === 'complete'" data-toggle="tooltip" title="Over Due: {{task.isOverDue}}"></span>
                         </div>
                         <div class="col-xs-12">
                             <h2 class="text-uppercase text-center">{{task.name}}</h2>
