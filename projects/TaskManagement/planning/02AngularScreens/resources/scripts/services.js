@@ -366,12 +366,16 @@ angular.module('karyaApp')
 
         // parse a date in dd/mm/yyyy format
         this.toDateValue = function (dateString) {
-            var parts, convertedDate, dateValue;
-            parts = dateString.split('/');
-            // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
-            convertedDate = new Date(parts[2], parts[1] - 1, parts[0]); // Note: months are 0-based;
-            dateValue = convertedDate.getTime();
-            return dateValue;
+            if (dateString !== undefined) {
+                var parts, convertedDate, dateValue;
+                parts = dateString.split('/');
+                // new Date(year, month [, day [, hours[, minutes[, seconds[, ms]]]]])
+                convertedDate = new Date(parts[2], parts[1] - 1, parts[0]); // Note: months are 0-based;
+                dateValue = convertedDate.getTime();
+                return dateValue;
+            } else {
+                return 0;
+            }
         };
 
         this.toDateString = function (dateValue) {
