@@ -13,3 +13,14 @@ dataset = pd.read_csv("50_Startups.csv")
 X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, 4].values
 
+# Encoding categorical variables
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
+# Encoding independent variables
+labelencoder_X = LabelEncoder()
+X[:, 3] = labelencoder_X.fit_transform(X[:, 3])
+onehotencoder = OneHotEncoder(categorical_features = [3])
+X = onehotencoder.fit_transform(X).toarray()
+
+# Avoiding the dummy variable trap
+X = X[:, 1:]
+
