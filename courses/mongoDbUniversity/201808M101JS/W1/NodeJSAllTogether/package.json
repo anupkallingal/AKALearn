@@ -1,0 +1,17 @@
+{
+  "name": "nodejs-alltogether",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "consolidate": "^0.15.1",
+    "express": "^4.16.3",
+    "nunjucks": "^3.1.3",
+    "mongodb": "^3.1.1"
+  }
+}
