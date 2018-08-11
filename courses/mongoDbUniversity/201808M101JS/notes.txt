@@ -1,0 +1,13 @@
+- Execute specified node file
+node app.js
+
+- Install specified module without saving to package.json
+npm install express
+
+- Install specified module and save package.json
+npm install -save mongodb
+
+- Install all packages specified in packages.json
+npm install 
+
+
